@@ -1,0 +1,66 @@
+site_name: Autodistill
+site_url: https://autodistill.github.io/autodistill
+site_author: Roboflow
+site_description: Distill large foundational models into smaller, domain-specific models for deployment
+repo_name: autodistill/autodistill
+repo_url: https://github.com/autodistill/autodistill
+edit_uri: https://github.com/autodistill/autodistill/tree/main/docs
+copyright: Roboflow 2023. All rights reserved.
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/autodistill
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/roboflow
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/roboflow-ai/mycompany/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/roboflow
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Base Models:
+    - CLIP: base_models/clip.md
+    - Grounded SAM: base_models/groundedsam.md
+    - OWL-ViT: base_models/owlvit.md
+  - Target Models:
+    - YOLOv8: target_models/yolov8.md
+  - Changelog: changelog.md
+
+theme:
+  name: 'material'
+  palette:
+    # Palette for light mode
+    - scheme: default
+      primary: 'custom'
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: 'custom'
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - mkdocstrings
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true

@@ -1,0 +1,5 @@
+opencv-python>=4.6.0
+supervision
+tqdm
+Pillow>=7.1.2
+PyYAML>=5.3.1
