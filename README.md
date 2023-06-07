@@ -11,7 +11,7 @@
 
 [![version](https://badge.fury.io/py/autodistill.svg)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
-[![license](https://img.shields.io/pypi/l/autodistill)](https://github.com/autodistill/autodistill/blob/main/LICENSE.md)
+[![license](https://img.shields.io/pypi/l/autodistill)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/autodistill/autodistill/blob/main/Quickstart.ipynb)
 
@@ -230,4 +230,4 @@ We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get 
 
 ## License
 
-The `autodistill` package is licensed under an [Apache 2.0](LICENSE.md). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
+The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
