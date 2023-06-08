@@ -1,0 +1,42 @@
+task, is_base_model, is_target_model, status, display_name, repo_url, pypi_package, docs_file, license
+
+# object detection base models
+object-detection, 1, 0, completed, DETIC, autodistill/autodistill-detic, autodistill-detic, , MIT
+object-detection, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
+object-detection, 1, 0, in-progress, GroundingDINO
+object-detection, 1, 0, completed, OWL-ViT, autodistill/autodistill-owl-vit, autodistill-owl-vit, , Apache-2.0
+object-detection, 1, 0, not-started, Azure DenseCaptions
+object-detection, 1, 0, not-started, GLIPv2
+object-detection, 1, 0, not-started, SAM-CLIP
+
+# object detection target models
+object-detection, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
+object-detection, 0, 1, completed, YOLO-NAS, autodistill/autodistill-yolonas, autodistill-yolonas, , Other
+object-detection, 0, 1, completed, YOLOv5, autodistill/autodistill-yolov5, autodistill-yolov5, , AGPL-3.0
+object-detection, 0, 1, in-progress, DETR
+object-detection, 0, 1, not-started, YOLOv7
+object-detection, 0, 1, not-started, MT-YOLOv6
+
+# instance segmentation base models
+instance-segmentation, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
+instance-segmentation, 1, 0, not-started, SAM-CLIP
+
+# instance segmentation target models
+instance-segmentation, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
+instance-segmentation, 0, 1, in-progress, YOLO-NAS, autodistill/autodistill-yolonas, autodistill-yolonas, , Other
+instance-segmentation, 0, 1, in-progress, YOLOv5, autodistill/autodistill-yolov5, autodistill-yolov5, , AGPL-3.0
+instance-segmentation, 0, 1, not-started, YOLOv7
+instance-segmentation, 0, 1, not-started, Segformer
+
+# classification base models
+classification, 1, 0, in-progress, CLIP, autodistill/autodistill-clip, autodistill-clip, , MIT
+classification, 1, 0 , not-started, BLIP-2
+classification, 1, 0 , not-started, DINOv2
+classification, 1, 0, not-started, GPT-4
+classification, 1, 0, not-started, Open Flamingo
+classification, 1, 0, not-started, PaLM-2
+
+# classification target models
+classification, 0, 1, in-progress, ViT, autodistill/autodistill-vit, autodistill-vit, , Apache-2.0
+classification, 0, 1, in-progress, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
+classification, 0, 1, in-progress, YOLOv5, autodistill/autodistill-yolov5, autodistill-yolov5, , AGPL-3.0

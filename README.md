@@ -190,29 +190,41 @@ sv.plot_image(annotated_frame, (16, 16))
 Our goal is for `autodistill` to support using all foundation models as Base Models and most SOTA supervised models as Target Models. We focused on object detection and segmentation
 tasks first but plan to launch classification support soon! In the future, we hope `autodistill` will also be used for models beyond computer vision.
 
-* ✅ - complete (click to go to repo)
+* ✅ - complete (click row/column header to go to repo)
 * 🚧 - work in progress
 
 ### object detection
 
-| base / target       | YOLOv5 | YOLOv7 | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | RT-DETR |
-|:-------------------:|:------:|:------:|:------:|:-------:|
-| GroundingDINO       |        |        |        |         |
-| [Grounded SAM](https://github.com/autodistill/autodistill-grounded-sam)        |        |        | ✅     |         |
-| DETIC               |        |        |        |         |
-| OWL-ViT             |        |        |        |         |
+| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | DETR | YOLOv7 | MT-YOLOv6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | 🚧 |  |  |
+| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | 🚧 |  |  |
+| GroundingDINO | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
+| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
+| Azure DenseCaptions |  |  |  |  |  |  |
+| GLIPv2 |  |  |  |  |  |  |
+| SAM-CLIP |  |  |  |  |  |  |
+
 
 ### instance segmentation
 
-| base / target       | YOLOv5 | YOLOv7 | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | RT-DETR |
-|:-------------------:|:------:|:------:|:------:|:-------:|
-| [Grounded SAM](https://github.com/autodistill/autodistill-grounded-sam)        |        |        | ✅     |         |
+| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
+| SAM-CLIP |  |  |  |  |  |
+
 
 ### classification
 
-| base / target | YOLOv8 | YOLOv5 | ViT |
-|:-------------:|:------:|:------:|:----|
-| CLIP          |        |        |     |
+| base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
+|:---:|:---:|:---:|:---:|
+| [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
+| BLIP-2 |  |  |  |
+| DINOv2 |  |  |  |
+| GPT-4 |  |  |  |
+| Open Flamingo |  |  |  |
+| PaLM-2 |  |  |  |
+
 
 ## 🗺️ Roadmap
 
