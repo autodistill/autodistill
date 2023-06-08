@@ -1,0 +1,14 @@
+{
+  "name": "autodistill-automation",
+  "version": "1.0.0",
+  "description": "1. Create a feature branch 2. Add new entry to `automation/models.csv` file. 3. Run `automation/autogenerate_model_tables.py` script. 4. Model support matrix in `README.md` will update automatically.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
