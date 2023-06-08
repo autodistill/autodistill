@@ -1,10 +1,10 @@
 site_name: Autodistill
-site_url: https://roboflow.github.io/autodistill
+site_url: https://docs.autodistill.com
 site_author: Roboflow
 site_description: Distill large foundational models into smaller, domain-specific models for deployment
-repo_name: roboflow/autodistill
-repo_url: https://github.com/roboflow/autodistill
-edit_uri: https://github.com/roboflow/autodistill/tree/main/docs
+repo_name: autodistill/autodistill
+repo_url: https://github.com/autodistill/autodistill
+edit_uri: https://github.com/autodistill/autodistill/tree/main/docs
 copyright: Roboflow 2023. All rights reserved.
 
 extra:
@@ -23,16 +23,23 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Base Models:
-    - CLIP: base_models/clip.md
-    - DETIC: base_models/detic.md
-    - Grounded SAM: base_models/groundedsam.md
-    - OWL-ViT: base_models/owlvit.md
+  - Detection:
+    - Base Models:
+      - DETIC: base_models/detic.md
+      - Grounded SAM: base_models/groundedsam.md
+      - OWL-ViT: base_models/owlvit.md
   - Target Models:
     - YOLOv5: target_models/yolov5.md
     - YOLOv8: target_models/yolov8.md
     - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
     - YOLO-NAS: target_models/yolo-nas.md
+  - Classification:
+    - Base Models:
+      - CLIP: base_models/clip.md
+  - Target Models:
+    - ViT: target_models/vit.md
+    - YOLOv5: target_models/yolov5.md
+    - YOLOv8: target_models/yolov8.md
   - Changelog: changelog.md
 
 theme:

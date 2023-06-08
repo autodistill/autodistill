@@ -26,3 +26,4 @@ base_model = GroundedSAM(ontology=CaptionOntology({"shipping container": "contai
 
 # label all images in a folder called `context_images`
 base_model.label("./context_images", extension=".jpeg")
+```
