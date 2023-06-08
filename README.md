@@ -28,7 +28,13 @@ Autodistill uses big, slower foundation models to train small, faster supervised
   </p>
 </div>
 
-Currently, `autodistill` supports vision tasks like object detection and instance segmentation, but in the future it can be expanded to support language (and other) models. [Jump to currently supported models](#-available-models).
+Currently, `autodistill` supports vision tasks like object detection and instance segmentation, but in the future it can be expanded to support language (and other) models.
+
+## 🔗 Quicklinks
+
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+|:---:|:---:|:---:|:---:|
+
 
 ## 🚀 Features
 
