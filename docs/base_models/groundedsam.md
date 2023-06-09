@@ -7,7 +7,7 @@ Grounded SAM uses the [Segment Anything Model](https://github.com/facebookresear
 To use the Grounded SAM base model, you will need to install the following dependency:
 
 ```bash
-pip3 install autodistill-groundedsam
+pip3 install autodistill-grounded-sam
 ```
 
 ## Quickstart
