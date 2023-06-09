@@ -17,6 +17,7 @@ pip3 install autodistill-owl-vit
 
 ```python
 from autodistill_owl_vit import OWLViT
+from autodistill.detection import CaptionOntology
 
 # define an ontology to map class names to our OWLViT prompt
 # the ontology dictionary has the format {caption: class}
