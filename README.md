@@ -35,6 +35,20 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 | [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
+## Example Output
+
+Here are example predictions of a Target Model detecting milk bottles and bottlecaps after being trained on an auto-labeled dataset using Autodistill (see [the Autodistill YouTube video](https://www.youtube.com/watch?v=gKTYMfwPo4M) for a full walkthrough):
+
+<div align="center">
+  <p>
+    <a align="center" href="" target="_blank">
+      <img
+        width="720"
+        src="https://media.roboflow.com/open-source/autodistill/milk.gif"
+      >
+    </a>
+  </p>
+</div>
 
 ## 🚀 Features
 
