@@ -27,6 +27,7 @@ nav:
     - Base Models:
       - DETIC: base_models/detic.md
       - Grounded SAM: base_models/groundedsam.md
+      - Grounding DINO: base_models/grounding-dino.md
       - OWL-ViT: base_models/owlvit.md
   - Target Models:
     - YOLOv5: target_models/yolov5.md
@@ -37,9 +38,10 @@ nav:
     - Base Models:
       - CLIP: base_models/clip.md
   - Target Models:
-    - ViT: target_models/vit.md
+    - DINOv2: target_models/dinov2.md
     - YOLOv5: target_models/yolov5.md
     - YOLOv8: target_models/yolov8.md
+    - ViT: target_models/vit.md
   - Changelog: changelog.md
 
 theme:
