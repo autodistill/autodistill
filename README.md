@@ -205,7 +205,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| GroundingDINO | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
+| GroundingDINO | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
@@ -226,11 +226,23 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
 | BLIP-2 |  |  |  |
-| DINOv2 |  |  |  |
+| DINOv2 | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
 
+## Autodistill Video Guide
+
+<p align="left">
+<a href="https://www.youtube.com/watch?v=gKTYMfwPo4M" title="Autodistill: Train YOLOv8 with ZERO Annotations"><img src="https://i.ytimg.com/vi/gKTYMfwPo4M/maxresdefault.jpg" alt="Autodistill: Train YOLOv8 with ZERO Annotations" width="300px" align="left" /></a>
+<a href="https://youtu.be/oEQYStnF2l8"><strong>Autodistill: Train YOLOv8 with ZERO Annotations</strong></a>
+<div><strong>Published: 8 June 2023</strong></div>
+<br/>In this video, we will show you how to use a new library to train a YOLOv8 model to detect bottles moving on a conveyor line. Yes, that's right - zero annotation hours are required! We dive deep into Autodistill's functionality, covering topics from setting up your Python environment and preparing your images, to the thrilling automatic annotation of images. </p> 
+
+## 💡 Community Resources
+
+- [Distill Large Vision Models into Smaller, Efficient Models with Autodistill](https://blog.roboflow.com/autodistill/): Announcement post with written guide on how to use Autodistill
+- File a PR to add your own resources here!
 
 ## 🗺️ Roadmap
 

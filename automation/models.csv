@@ -3,7 +3,7 @@ task, is_base_model, is_target_model, status, display_name, repo_url, pypi_packa
 # object detection base models
 object-detection, 1, 0, completed, DETIC, autodistill/autodistill-detic, autodistill-detic, , MIT
 object-detection, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
-object-detection, 1, 0, in-progress, GroundingDINO
+object-detection, 1, 0, completed, GroundingDINO
 object-detection, 1, 0, completed, OWL-ViT, autodistill/autodistill-owl-vit, autodistill-owl-vit, , Apache-2.0
 object-detection, 1, 0, not-started, Azure DenseCaptions
 object-detection, 1, 0, not-started, GLIPv2
@@ -31,7 +31,7 @@ instance-segmentation, 0, 1, not-started, Segformer
 # classification base models
 classification, 1, 0, in-progress, CLIP, autodistill/autodistill-clip, autodistill-clip, , MIT
 classification, 1, 0 , not-started, BLIP-2
-classification, 1, 0 , not-started, DINOv2
+classification, 1, 0 , in-progress, DINOv2
 classification, 1, 0, not-started, GPT-4
 classification, 1, 0, not-started, Open Flamingo
 classification, 1, 0, not-started, PaLM-2
