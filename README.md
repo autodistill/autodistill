@@ -35,7 +35,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 | [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
-## Example Output
+## 👀 Example Output
 
 Here are example predictions of a Target Model detecting milk bottles and bottlecaps after being trained on an auto-labeled dataset using Autodistill (see [the Autodistill YouTube video](https://www.youtube.com/watch?v=gKTYMfwPo4M) for a full walkthrough):
 
@@ -58,7 +58,7 @@ Here are example predictions of a Target Model detecting milk bottles and bottle
 * 🔒 Own your model
 * 🚀 Deploy distilled models to the cloud or the edge
 
-## Basic Concepts
+## 📚 Basic Concepts
 
 To use `autodistill`, you input unlabeled data into a Base Model which uses an Ontology to label a Dataset that is used to train a Target Model which outputs a Distilled Model fine-tuned to perform a specific Task.
 
@@ -104,7 +104,7 @@ As foundation models get better and better they will increasingly be able to aug
 
 Autodistill's Base Models can already create datasets for many common use-cases (and through creative prompting and few-shotting we can expand their utility to many more), but they're not perfect yet. There's still a lot of work to do; this is just the beginning and we'd love your help testing and expanding the capabilities of the system!
 
-## Installation
+## 💿 Installation
 
 Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#-available-models) (which implement specific models).
 
@@ -272,6 +272,6 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
-## License
+## 👩‍⚖️ License
 
 The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
