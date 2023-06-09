@@ -41,10 +41,10 @@ Here are example predictions of a Target Model detecting milk bottles and bottle
 
 <div align="center">
   <p>
-    <a align="center" href="" target="_blank">
+    <a align="center" href="https://www.youtube.com/watch?v=gKTYMfwPo4M" target="_blank">
       <img
-        width="640"
-        src="https://media.roboflow.com/open-source/autodistill/milk-640.gif"
+        width="850"
+        src="https://media.roboflow.com/open-source/autodistill/milk-480.gif"
       >
     </a>
   </p>
