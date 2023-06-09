@@ -29,19 +29,19 @@ nav:
       - Grounded SAM: base_models/groundedsam.md
       - Grounding DINO: base_models/grounding-dino.md
       - OWL-ViT: base_models/owlvit.md
-  - Target Models:
-    - YOLOv5: target_models/yolov5.md
-    - YOLOv8: target_models/yolov8.md
-    - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
-    - YOLO-NAS: target_models/yolo-nas.md
+    - Target Models:
+      - YOLOv5: target_models/yolov5.md
+      - YOLOv8: target_models/yolov8.md
+      - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
+      - YOLO-NAS: target_models/yolo-nas.md
   - Classification:
     - Base Models:
       - CLIP: base_models/clip.md
-  - Target Models:
-    - DINOv2: target_models/dinov2.md
-    - YOLOv5: target_models/yolov5.md
-    - YOLOv8: target_models/yolov8.md
-    - ViT: target_models/vit.md
+    - Target Models:
+      - DINOv2: target_models/dinov2.md
+      - YOLOv5: target_models/yolov5.md
+      - YOLOv8: target_models/yolov8.md
+      - ViT: target_models/vit.md
   - Changelog: changelog.md
 
 theme:
