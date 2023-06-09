@@ -231,7 +231,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
 
-## Autodistill Video Guide
+## 🎬 Video Guides
 
 <p align="left">
 <a href="https://www.youtube.com/watch?v=gKTYMfwPo4M" title="Autodistill: Train YOLOv8 with ZERO Annotations"><img src="https://i.ytimg.com/vi/gKTYMfwPo4M/maxresdefault.jpg" alt="Autodistill: Train YOLOv8 with ZERO Annotations" width="300px" align="left" /></a>
