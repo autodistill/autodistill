@@ -5,4 +5,4 @@ We welcome assistance to help us improve Autodistill! See our [Contributing guid
 ## Contributor Resources
 
 - [Base Model Template](https://github.com/autodistill/autodistill-base-model-template): A starter template for creating base models. This template is accompanied by documentation on how to use the template.
-- [Base Model Template](https://github.com/autodistill/autodistill-target-model-template): A target template for creating base models. This template is accompanied by documentation on how to use the template.
+- [Target Model Template](https://github.com/autodistill/autodistill-target-model-template): A target template for creating target models. This template is accompanied by documentation on how to use the template.
