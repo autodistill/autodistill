@@ -7,7 +7,7 @@ object-detection, 1, 0, completed, GroundingDINO
 object-detection, 1, 0, completed, OWL-ViT, autodistill/autodistill-owl-vit, autodistill-owl-vit, , Apache-2.0
 object-detection, 1, 0, not-started, Azure DenseCaptions
 object-detection, 1, 0, not-started, GLIPv2
-object-detection, 1, 0, not-started, SAM-CLIP
+object-detection, 1, 0, in-progress, SAM-CLIP
 
 # object detection target models
 object-detection, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
@@ -19,7 +19,7 @@ object-detection, 0, 1, not-started, MT-YOLOv6
 
 # instance segmentation base models
 instance-segmentation, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
-instance-segmentation, 1, 0, not-started, SAM-CLIP
+instance-segmentation, 1, 0, in-progress, SAM-CLIP
 
 # instance segmentation target models
 instance-segmentation, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0

@@ -131,7 +131,9 @@ Additional Base and Target models are [enumerated below](#-available-models).
 
 ## 🚀 Quickstart
 
-See the [Quickstart.ipynb](Quickstart.ipynb) notebook for a quick introduction to `autodistill`. Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
+See the [demo Notebook](https://github.com/autodistill/autodistill-target-model-template) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
+
+Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
 ### Install Packages
 
@@ -223,7 +225,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
-| SAM-CLIP |  |  |  |  |  |  |
+| SAM-CLIP | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### instance segmentation
@@ -231,7 +233,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
-| SAM-CLIP |  |  |  |  |  |
+| SAM-CLIP | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### classification
@@ -244,6 +246,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | GPT-4 |  |  |  |
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
+
 
 ## 🎬 Video Guides
 

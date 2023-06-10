@@ -13,7 +13,7 @@
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
 [![license](https://img.shields.io/pypi/l/autodistill)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/autodistill/autodistill/blob/main/Quickstart.ipynb)
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
@@ -28,7 +28,27 @@ Autodistill uses big, slower foundation models to train small, faster supervised
   </p>
 </div>
 
-Currently, `autodistill` supports vision tasks like object detection and instance segmentation, but in the future it can be expanded to support language (and other) models. [Jump to currently supported models](#-available-models).
+Currently, `autodistill` supports vision tasks like object detection and instance segmentation, but in the future it can be expanded to support language (and other) models.
+
+## 🔗 Quicklinks
+
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+|:---:|:---:|:---:|:---:|
+
+## 👀 Example Output
+
+Here are example predictions of a Target Model detecting milk bottles and bottlecaps after being trained on an auto-labeled dataset using Autodistill (see [the Autodistill YouTube video](https://www.youtube.com/watch?v=gKTYMfwPo4M) for a full walkthrough):
+
+<div align="center">
+  <p>
+    <a align="center" href="https://www.youtube.com/watch?v=gKTYMfwPo4M" target="_blank">
+      <img
+        width="850"
+        src="https://media.roboflow.com/open-source/autodistill/milk-480.gif"
+      >
+    </a>
+  </p>
+</div>
 
 ## 🚀 Features
 
@@ -38,7 +58,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 * 🔒 Own your model
 * 🚀 Deploy distilled models to the cloud or the edge
 
-## Basic Concepts
+## 📚 Basic Concepts
 
 To use `autodistill`, you input unlabeled data into a Base Model which uses an Ontology to label a Dataset that is used to train a Target Model which outputs a Distilled Model fine-tuned to perform a specific Task.
 
@@ -84,7 +104,7 @@ As foundation models get better and better they will increasingly be able to aug
 
 Autodistill's Base Models can already create datasets for many common use-cases (and through creative prompting and few-shotting we can expand their utility to many more), but they're not perfect yet. There's still a lot of work to do; this is just the beginning and we'd love your help testing and expanding the capabilities of the system!
 
-## Installation
+## 💿 Installation
 
 Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#-available-models) (which implement specific models).
 
@@ -111,7 +131,9 @@ Additional Base and Target models are [enumerated below](#-available-models).
 
 ## 🚀 Quickstart
 
-See the [Quickstart.ipynb](Quickstart.ipynb) notebook for a quick introduction to `autodistill`. Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
+See the [demo Notebook](https://github.com/autodistill/autodistill-target-model-template) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
+
+Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
 ### Install Packages
 
@@ -199,11 +221,11 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| GroundingDINO | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
+| GroundingDINO | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
-| SAM-CLIP |  |  |  |  |  |  |
+| SAM-CLIP | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### instance segmentation
@@ -211,7 +233,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
-| SAM-CLIP |  |  |  |  |  |
+| SAM-CLIP | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### classification
@@ -220,11 +242,24 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
 | BLIP-2 |  |  |  |
-| DINOv2 |  |  |  |
+| DINOv2 | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
 
+
+## 🎬 Video Guides
+
+<p align="left">
+<a href="https://www.youtube.com/watch?v=gKTYMfwPo4M" title="Autodistill: Train YOLOv8 with ZERO Annotations"><img src="https://i.ytimg.com/vi/gKTYMfwPo4M/maxresdefault.jpg" alt="Autodistill: Train YOLOv8 with ZERO Annotations" width="300px" align="left" /></a>
+<a href="https://youtu.be/oEQYStnF2l8"><strong>Autodistill: Train YOLOv8 with ZERO Annotations</strong></a>
+<div><strong>Published: 8 June 2023</strong></div>
+<br/>In this video, we will show you how to use a new library to train a YOLOv8 model to detect bottles moving on a conveyor line. Yes, that's right - zero annotation hours are required! We dive deep into Autodistill's functionality, covering topics from setting up your Python environment and preparing your images, to the thrilling automatic annotation of images. </p> 
+
+## 💡 Community Resources
+
+- [Distill Large Vision Models into Smaller, Efficient Models with Autodistill](https://blog.roboflow.com/autodistill/): Announcement post with written guide on how to use Autodistill
+- File a PR to add your own resources here!
 
 ## 🗺️ Roadmap
 
@@ -240,6 +275,6 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
-## License
+## 👩‍⚖️ License
 
 The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
