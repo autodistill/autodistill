@@ -42,6 +42,7 @@ nav:
       - YOLOv5: target_models/yolov5.md
       - YOLOv8: target_models/yolov8.md
       - ViT: target_models/vit.md
+  - Contributing: contributing.md
   - Changelog: changelog.md
 
 theme:
