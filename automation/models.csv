@@ -31,7 +31,8 @@ instance-segmentation, 0, 1, not-started, Segformer
 # classification base models
 classification, 1, 0, in-progress, CLIP, autodistill/autodistill-clip, autodistill-clip, , MIT
 classification, 1, 0 , in-progress, DINOv2, autodistill/autodistill-dinov2, autodistill-dinov2, , Creative Commons Attribution-NonCommercial 4.0 International
-classification, 1, 0 , not-started, BLIP-2
+classification, 1, 0 , in-progress, BLIP
+classification, 1, 0 , in-progress, ALBEF
 classification, 1, 0, not-started, GPT-4
 classification, 1, 0, not-started, Open Flamingo
 classification, 1, 0, not-started, PaLM-2
