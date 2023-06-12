@@ -217,15 +217,15 @@ tasks first but plan to launch classification support soon! In the future, we ho
 
 ### object detection
 
-| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | DETR | YOLOv7 | MT-YOLOv6 |
+| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | [DETR](https://github.com/autodistill/autodistill-detr) | YOLOv7 | MT-YOLOv6 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| GroundingDINO | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
+| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
-| SAM-CLIP | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
+| [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
 
 
 ### instance segmentation
@@ -241,8 +241,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
+| [DINOv2](https://github.com/autodistill/autodistill-dinov2) | 🚧 | 🚧 | 🚧 |
 | BLIP-2 |  |  |  |
-| DINOv2 | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |

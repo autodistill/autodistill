@@ -32,7 +32,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 
 ## 🔗 Quicklinks
 
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](/contributing/)
 |:---:|:---:|:---:|:---:|
 
 ## 👀 Example Output
@@ -273,7 +273,7 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 ## 🏆 Contributing
 
-We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
+We love your input! Please see our [contributing guide](/contributing/) to get started. Thank you 🙏 to all our contributors!
 
 ## 👩‍⚖️ License
 
