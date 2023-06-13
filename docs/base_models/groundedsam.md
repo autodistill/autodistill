@@ -14,7 +14,7 @@ pip3 install autodistill-grounded-sam
 
 ```python
 from autodistill_grounded_sam import GroundedSAM
-from autodistill_yolov8 import YOLOv8
+from autodistill.detection import CaptionOntology
 
 
 # define an ontology to map class names to our GroundingDINO prompt
