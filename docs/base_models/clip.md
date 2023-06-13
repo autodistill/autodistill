@@ -17,6 +17,7 @@ pip3 install autodistill-clip
 
 ```python
 from autodistill_clip import CLIP
+from autodistill.detection import CaptionOntology
 
 # define an ontology to map class names to our GroundingDINO prompt
 # the ontology dictionary has the format {caption: class}
