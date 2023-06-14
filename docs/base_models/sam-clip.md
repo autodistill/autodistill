@@ -14,7 +14,7 @@ pip3 install autodistill-sam-clip
 
 ```python
 from autodistill_sam_clip import SAMCLIP
-from autodistill_yolov8 import YOLOv8
+from autodistill.detection import CaptionOntology
 
 
 # define an ontology to map class names to our CLIP prompt
