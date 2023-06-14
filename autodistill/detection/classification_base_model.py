@@ -8,13 +8,13 @@ import cv2
 
 import supervision as sv
 from autodistill.core import BaseModel
-from autodistill.detection import DetectionOntology
+from autodistill.detection import ClassificationOntology
 
 from autodistill.helpers import split_data
 
 @dataclass
 class ClassificationBaseModel(BaseModel):
-    ontology: DetectionOntology
+    ontology: ClassificationOntology
 
     @abstractmethod
     def predict(self, input: str) -> sv.Detections:
@@ -45,12 +45,7 @@ class ClassificationBaseModel(BaseModel):
             self.ontology.classes(), images_map, detections_map
         )
 
-        dataset.as_folder_structure(
-            output_folder + "/images",
-            output_folder + "/annotations",
-            min_image_area_percentage=0.01,
-            data_yaml_path=output_folder + "/data.yaml",
-        )
+        dataset.as_folder_structure(output_folder)
 
         split_data(output_folder)
 
