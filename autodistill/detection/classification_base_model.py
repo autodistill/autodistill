@@ -41,7 +41,7 @@ class ClassificationBaseModel(BaseModel):
             detections = self.predict(f_path)
             detections_map[f_path_short] = detections
 
-        dataset = sv.ClassificationsDataset(
+        dataset = sv.ClassificationDataset(
             self.ontology.classes(), images_map, detections_map
         )
 
