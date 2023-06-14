@@ -20,7 +20,7 @@ class ClassificationBaseModel(BaseModel):
     def predict(self, input: str) -> sv.Detections:
         pass
 
-    def label(self, input_folder: str, extension: str = ".jpg", output_folder: str = None) -> sv.DetectionDataset:
+    def label(self, input_folder: str, extension: str = ".jpg", output_folder: str = None) -> sv.ClassificationDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
         
