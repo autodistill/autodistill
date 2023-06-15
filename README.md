@@ -258,9 +258,9 @@ The following Autodistill Target Models are supported by Roboflow for deployment
 |:---:|:---:|
 | YOLOv8 Object Detection | ✅ |
 | YOLOv8 Instance Segmentation | ✅ |
-| YOLOv8 Classification | ✅ |
 | YOLOv5 Object Detection | ✅ |
 | YOLOv5 Instance Segmentation | ✅ |
+| YOLOv8 Classification |  |
 
 ## 🎬 Video Guides
 
