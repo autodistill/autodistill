@@ -248,6 +248,19 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
 
+## Roboflow Model Deployment Support
+
+You can optionally deploy some Target Models trained using Autodistill on Roboflow. Deploying on Roboflow allows you to use a range of concise SDKs for using your model on the edge, from [roboflow.js](https://docs.roboflow.com/inference/web-browser) for web deployment to [NVIDIA Jetson](https://docs.roboflow.com/inference/nvidia-jetson) devices.
+
+The following Autodistill Target Models are supported by Roboflow for deployment:
+
+| model name | Supported? |
+|:---:|:---:|
+| YOLOv8 Object Detection | ✅ |
+| YOLOv8 Instance Segmentation | ✅ |
+| YOLOv8 Classification | ✅ |
+| YOLOv5 Object Detection | ✅ |
+| YOLOv5 Instance Segmentation | ✅ |
 
 ## 🎬 Video Guides
 
