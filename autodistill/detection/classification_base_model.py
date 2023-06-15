@@ -45,9 +45,20 @@ class ClassificationBaseModel(BaseModel):
             self.ontology.classes(), images_map, detections_map
         )
 
-        dataset.as_folder_structure(output_folder)
+        train_cs, test_cs = split_data(dataset, split_ratio=0.7)
+        test_cs, valid_cs = split_data(test_cs, split_ratio=0.5)
 
-        split_data(output_folder)
+        train_cs.as_folder_structure(
+            root_directory_path=output_folder + "/train"
+        )
+
+        test_cs.as_folder_structure(
+            root_directory_path=output_folder + "/test"
+        )
+
+        valid_cs.as_folder_structure(
+            root_directory_path=output_folder + "/valid"
+        )
 
         print("Labeled dataset created - ready for distillation.")  
         return dataset  
