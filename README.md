@@ -131,7 +131,7 @@ Additional Base and Target models are [enumerated below](#-available-models).
 
 ## 🚀 Quickstart
 
-See the [demo Notebook](https://github.com/autodistill/autodistill-target-model-template) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
+See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
 
 Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
