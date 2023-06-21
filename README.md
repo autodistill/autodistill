@@ -9,7 +9,7 @@
   </p>
 </div>
 
-[![version](https://badge.fury.io/py/autodistill.svg)](https://badge.fury.io/py/autodistill)
+[![version](https://badge.fury.io/py/autodistill.svg?)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
 [![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
