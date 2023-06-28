@@ -8,16 +8,16 @@ import cv2
 
 import supervision as sv
 from autodistill.core import BaseModel
-from autodistill.detection import ClassificationOntology
+from autodistill.detection import CaptionOntology
 
 from autodistill.helpers import split_data
 
 @dataclass
 class ClassificationBaseModel(BaseModel):
-    ontology: ClassificationOntology
+    ontology: CaptionOntology
 
     @abstractmethod
-    def predict(self, input: str) -> sv.Detections:
+    def predict(self, input: str) -> sv.Classifications:
         pass
 
     def label(self, input_folder: str, extension: str = ".jpg", output_folder: str = None) -> sv.ClassificationDataset:
