@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 
-from autodistill.core import TargetModel
 import supervision as sv
+
+from autodistill.core import TargetModel
+
 
 class ClassificationTargetModel(TargetModel):
     @abstractmethod
@@ -9,7 +11,7 @@ class ClassificationTargetModel(TargetModel):
         pass
 
     @abstractmethod
-    def predict(self, input:str, confidence:float = 0.5) -> sv.Classifications:
+    def predict(self, input: str, confidence: float = 0.5) -> sv.Classifications:
         pass
 
     @abstractmethod
