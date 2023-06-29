@@ -3,6 +3,3 @@ from autodistill.detection.caption_ontology import CaptionOntology
 
 from autodistill.detection.detection_base_model import DetectionBaseModel
 from autodistill.detection.detection_target_model import DetectionTargetModel
-
-from autodistill.detection.classification_base_model import ClassificationBaseModel
-from autodistill.detection.classification_target_model import ClassificationTargetModel
