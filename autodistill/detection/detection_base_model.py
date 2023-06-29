@@ -1,16 +1,16 @@
+import glob
+import os
 from abc import abstractmethod
 from dataclasses import dataclass
 
-import os
-import glob
-from tqdm import tqdm
 import cv2
-
 import supervision as sv
+from tqdm import tqdm
+
 from autodistill.core import BaseModel
 from autodistill.detection import DetectionOntology
-
 from autodistill.helpers import split_data
+
 
 @dataclass
 class DetectionBaseModel(BaseModel):
@@ -20,10 +20,12 @@ class DetectionBaseModel(BaseModel):
     def predict(self, input: str) -> sv.Detections:
         pass
 
-    def label(self, input_folder: str, extension: str = ".jpg", output_folder: str = None) -> sv.DetectionDataset:
+    def label(
+        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+    ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
-        
+
         os.makedirs(output_folder, exist_ok=True)
 
         images_map = {}
@@ -54,6 +56,5 @@ class DetectionBaseModel(BaseModel):
 
         split_data(output_folder)
 
-        print("Labeled dataset created - ready for distillation.")  
-        return dataset  
-
+        print("Labeled dataset created - ready for distillation.")
+        return dataset
