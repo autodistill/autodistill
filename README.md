@@ -233,7 +233,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
-| SAM-CLIP | ✅ | ✅ | ✅ |  |  |
+| SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
 
 
 ### classification
