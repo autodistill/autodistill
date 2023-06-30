@@ -242,8 +242,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | ✅ | ✅ | 🚧 |
 | [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
-| BLIP | ✅ | ✅ | 🚧 |
-| ALBEF | ✅ | ✅ | 🚧 |
+| [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
+| [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
 | Open Flamingo | 🚧 | 🚧 |  |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |
