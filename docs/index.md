@@ -9,9 +9,9 @@
   </p>
 </div>
 
-[![version](https://badge.fury.io/py/autodistill.svg)](https://badge.fury.io/py/autodistill)
+[![version](https://badge.fury.io/py/autodistill.svg?)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
-[![license](https://img.shields.io/pypi/l/autodistill)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
+[![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
 
@@ -32,7 +32,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 
 ## 🔗 Quicklinks
 
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](/contributing/)
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
 ## 👀 Example Output
@@ -131,7 +131,7 @@ Additional Base and Target models are [enumerated below](#-available-models).
 
 ## 🚀 Quickstart
 
-See the [demo Notebook](https://github.com/autodistill/autodistill-target-model-template) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
+See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
 
 Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
@@ -217,15 +217,15 @@ tasks first but plan to launch classification support soon! In the future, we ho
 
 ### object detection
 
-| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | DETR | YOLOv7 | MT-YOLOv6 |
+| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | [DETR](https://github.com/autodistill/autodistill-detr) | YOLOv7 | MT-YOLOv6 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | 🚧 |  |  |
-| GroundingDINO | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | 🚧 |  |  |
+| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
-| SAM-CLIP | 🚧 | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### instance segmentation
@@ -233,7 +233,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
-| SAM-CLIP | 🚧 | 🚧 | 🚧 |  |  |
+| SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
+| FastSAM | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### classification
@@ -241,12 +242,27 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
-| BLIP-2 |  |  |  |
-| DINOv2 | 🚧 | 🚧 | 🚧 |
+| [DINOv2](https://github.com/autodistill/autodistill-dinov2) | 🚧 | 🚧 | 🚧 |
+| [BLIP](https://github.com/autodistill/autodistill-blip) | 🚧 | 🚧 | 🚧 |
+| [ALBEF](https://github.com/autodistill/autodistill-albef) | 🚧 | 🚧 | 🚧 |
+| Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
-| Open Flamingo |  |  |  |
 | PaLM-2 |  |  |  |
 
+
+## Roboflow Model Deployment Support
+
+You can optionally deploy some Target Models trained using Autodistill on Roboflow. Deploying on Roboflow allows you to use a range of concise SDKs for using your model on the edge, from [roboflow.js](https://docs.roboflow.com/inference/web-browser) for web deployment to [NVIDIA Jetson](https://docs.roboflow.com/inference/nvidia-jetson) devices.
+
+The following Autodistill Target Models are supported by Roboflow for deployment:
+
+| model name | Supported? |
+|:---:|:---:|
+| YOLOv8 Object Detection | ✅ |
+| YOLOv8 Instance Segmentation | ✅ |
+| YOLOv5 Object Detection | ✅ |
+| YOLOv5 Instance Segmentation | ✅ |
+| YOLOv8 Classification |  |
 
 ## 🎬 Video Guides
 
@@ -259,6 +275,9 @@ tasks first but plan to launch classification support soon! In the future, we ho
 ## 💡 Community Resources
 
 - [Distill Large Vision Models into Smaller, Efficient Models with Autodistill](https://blog.roboflow.com/autodistill/): Announcement post with written guide on how to use Autodistill
+- [Comparing AI-Labeled Data to Human-Labeled Data](https://blog.roboflow.com/ai-vs-human-labeled-data/): A qualitative evaluation of Grounding DINO used with Autodistill across various tasks and domains.
+- [How to Evaluate Autodistill Prompts with CVevals](https://blog.roboflow.com/autodistill-prompt-evaluation/): Evaluate Autodistill prompts.
+- [Autodistill: Label and Train a Computer Vision Model in Under 20 Minutes](https://www.youtube.com/watch?v=M_QZ_Q0zT0k): Building a model to detect planes in under 20 minutes.
 - File a PR to add your own resources here!
 
 ## 🗺️ Roadmap
@@ -273,7 +292,7 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 ## 🏆 Contributing
 
-We love your input! Please see our [contributing guide](/contributing/) to get started. Thank you 🙏 to all our contributors!
+We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
 ## 👩‍⚖️ License
 
