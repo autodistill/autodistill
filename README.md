@@ -234,19 +234,21 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
 | SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
+| FastSAM | 🚧 | 🚧 | 🚧 |  |  |
 
 
 ### classification
 
 | base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
 |:---:|:---:|:---:|:---:|
-| [CLIP](https://github.com/autodistill/autodistill-clip) | ✅ | ✅ | 🚧 |
-| [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
-| [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
-| [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
-| Open Flamingo | 🚧 | 🚧 |  |
+| [CLIP](https://github.com/autodistill/autodistill-clip) | 🚧 | 🚧 | 🚧 |
+| [DINOv2](https://github.com/autodistill/autodistill-dinov2) | 🚧 | 🚧 | 🚧 |
+| [BLIP](https://github.com/autodistill/autodistill-blip) | 🚧 | 🚧 | 🚧 |
+| [ALBEF](https://github.com/autodistill/autodistill-albef) | 🚧 | 🚧 | 🚧 |
+| Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |
+
 
 ## Roboflow Model Deployment Support
 
