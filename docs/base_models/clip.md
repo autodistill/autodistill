@@ -1,7 +1,5 @@
 # CLIP
 
-**CLIP is not fully supported by Autodistill. Check back later for updates.**
-
 [CLIP](https://github.com/openai/CLIP), developed by OpenAI, is a computer vision model trained using pairs of images and text. You can use CLIP with autodistill for image classification.
 
 ## Installation

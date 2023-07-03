@@ -1,7 +1,5 @@
 # OWL-ViT
 
-**OWL-ViT is not fully supported by Autodistill. Check back later for updates.**
-
 [OWL-ViT](https://huggingface.co/google/owlvit-base-patch32) is a transformer-based object detection model developed by Google Research.
 
 ## Installation
