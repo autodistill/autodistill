@@ -279,6 +279,8 @@ The following Autodistill Target Models are supported by Roboflow for deployment
 - [How to Evaluate Autodistill Prompts with CVevals](https://blog.roboflow.com/autodistill-prompt-evaluation/): Evaluate Autodistill prompts.
 - [Autodistill: Label and Train a Computer Vision Model in Under 20 Minutes](https://www.youtube.com/watch?v=M_QZ_Q0zT0k): Building a model to detect planes in under 20 minutes.
 - [Comparing AI-Labeled Data to Human-Labeled Data](https://blog.roboflow.com/ai-vs-human-labeled-data/): Explore the strengths and limitations of a base model used with Autoditsill.
+- [Train an Image Classification Model with No Labeling](https://blog.roboflow.com/train-classification-model-no-labeling/): Use Grounded SAM to automatically label images for training an Ultralytics YOLOv8 classification model.
+- [Train a Segmentation Model with No Labeling](https://blog.roboflow.com/train-a-segmentation-model-no-labeling/): Use CLIP to automatically label images for training an Ultralytics YOLOv8 segmentation model.
 - File a PR to add your own resources here!
 
 ## 🗺️ Roadmap
