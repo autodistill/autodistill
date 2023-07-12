@@ -5,14 +5,12 @@ from dataclasses import dataclass
 
 import cv2
 import supervision as sv
+from roboflow import Roboflow
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
 from autodistill.detection.detection_ontology import DetectionOntology
 from autodistill.helpers import split_data
-from roboflow import Roboflow
-from tqdm import tqdm
-
 
 
 @dataclass
@@ -74,7 +72,7 @@ class DetectionBaseModel(BaseModel):
         ):
             rf = Roboflow(api_key=roboflow_api_key)
             workspace = rf.workspace(roboflow_workspace)
-            
+
             workspace.upload_dataset(output_folder, project_name=roboflow_project)
 
         print("Labeled dataset created - ready for distillation.")
