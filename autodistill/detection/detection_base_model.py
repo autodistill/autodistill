@@ -8,8 +8,11 @@ import supervision as sv
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
-from autodistill.detection import DetectionOntology
+from autodistill.detection.detection_ontology import DetectionOntology
 from autodistill.helpers import split_data
+from roboflow import Roboflow
+from tqdm import tqdm
+
 
 
 @dataclass
@@ -21,7 +24,14 @@ class DetectionBaseModel(BaseModel):
         pass
 
     def label(
-        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+        self,
+        input_folder: str,
+        extension: str = ".jpg",
+        output_folder: str = None,
+        human_in_the_loop: bool = False,
+        roboflow_api_key: str = None,
+        roboflow_workspace: str = None,
+        roboflow_project: str = None,
     ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
@@ -55,6 +65,17 @@ class DetectionBaseModel(BaseModel):
         )
 
         split_data(output_folder)
+
+        if (
+            human_in_the_loop
+            and roboflow_api_key is not None
+            and roboflow_workspace is not None
+            and roboflow_project is not None
+        ):
+            rf = Roboflow(api_key=roboflow_api_key)
+            workspace = rf.workspace(roboflow_workspace)
+            
+            workspace.upload_dataset(output_folder, project_name=roboflow_project)
 
         print("Labeled dataset created - ready for distillation.")
         return dataset
