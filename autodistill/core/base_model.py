@@ -3,7 +3,9 @@ from dataclasses import dataclass
 from typing import Any
 
 import supervision as sv
+
 from autodistill.core import Ontology
+
 
 @dataclass
 class BaseModel(ABC):
@@ -17,5 +19,7 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
-    def label(self, input_folder: str, extension: str = ".jpg", output_folder: str = None) -> sv.BaseDataset:
+    def label(
+        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+    ) -> sv.BaseDataset:
         pass

@@ -5,11 +5,14 @@ from dataclasses import dataclass
 
 import cv2
 import supervision as sv
+from tqdm import tqdm
+
 from autodistill.core import BaseModel
 from autodistill.detection import DetectionOntology
 from autodistill.helpers import split_data
 from roboflow import Roboflow
 from tqdm import tqdm
+
 
 
 @dataclass
@@ -65,6 +68,7 @@ class DetectionBaseModel(BaseModel):
 
         split_data(output_folder)
 
+<<<<<<< HEAD
         if (
             human_in_the_loop
             and roboflow_api_key is not None
@@ -84,5 +88,7 @@ class DetectionBaseModel(BaseModel):
                 for file in glob.glob(os.path.join(output_folder, dataset, "images/*")):
                     project.upload(file, tags=roboflow_tags, batch=roboflow_batch_name)
 
+=======
+>>>>>>> 63e76d9 (run make style to allow tests to work)
         print("Labeled dataset created - ready for distillation.")
         return dataset
