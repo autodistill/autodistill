@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
-from autodistill.detection import DetectionOntology
+from autodistill.detection.detection_ontology import DetectionOntology
 
 
 @dataclass
