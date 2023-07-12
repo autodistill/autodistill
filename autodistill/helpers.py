@@ -2,11 +2,11 @@ import os
 import random
 import shutil
 
+import cv2
+import supervision as sv
+import tqdm
 import yaml
 from PIL import Image
-import supervision as sv
-import cv2
-import tqdm
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
 
@@ -90,12 +90,15 @@ def split_data(base_dir, split_ratio=0.8):
         }
         yaml.dump(data, file)
 
-def visualize_predictions(file_name: str, detections: sv.Detections, annotation_type: str) -> None:
+
+def visualize_predictions(
+    file_name: str, detections: sv.Detections, annotation_type: str
+) -> None:
     if annotation_type not in VALID_ANNOTATION_TYPES:
         raise ValueError(
             f"Invalid annotation type. Must be one of {VALID_ANNOTATION_TYPES}"
         )
-    
+
     if annotation_type == "box":
         annotator = sv.BoxAnnotator()
     elif annotation_type == "mask":
@@ -109,13 +112,18 @@ def visualize_predictions(file_name: str, detections: sv.Detections, annotation_
 
     sv.plot_image(annotated_image)
 
+
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
     video_paths = sv.list_files_with_extensions(
-        directory=video_path, 
-        extensions=["mov", "mp4"])
+        directory=video_path, extensions=["mov", "mp4"]
+    )
 
     for name in tqdm(video_paths):
         image_name_pattern = name + "-{:05d}.png"
-        with sv.ImageSink(target_dir_path=output_dir, image_name_pattern=image_name_pattern) as sink:
-            for image in sv.get_video_frames_generator(source_path=str(video_path), stride=stride):
+        with sv.ImageSink(
+            target_dir_path=output_dir, image_name_pattern=image_name_pattern
+        ) as sink:
+            for image in sv.get_video_frames_generator(
+                source_path=str(video_path), stride=stride
+            ):
                 sink.save_image(image=image)

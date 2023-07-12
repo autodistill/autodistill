@@ -5,14 +5,12 @@ from dataclasses import dataclass
 
 import cv2
 import supervision as sv
+from roboflow import Roboflow
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
 from autodistill.detection import DetectionOntology
 from autodistill.helpers import split_data
-from roboflow import Roboflow
-from tqdm import tqdm
-
 
 
 @dataclass
