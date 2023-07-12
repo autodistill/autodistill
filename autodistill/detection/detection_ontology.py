@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, List, Tuple
 
-from autodistill.core import Ontology
+from autodistill.core.ontology import Ontology
 
 
 @dataclass
