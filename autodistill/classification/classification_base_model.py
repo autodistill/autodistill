@@ -8,24 +8,21 @@ import supervision as sv
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
-from autodistill.detection import DetectionOntology
+from autodistill.detection import CaptionOntology
 from autodistill.helpers import split_data
-from roboflow import Roboflow
-from tqdm import tqdm
-
 
 
 @dataclass
-class DetectionBaseModel(BaseModel):
-    ontology: DetectionOntology
+class ClassificationBaseModel(BaseModel):
+    ontology: CaptionOntology
 
     @abstractmethod
-    def predict(self, input: str) -> sv.Detections:
+    def predict(self, input: str) -> sv.Classifications:
         pass
 
     def label(
         self, input_folder: str, extension: str = ".jpg", output_folder: str = None
-    ) -> sv.DetectionDataset:
+    ) -> sv.ClassificationDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 
@@ -46,18 +43,18 @@ class DetectionBaseModel(BaseModel):
             detections = self.predict(f_path)
             detections_map[f_path_short] = detections
 
-        dataset = sv.DetectionDataset(
+        dataset = sv.ClassificationDataset(
             self.ontology.classes(), images_map, detections_map
         )
 
-        dataset.as_yolo(
-            output_folder + "/images",
-            output_folder + "/annotations",
-            min_image_area_percentage=0.01,
-            data_yaml_path=output_folder + "/data.yaml",
-        )
+        train_cs, test_cs = split_data(dataset, split_ratio=0.7)
+        test_cs, valid_cs = split_data(test_cs, split_ratio=0.5)
 
-        split_data(output_folder)
+        train_cs.as_folder_structure(root_directory_path=output_folder + "/train")
+
+        test_cs.as_folder_structure(root_directory_path=output_folder + "/test")
+
+        valid_cs.as_folder_structure(root_directory_path=output_folder + "/valid")
 
         print("Labeled dataset created - ready for distillation.")
         return dataset

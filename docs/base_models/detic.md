@@ -15,6 +15,7 @@ pip3 install autodistill-detic
 
 ```python
 from autodistill_detic import DETIC
+from autodistill.detection import CaptionOntology
 
 # define an ontology to map class names to our DETIC prompt
 # the ontology dictionary has the format {caption: class}

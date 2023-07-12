@@ -5,13 +5,13 @@ import supervision as sv
 from autodistill.core import TargetModel
 
 
-class DetectionTargetModel(TargetModel):
+class ClassificationTargetModel(TargetModel):
     @abstractmethod
     def __init__(self):
         pass
 
     @abstractmethod
-    def predict(self, input: str, confidence: float = 0.5) -> sv.Detections:
+    def predict(self, input: str, confidence: float = 0.5) -> sv.Classifications:
         pass
 
     @abstractmethod
