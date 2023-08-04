@@ -68,6 +68,7 @@ theme:
 
 plugins:
   - mkdocstrings
+  - search
 
 markdown_extensions:
   - admonition
