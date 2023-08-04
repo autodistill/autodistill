@@ -234,6 +234,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
 | SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
+| SegGPT | ✅ | 🚧 | 🚧 |  |  |
 | FastSAM | 🚧 | 🚧 | 🚧 |  |  |
 
 
