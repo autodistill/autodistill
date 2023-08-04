@@ -20,6 +20,7 @@ object-detection, 0, 1, not-started, MT-YOLOv6
 # instance segmentation base models
 instance-segmentation, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
 instance-segmentation, 1, 0, completed, SAM-CLIP
+instance-segmentation, 1, 0, completed, SegGPT
 instance-segmentation, 1, 0, in-progress, FastSAM
 
 # instance segmentation target models
