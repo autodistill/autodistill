@@ -30,6 +30,7 @@ nav:
       - Grounding DINO: base_models/grounding-dino.md
       - OWL-ViT: base_models/owlvit.md
       - FastSAM: base_models/fastsam.md
+      - SegGPT: base_models/seggpt.md
     - Target Models:
       - YOLOv5: target_models/yolov5.md
       - YOLOv8: target_models/yolov8.md
