@@ -24,6 +24,11 @@ setuptools.setup(
     url="https://github.com/autodistill/autodistill",
     install_requires=install_requires,
     packages=find_packages(exclude=("tests",)),
+    entry_points={
+        "console_scripts": [
+            "autodistill=autodistill.cli:main",
+        ],
+    },
     extras_require={
         "dev": ["flake8", "black==22.3.0", "isort", "twine", "pytest", "wheel", "mkdocs-material", "mkdocs"],
     },
