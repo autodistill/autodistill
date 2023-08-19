@@ -2,35 +2,39 @@ import importlib
 import os
 
 AUTODISTILL_MODULES = [
-    "groundedsam",
-    "yolov8",
-    "yolov5"
+    ("grounded_sam", "GroundedSAM"),
+    ("grounding_dino", "GroundingDINO"),
+    ("yolov8", "YOLOv8", "yolov8n.pt"),
+    ("yolov5", "YOLOv5", "yolov5n.pt"),
 ]
+
+PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
+
 
 def is_module_installed(module_name):
     try:
-        importlib.import_module(module_name)
-    except ImportError:
+        importlib.import_module("autodistill_" + module_name)
+    except:
         return False
-    else:
-        return True
+
+    return True
+
 
 def import_requisite_module(module_name):
-    if module_name not in AUTODISTILL_MODULES:
-        raise ValueError(f"Module {module_name} not found.")
-    
-    if not is_module_installed("autodistill_" + module_name):
-        os.system("pip install autodistill_" + module_name)
+    if module_name not in PACKAGE_NAMES:
+        print(
+            f"Module {module_name} not found. Please choose from the following modules: {PACKAGE_NAMES}"
+        )
+        exit()
 
-    if module_name == "groundedsam":
-        from autodistill_grounded_sam import GroundedSAM
+    if not is_module_installed(module_name):
+        os.system(f"pip install autodistill_{module_name}")
 
-        return GroundedSAM
-    elif module_name == "yolov8":
-        from autodistill_yolov8 import YOLOv8
+    module = importlib.import_module("autodistill_" + module_name)
 
-        return YOLOv8
-    elif module_name == "yolov5":
-        from autodistill_yolov5 import YOLOv5
+    full_module = AUTODISTILL_MODULES[PACKAGE_NAMES.index(module_name)]
 
-        return YOLOv5
+    if len(full_module) == 3:
+        return getattr(module, full_module[1])(full_module[2])
+
+    return getattr(module, full_module[1])
