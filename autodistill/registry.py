@@ -6,6 +6,17 @@ AUTODISTILL_MODULES = [
     ("grounding_dino", "GroundingDINO"),
     ("yolov8", "YOLOv8", "yolov8n.pt"),
     ("yolov5", "YOLOv5", "yolov5n.pt"),
+    ("fastsam", "FastSAM"),
+    ("owl-vit", "OWLViT"),
+    ("albef", "ALBEF"),
+    ("detic", "DETIC"),
+    ("blipv2", "BLIPv2"),
+    ("sam-clip", "SAMCLIP"),
+    ("dinov2", "DINOv2"),
+    ("yolonas", "YOLONAS"),
+    ("blip", "BLIP"),
+    ("vit", "ViT"),
+    ("detr", "DETR"),
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
