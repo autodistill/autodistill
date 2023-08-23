@@ -22,7 +22,7 @@ SUPPORTED_MODEL_TYPES = ["detection", "segmentation" "classification"]
 @click.option("--ontology", default={}, required=True)
 @click.option("--epochs", default=200, required=True)
 @click.option("--output", default="./dataset", required=True)
-@click.option("--upload-to-roboflow", default=False, required=False)
+@click.option("--upload-to-roboflow", default="", required=False)
 @click.option("--project_license", default="MIT", required=False)
 def main(
     images, base, target, model_type, ontology, epochs, output, upload_to_roboflow, project_license
@@ -46,6 +46,15 @@ def main(
     except:
         print("Ontologies must be valid JSON.")
         exit()
+        
+    if upload_to_roboflow:
+        roboflow.login()
+
+        if model_value not in SUPPORTED_ROBOFLOW_MODEL_UPLOADS:
+            print(
+                f"Model type {model_value} is not supported by Roboflow. Please choose one of {SUPPORTED_ROBOFLOW_MODEL_UPLOADS}."
+            )
+            exit()
 
     ontology = CaptionOntology(ontology)
 
@@ -82,6 +91,10 @@ def main(
 
         sv.plot_image(annotated_frame, size=(8, 8))
 
+        print("Saving results to ./result.jpg...")
+        
+        cv2.imwrite(os.path.join(os.getcwd(), "result.jpg"), annotated_frame)
+
         exit()
 
     base_model.label(
@@ -96,8 +109,6 @@ def main(
     target_model.train(dataset_yaml=os.path.join(output, "data.yaml"), epochs=epochs)
 
     if upload_to_roboflow:
-        roboflow.login()
-
         rf = roboflow.Roboflow()
 
         workspace = rf.workspace()
@@ -110,7 +121,7 @@ def main(
             rf_model_value = "single-label-classification"
 
         project = workspace.create_project(
-            "autodistill",
+            project_name=upload_to_roboflow,
             project_license=project_license,
             annotation=ontology.classes()[0],
             project_type=rf_model_value
@@ -130,12 +141,6 @@ def main(
             model_value = target + "-seg"
         else:
             model_value = target + "-cls"
-
-        if model_value not in SUPPORTED_ROBOFLOW_MODEL_UPLOADS:
-            print(
-                f"Model type {model_value} is not supported by Roboflow. Please choose one of {SUPPORTED_ROBOFLOW_MODEL_UPLOADS}."
-            )
-            exit()
 
         project.generate_version(settings={"augmentation": {}, "preprocessing": {}})
 
