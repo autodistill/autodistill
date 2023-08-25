@@ -13,6 +13,8 @@ SUPPORTED_ROBOFLOW_MODEL_UPLOADS = ["yolov5", "yolov5-seg", "yolov8", "yolov8-se
 
 SUPPORTED_MODEL_TYPES = ["detection", "segmentation" "classification"]
 
+SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
+
 
 @click.command()
 @click.argument("images")
@@ -22,11 +24,19 @@ SUPPORTED_MODEL_TYPES = ["detection", "segmentation" "classification"]
 @click.option("--ontology", default={}, required=True)
 @click.option("--epochs", default=200, required=True)
 @click.option("--output", default="./dataset", required=True)
-@click.option("--upload-to-roboflow", default="", required=False)
+@click.option("--upload-to-roboflow", default=False, required=False)
 @click.option("--project_license", default="MIT", required=False)
+@click.option("--dataset_format", default="voc", required=False)
 def main(
-    images, base, target, model_type, ontology, epochs, output, upload_to_roboflow, project_license
+    images, base, target, model_type, ontology, epochs, output, upload_to_roboflow, project_license, dataset_format
 ):
+    if dataset_format not in SUPPORTED_DATASET_FORMATS:
+        print(
+            "Dataset format not supported. Please choose from the following dataset formats: "
+            + str(SUPPORTED_DATASET_FORMATS)
+        )
+        exit()
+
     if model_type not in SUPPORTED_MODEL_TYPES:
         print(
             "Model type not supported. Please choose from the following model types: "
@@ -130,7 +140,7 @@ def main(
         rf.workspace().upload_dataset(
             dataset_path=output,
             project_name=project.id.split("/")[-1],
-            dataset_format="yolov8",
+            dataset_format=dataset_format,
             project_license=project_license,
             project_type=rf_model_value
         )
