@@ -5,12 +5,12 @@ from dataclasses import dataclass
 
 import cv2
 import supervision as sv
-from roboflow import Roboflow
-from tqdm import tqdm
-
 from autodistill.core import BaseModel
-from autodistill.detection.detection_ontology import DetectionOntology
+from autodistill.detection import DetectionOntology
 from autodistill.helpers import split_data
+import roboflow
+import datetime
+from tqdm import tqdm
 
 
 @dataclass
@@ -27,9 +27,8 @@ class DetectionBaseModel(BaseModel):
         extension: str = ".jpg",
         output_folder: str = None,
         human_in_the_loop: bool = False,
-        roboflow_api_key: str = None,
-        roboflow_workspace: str = None,
         roboflow_project: str = None,
+        roboflow_tags: str = ["autodistill"],
     ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
@@ -64,14 +63,12 @@ class DetectionBaseModel(BaseModel):
 
         split_data(output_folder)
 
-        if (
-            human_in_the_loop
-            and roboflow_api_key is not None
-            and roboflow_workspace is not None
-            and roboflow_project is not None
-        ):
-            rf = Roboflow(api_key=roboflow_api_key)
-            workspace = rf.workspace(roboflow_workspace)
+        if human_in_the_loop:
+            roboflow.login()
+
+            rf = roboflow.Roboflow()
+
+            workspace = rf.workspace()
 
             workspace.upload_dataset(output_folder, project_name=roboflow_project)
 
