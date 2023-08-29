@@ -108,6 +108,13 @@ def main(
     if upload_to_roboflow:
         roboflow.login()
 
+        if model_type == "detection":
+            model_value = target
+        elif model_type == "segmentation":
+            model_value = target + "-seg"
+        else:
+            model_value = target + "-cls"
+
         if model_value not in SUPPORTED_ROBOFLOW_MODEL_UPLOADS:
             print(
                 f"Model type {model_value} is not supported for deployment on Roboflow. Please choose one of {SUPPORTED_ROBOFLOW_MODEL_UPLOADS}."
