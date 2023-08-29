@@ -24,6 +24,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/autodistill/autodistill",
     install_requires=install_requires,
+    # allow models.csv in package
+    include_package_data=True,
+    package_data={"": ["models.csv"]},
     packages=find_packages(exclude=("tests",)),
     entry_points={
         "console_scripts": [

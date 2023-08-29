@@ -135,6 +135,20 @@ See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/not
 
 Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
+You can also run Autodistill in one command. First, install `autodistill`:
+
+```bash
+pip install autodistill
+```
+
+Then, run:
+
+```bash
+autodistill images --base-model="grounding_dino" --target-model="yolov8" --ontology '{"prompt": "label"}' --output-folder ./dataset
+```
+
+This command will label all images in a directory called `images` with Grounding DINO and use the labeled images to train a YOLOv8 model. Grounding DINO will label all images with the "prompt" and save the label as the "label". You can specify as many prompts and labels as you want. The resulting dataset will be saved in a folder called `dataset`.
+
 ### Install Packages
 
 For this example, we'll show how to distill [GroundedSAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) into a small [YOLOv8](https://github.com/ultralytics/ultralytics) model using [autodistill-grounded-sam](https://github.com/autodistill/autodistill-grounded-sam) and [autodistill-yolov8](https://github.com/autodistill/autodistill-yolov8).

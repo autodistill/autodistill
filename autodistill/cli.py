@@ -6,8 +6,14 @@ import cv2
 import roboflow
 import supervision as sv
 
+import csv
+
 from autodistill.detection.caption_ontology import CaptionOntology
 from autodistill.registry import import_requisite_module
+
+# load model matrix from models.csv
+with open("models.csv", newline="") as csvfile:
+    models = list(csv.DictReader(csvfile))
 
 SUPPORTED_ROBOFLOW_MODEL_UPLOADS = ["yolov5", "yolov5-seg", "yolov8", "yolov8-seg"]
 
@@ -17,19 +23,27 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
 
 
 @click.command()
-@click.argument("images")
-@click.option("--base", default="grounding_dino")
-@click.option("--target", default="yolov8")
-@click.option("--model_type", default="detection")
-@click.option("--ontology", default={}, required=True)
-@click.option("--epochs", default=200, required=True)
-@click.option("--output", default="./dataset", required=True)
-@click.option("--upload-to-roboflow", default=False, required=False)
-@click.option("--project_license", default="MIT", required=False)
-@click.option("--dataset_format", default="voc", required=False)
+@click.argument("images", help="Path to image or directory of images.")
+@click.option("--models", default=False, help="Show available models.")
+@click.option("--base", default="grounding_dino", help="Base model to use for labeling images.")
+@click.option("--target", default="yolov8", help="Target model to use for training.")
+@click.option("--model_type", default="detection", help="Type of model to train (detection, segmentation, classification).")
+@click.option("--ontology", default={}, required=True, help="Ontology to use for labeling images.")
+@click.option("--epochs", default=200, required=True, help="Number of epochs to train.")
+@click.option("--output", default="./dataset", required=True, help="Output directory for labeled data.")
+@click.option("--upload-to-roboflow", default=False, required=True, help="Upload dataset and trained model to Roboflow.")
+@click.option("--project_name", default="autodistill", required=False, help="Name of Roboflow project.")
+@click.option("--project_license", default="MIT", required=False, help="License to use for Roboflow dataset. Set to `private` to upload a dataset and model privately.")
+@click.option("--dataset_format", default="voc", required=False, help="Dataset format to use for Roboflow project (voc, yolov5, yolov8).")
 def main(
-    images, base, target, model_type, ontology, epochs, output, upload_to_roboflow, project_license, dataset_format
+    images, models, base, target, model_type, ontology, epochs, output, upload_to_roboflow, project_name, project_license, dataset_format
 ):
+    if models:
+        print("Available models:")
+        for model in models:
+            print(model["name"])
+        exit()
+
     if dataset_format not in SUPPORTED_DATASET_FORMATS:
         print(
             "Dataset format not supported. Please choose from the following dataset formats: "
@@ -47,7 +61,16 @@ def main(
     if ontology == "{}":
         print("No ontology provided. Please provide an ontology.")
         exit()
+        
+    if upload_to_roboflow:
+        roboflow.login()
 
+        if model_value not in SUPPORTED_ROBOFLOW_MODEL_UPLOADS:
+            print(
+                f"Model type {model_value} is not supported for deployment on Roboflow. Please choose one of {SUPPORTED_ROBOFLOW_MODEL_UPLOADS}."
+            )
+            exit()
+            
     print("Loading base model...")
     model = import_requisite_module(base)
 
@@ -56,15 +79,6 @@ def main(
     except:
         print("Ontologies must be valid JSON.")
         exit()
-        
-    if upload_to_roboflow:
-        roboflow.login()
-
-        if model_value not in SUPPORTED_ROBOFLOW_MODEL_UPLOADS:
-            print(
-                f"Model type {model_value} is not supported by Roboflow. Please choose one of {SUPPORTED_ROBOFLOW_MODEL_UPLOADS}."
-            )
-            exit()
 
     ontology = CaptionOntology(ontology)
 
@@ -130,12 +144,13 @@ def main(
         else:
             rf_model_value = "single-label-classification"
 
-        project = workspace.create_project(
-            project_name=upload_to_roboflow,
-            project_license=project_license,
-            annotation=ontology.classes()[0],
-            project_type=rf_model_value
-        )
+        if project_name not in [project.name for project in workspace.projects()]:
+            project = workspace.create_project(
+                project_name=project_name,
+                project_license=project_license,
+                annotation=ontology.classes()[0],
+                project_type=rf_model_value
+            )
 
         rf.workspace().upload_dataset(
             dataset_path=output,
