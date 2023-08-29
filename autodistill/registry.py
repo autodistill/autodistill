@@ -45,7 +45,9 @@ def import_requisite_module(module_name):
         if consent == "y":
             os.system(f"pip install autodistill_{module_name}")
         else:
-            print(f"{module_name} is required to run this script with your current configuration. Change your chosen model or run `autodistill` again to install {module_name}.")
+            print(
+                f"{module_name} is required to run this script with your current configuration. Change your chosen model or run `autodistill` again to install {module_name}."
+            )
             exit()
 
     module = importlib.import_module("autodistill_" + module_name)
