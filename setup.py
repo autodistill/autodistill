@@ -11,9 +11,6 @@ with open("./autodistill/__init__.py", "r") as f:
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-with open("requirements.txt", "r") as fh:
-    install_requires = fh.read().split("\n")
-
 setuptools.setup(
     name="autodistill",
     version=version,
@@ -23,7 +20,14 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/autodistill/autodistill",
-    install_requires=install_requires,
+    install_requires=[
+        "opencv-python>=4.6.0",
+        "supervision",
+        "tqdm",
+        "Pillow>=7.1.2",
+        "PyYAML>=5.3.1",
+        "click"
+    ],
     # allow models.csv in package
     include_package_data=True,
     package_data={"": ["models.csv"]},
@@ -47,7 +51,7 @@ setuptools.setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License :: 2.0",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.7",
