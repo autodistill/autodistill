@@ -91,9 +91,7 @@ def split_data(base_dir, split_ratio=0.8):
         yaml.dump(data, file)
 
 
-def visualize_predictions(
-    file_name: str, detections: sv.Detections
-) -> None:
+def visualize_predictions(file_name: str, detections: sv.Detections) -> None:
     if detections.mask is None:
         annotator = sv.BoxAnnotator()
     else:
