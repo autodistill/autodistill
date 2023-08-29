@@ -1,3 +1,3 @@
-from autodistill.core.base_model import BaseModel
-from autodistill.core.ontology import Ontology
-from autodistill.core.target_model import TargetModel
+from .base_model import BaseModel
+from .ontology import Ontology
+from .target_model import TargetModel

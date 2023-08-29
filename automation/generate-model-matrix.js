@@ -90,3 +90,5 @@ _.each(["object-detection", "instance-segmentation", "classification"], function
 console.log(readme);
 // overwrite file
 fs.writeFileSync(path.join(__dirname, "..", "README.md"), readme, "utf8");
+// save models.csv to ../autodistill
+fs.writeFileSync(path.join(__dirname, "..", "..", "autodistill", "models.csv"), modelFile, "utf8");
