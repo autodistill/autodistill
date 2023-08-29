@@ -31,7 +31,7 @@ def is_module_installed(module_name):
     return True
 
 
-def import_requisite_module(module_name):
+def import_requisite_module(module_name, noninteractive_install = False):
     if module_name not in PACKAGE_NAMES:
         print(
             f"Module {module_name} not found. Please choose from the following modules: {PACKAGE_NAMES}"
@@ -39,16 +39,19 @@ def import_requisite_module(module_name):
         exit()
 
     if not is_module_installed(module_name):
-        consent = input(
-            f"Module {module_name} is not installed. Would you like to install it? (y/n): "
-        )
-        if consent == "y":
+        if noninteractive_install:
             os.system(f"pip install autodistill_{module_name}")
         else:
-            print(
-                f"{module_name} is required to run this script with your current configuration. Change your chosen model or run `autodistill` again to install {module_name}."
+            consent = input(
+                f"Module {module_name} is not installed. Would you like to install it? (y/n): "
             )
-            exit()
+            if consent == "y":
+                os.system(f"pip install autodistill_{module_name}")
+            else:
+                print(
+                    f"{module_name} is required to run this script with your current configuration. Change your chosen model or run `autodistill` again to install {module_name}."
+                )
+                exit()
 
     module = importlib.import_module("autodistill_" + module_name)
 

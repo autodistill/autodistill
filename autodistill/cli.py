@@ -11,7 +11,7 @@ from autodistill.detection.caption_ontology import CaptionOntology
 from autodistill.registry import import_requisite_module
 
 # load model matrix from models.csv
-with open("models.csv", newline="") as csvfile:
+with open(os.path.join(os.path.dirname(__file__), "models.csv")) as csvfile:
     models = list(csv.DictReader(csvfile))
 
 SUPPORTED_ROBOFLOW_MODEL_UPLOADS = ["yolov5", "yolov5-seg", "yolov8", "yolov8-seg"]
@@ -22,7 +22,7 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
 
 
 @click.command()
-@click.argument("images", help="Path to image or directory of images.")
+@click.argument("images")
 @click.option("--models", default=False, help="Show available models.")
 @click.option(
     "--base", default="grounding_dino", help="Base model to use for labeling images."
@@ -67,6 +67,12 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
     required=False,
     help="Dataset format to use for Roboflow project (voc, yolov5, yolov8).",
 )
+@click.option(
+    "-y",
+    default=False,
+    required=False,
+    help="Automatically answer yes to all install prompts.",
+)
 def main(
     images,
     models,
@@ -80,6 +86,7 @@ def main(
     project_name,
     project_license,
     dataset_format,
+    y,
 ):
     if models:
         print("Available models:")
@@ -122,7 +129,7 @@ def main(
             exit()
 
     print("Loading base model...")
-    model = import_requisite_module(base)
+    model = import_requisite_module(base, noninteractive_install=y)
 
     try:
         ontology = json.loads(ontology, strict=False)
@@ -171,10 +178,10 @@ def main(
 
         exit()
 
-    base_model.label(input_folder=dir, output_folder=output)
+    base_model.label(input_folder=images, output_folder=output)
 
     print("Loading target model...")
-    target_model = import_requisite_module(target)
+    target_model = import_requisite_module(target, noninteractive_install=y)
 
     print("Training target model...")
     target_model.train(dataset_yaml=os.path.join(output, "data.yaml"), epochs=epochs)
