@@ -77,7 +77,7 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
     "--test",
     default=False,
     required=False,
-    help="Run a base model on a folder of images (up to 16 images) and show the results."
+    help="Run a base model on a folder of images (up to 9 images) and show the results."
 )
 def main(
     images,
@@ -214,7 +214,7 @@ def main(
 
             results.append(annotated_frame)
 
-        sv.plot_images_grid(results, titles=file, grid_size=(3, 3))
+        sv.plot_images_grid(results, grid_size=(3, 3))
 
         exit()
 
