@@ -73,6 +73,12 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
     required=False,
     help="Automatically answer yes to all install prompts.",
 )
+@click.option(
+    "--test",
+    default=False,
+    required=False,
+    help="Run a base model on a folder of images (up to 16 images) and show the results."
+)
 def main(
     images,
     models,
@@ -87,6 +93,7 @@ def main(
     project_license,
     dataset_format,
     y,
+    test
 ):
     if models:
         print("Available models:")
@@ -175,6 +182,39 @@ def main(
         print("Saving results to ./result.jpg...")
 
         cv2.imwrite(os.path.join(os.getcwd(), "result.jpg"), annotated_frame)
+
+        exit()
+    elif test:
+        files = os.listdir(images)[:9]
+        # order alphabetically
+        
+        files.sort()
+
+        results = []
+
+        for file in files:
+            classes = ontology.classes()
+
+            box_annotator = sv.BoxAnnotator()
+
+            image = cv2.imread(os.path.join(images, file))
+
+            detections = base_model.predict(os.path.join(images, file))
+
+            labels = [
+                f"{classes[class_id]} {confidence:0.2f}"
+                for _, _, confidence, class_id, _ in detections
+            ]
+
+            annotated_frame = box_annotator.annotate(
+                scene=image.copy(),
+                detections=detections,
+                labels=labels,
+            )
+
+            results.append(annotated_frame)
+
+        sv.plot_images_grid(results, titles=file, grid_size=(3, 3))
 
         exit()
 
