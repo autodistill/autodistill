@@ -7,13 +7,15 @@
       >
     </a>
   </p>
-</div>
+  
+[notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect
 
 [![version](https://badge.fury.io/py/autodistill.svg?)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
 [![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
+</div>
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
@@ -315,6 +317,12 @@ We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get 
 ## 👩‍⚖️ License
 
 The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
+
+## Frequently Asked Questions ❓
+
+### What causes the `PytorchStreamReader failed reading zip archive: failed finding central directory` error?
+
+This error is caused when PyTorch cannot load the model weights for a model. Go into the `~/.cache/autodistill` directory and delete the folder associated with the model you are trying to load. Then, run your code again. The model weights will be downloaded from scratch. Leave the installation process uninterrupted.
 
 ## 💻 explore more Roboflow open source projects
 
