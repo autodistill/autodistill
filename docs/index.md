@@ -144,7 +144,7 @@ pip install autodistill
 Then, run:
 
 ```bash
-autodistill images --base-model="grounding_dino" --target-model="yolov8" --ontology '{"prompt": "label"}' --output-folder ./dataset
+autodistill images --base="grounding_dino" --target="yolov8" --ontology '{"prompt": "label"}' --output="./dataset"
 ```
 
 This command will label all images in a directory called `images` with Grounding DINO and use the labeled images to train a YOLOv8 model. Grounding DINO will label all images with the "prompt" and save the label as the "label". You can specify as many prompts and labels as you want. The resulting dataset will be saved in a folder called `dataset`.
