@@ -26,18 +26,22 @@ nav:
   - Detection:
     - Base Models:
       - DETIC: base_models/detic.md
+      - FastSAM: base_models/fastsam.md
       - Grounded SAM: base_models/groundedsam.md
       - Grounding DINO: base_models/grounding-dino.md
       - OWL-ViT: base_models/owlvit.md
-      - FastSAM: base_models/fastsam.md
       - SegGPT: base_models/seggpt.md
+      - SAM-CLIP: base_models/sam-clip.md
     - Target Models:
+      - DETR: target_models/detr.md
       - YOLOv5: target_models/yolov5.md
       - YOLOv8: target_models/yolov8.md
       - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
       - YOLO-NAS: target_models/yolo-nas.md
   - Classification:
     - Base Models:
+      - ALBEF: base_models/albef.md
+      - BLIP: base_models/blip.md
       - CLIP: base_models/clip.md
     - Target Models:
       - DINOv2: target_models/dinov2.md
