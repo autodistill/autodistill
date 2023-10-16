@@ -1,5 +1,5 @@
 site_name: Autodistill
-site_url: https://docs.autodistill.com
+site_url: https://docs.autodistill.com/
 site_author: Roboflow
 site_description: Distill large foundational models into smaller, domain-specific models for deployment
 repo_name: autodistill/autodistill
