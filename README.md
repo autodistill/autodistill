@@ -240,6 +240,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
 
@@ -262,6 +264,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
 | [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
+| [FastViT](https://github.com/autodistill/autodistill-fastvit autodistill-fastvit) | ✅ | ✅ | 🚧 |
+| Fuyu | 🚧 | 🚧 | 🚧 |
 | Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |

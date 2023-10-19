@@ -6,6 +6,8 @@ object-detection, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded
 object-detection, 1, 0, completed, GroundingDINO, autodistill/autodistill-grounding-dino, autodistill-grounding-dino, base_models/groundingdino.md, Apache-2.0
 object-detection, 1, 0, completed, OWL-ViT, autodistill/autodistill-owl-vit, autodistill-owl-vit, , Apache-2.0
 object-detection, 1, 0, completed, SAM-CLIP, autodistill/autodistill-sam-clip, autodistill-sam-clip, base_models/sam-clip.md, Apache-2.0
+object-detection, 1, 0, completed, LLaVA-1.5, autodistill/autodistill-llava, autodistill-llava, base_models/llava.md, Apache-2.0
+object-detection, 1, 0, completed, Kosmos-2, autodistill/autodistill-kosmos-2, autodistill-kosmos-2, base_models/kosmos_2.md, Apache-2.0
 object-detection, 1, 0, not-started, Azure DenseCaptions
 object-detection, 1, 0, not-started, GLIPv2
 
@@ -35,6 +37,8 @@ classification, 1, 0, completed, CLIP, autodistill/autodistill-clip, autodistill
 classification, 1, 0 , completed, DINOv2, autodistill/autodistill-dinov2, autodistill-dinov2, , Creative Commons Attribution-NonCommercial 4.0 International
 classification, 1, 0 , completed, BLIP, autodistill/autodistill-blip, autodistll-blip, , BSD-3-Clause
 classification, 1, 0 , completed, ALBEF, autodistill/autodistill-albef, autodistill-albef, , BSD-3-Clause
+classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit autodistill-fastvit, , custom Apple license
+classification, 1, 0, in-progress, Fuyu
 classification, 1, 0, in-progress, Open Flamingo
 classification, 1, 0, not-started, GPT-4
 classification, 1, 0, not-started, PaLM-2
