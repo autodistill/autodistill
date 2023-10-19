@@ -37,7 +37,7 @@ classification, 1, 0, completed, CLIP, autodistill/autodistill-clip, autodistill
 classification, 1, 0 , completed, DINOv2, autodistill/autodistill-dinov2, autodistill-dinov2, , Creative Commons Attribution-NonCommercial 4.0 International
 classification, 1, 0 , completed, BLIP, autodistill/autodistill-blip, autodistll-blip, , BSD-3-Clause
 classification, 1, 0 , completed, ALBEF, autodistill/autodistill-albef, autodistill-albef, , BSD-3-Clause
-classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit autodistill-fastvit, , custom Apple license
+classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit, autodistill-fastvit, , custom Apple license
 classification, 1, 0, in-progress, Fuyu
 classification, 1, 0, in-progress, Open Flamingo
 classification, 1, 0, not-started, GPT-4
