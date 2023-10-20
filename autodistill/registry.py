@@ -17,6 +17,9 @@ AUTODISTILL_MODULES = [
     ("blip", "BLIP"),
     ("vit", "ViT"),
     ("detr", "DETR"),
+    ("llava", "LLaVA"),
+    ("kosmos-2", "Kosmos2"),
+    ("fastvit", "FastViT"),
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
