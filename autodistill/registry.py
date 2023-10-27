@@ -20,6 +20,11 @@ AUTODISTILL_MODULES = [
     ("llava", "LLaVA"),
     ("kosmos-2", "Kosmos2"),
     ("fastvit", "FastViT"),
+    ("fastclip", "FastCLIP"),
+    ("owlv2", "owlv2"),
+    ("azure-vision", "AzureVision"),
+    ("rekognition", "Rekognition"),
+    ("gcp-vision", "GCPVision"),
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
