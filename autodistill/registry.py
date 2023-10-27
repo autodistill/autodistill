@@ -20,7 +20,7 @@ AUTODISTILL_MODULES = [
     ("llava", "LLaVA"),
     ("kosmos-2", "Kosmos2"),
     ("fastvit", "FastViT"),
-    ("fastclip", "FastCLIP"),
+    ("metaclip", "MetaCLIP"),
     ("owlv2", "owlv2"),
     ("azure-vision", "AzureVision"),
     ("rekognition", "Rekognition"),
