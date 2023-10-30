@@ -1,4 +1,4 @@
-import csv
+gi import csv
 import json
 import os
 
