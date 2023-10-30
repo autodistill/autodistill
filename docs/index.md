@@ -7,6 +7,7 @@
       >
     </a>
   </p>
+</div>
   
 [notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect)
 
@@ -15,7 +16,6 @@
 [![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
-</div>
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
@@ -242,8 +242,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ |  |  |
-| Azure DenseCaptions |  |  |  |  |  |  |
-| GLIPv2 |  |  |  |  |  |  |
+| [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ |  |  |
 
 
 ### instance segmentation
@@ -261,6 +260,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | ✅ | ✅ | 🚧 |
+| [MetaCLIP](https://github.com/autodistill/autodistill-metaclip) | ✅ | ✅ | 🚧 |
 | [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
 | [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
@@ -337,3 +337,53 @@ This error is caused when PyTorch cannot load the model weights for a model. Go 
 |[Inference](https://github.com/roboflow/inference) | An easy-to-use, production-ready inference server for computer vision supporting deployment of many popular model architectures and fine-tuned models.
 |[Notebooks](https://roboflow.com/notebooks) | Tutorials for computer vision tasks, from training state-of-the-art models to tracking objects to counting objects in a zone.
 |[Collect](https://github.com/roboflow/roboflow-collect) | Automated, intelligent data collection powered by CLIP.
+
+<br>
+
+<div align="center">
+
+  <div align="center">
+      <a href="https://youtube.com/roboflow">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/youtube.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949634652"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/roboflow-app.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949746649"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://www.linkedin.com/company/roboflow-ai/">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/linkedin.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633691"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://docs.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/knowledge.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949634511"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://disuss.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/forum.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633584"
+            width="3%"
+          />
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://blog.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/blog.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633605"
+            width="3%"
+          />
+      </a>
+      </a>
+  </div>
+
+</div>
