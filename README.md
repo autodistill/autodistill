@@ -7,13 +7,15 @@
       >
     </a>
   </p>
-</div>
+  
+[notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect)
 
 [![version](https://badge.fury.io/py/autodistill.svg?)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
 [![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
+</div>
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
@@ -135,6 +137,20 @@ See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/not
 
 Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
 
+You can also run Autodistill in one command. First, install `autodistill`:
+
+```bash
+pip install autodistill
+```
+
+Then, run:
+
+```bash
+autodistill images --base="grounding_dino" --target="yolov8" --ontology '{"prompt": "label"}' --output="./dataset"
+```
+
+This command will label all images in a directory called `images` with Grounding DINO and use the labeled images to train a YOLOv8 model. Grounding DINO will label all images with the "prompt" and save the label as the "label". You can specify as many prompts and labels as you want. The resulting dataset will be saved in a folder called `dataset`.
+
 ### Install Packages
 
 For this example, we'll show how to distill [GroundedSAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) into a small [YOLOv8](https://github.com/ultralytics/ultralytics) model using [autodistill-grounded-sam](https://github.com/autodistill/autodistill-grounded-sam) and [autodistill-yolov8](https://github.com/autodistill/autodistill-yolov8).
@@ -224,8 +240,12 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
-| Azure DenseCaptions |  |  |  |  |  |  |
-| GLIPv2 |  |  |  |  |  |  |
+| [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [Azure Custom Vision](https://github.com/autodistill/autodistill-azure-vision) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [AWS Rekognition](https://github.com/autodistill/autodistill-rekognition) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [Google Vision](https://github.com/autodistill/autodistill-gcp-vision) | ✅ | ✅ | ✅ | ✅ |  |  |
 
 
 ### instance segmentation
@@ -234,6 +254,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
 | SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
+| SegGPT | ✅ | 🚧 | 🚧 |  |  |
 | FastSAM | 🚧 | 🚧 | 🚧 |  |  |
 
 
@@ -242,9 +263,12 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
 |:---:|:---:|:---:|:---:|
 | [CLIP](https://github.com/autodistill/autodistill-clip) | ✅ | ✅ | 🚧 |
+| [MetaCLIP](https://github.com/autodistill/autodistill-metaclip) | ✅ | ✅ | 🚧 |
 | [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
 | [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
+| [FastViT](https://github.com/autodistill/autodistill-fastvit) | ✅ | ✅ | 🚧 |
+| Fuyu | 🚧 | 🚧 | 🚧 |
 | Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |
@@ -300,3 +324,69 @@ We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get 
 ## 👩‍⚖️ License
 
 The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
+
+## Frequently Asked Questions ❓
+
+### What causes the `PytorchStreamReader failed reading zip archive: failed finding central directory` error?
+
+This error is caused when PyTorch cannot load the model weights for a model. Go into the `~/.cache/autodistill` directory and delete the folder associated with the model you are trying to load. Then, run your code again. The model weights will be downloaded from scratch. Leave the installation process uninterrupted.
+
+## 💻 explore more Roboflow open source projects
+
+|Project | Description|
+|:---|:---|
+|[supervision](https://roboflow.com/supervision) | General-purpose utilities for use in computer vision projects, from predictions filtering and display to object tracking to model evaluation.
+|[Autodistill](https://github.com/autodistill/autodistill) (this project) | Automatically label images for use in training computer vision models. |
+|[Inference](https://github.com/roboflow/inference) | An easy-to-use, production-ready inference server for computer vision supporting deployment of many popular model architectures and fine-tuned models.
+|[Notebooks](https://roboflow.com/notebooks) | Tutorials for computer vision tasks, from training state-of-the-art models to tracking objects to counting objects in a zone.
+|[Collect](https://github.com/roboflow/roboflow-collect) | Automated, intelligent data collection powered by CLIP.
+
+<br>
+
+<div align="center">
+
+  <div align="center">
+      <a href="https://youtube.com/roboflow">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/youtube.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949634652"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/roboflow-app.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949746649"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://www.linkedin.com/company/roboflow-ai/">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/linkedin.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633691"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://docs.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/knowledge.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949634511"
+            width="3%"
+          />
+      </a>
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://disuss.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/forum.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633584"
+            width="3%"
+          />
+      <img src="https://raw.githubusercontent.com/ultralytics/assets/main/social/logo-transparent.png" width="3%"/>
+      <a href="https://blog.roboflow.com">
+          <img
+            src="https://media.roboflow.com/notebooks/template/icons/purple/blog.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672949633605"
+            width="3%"
+          />
+      </a>
+      </a>
+  </div>
+
+</div>

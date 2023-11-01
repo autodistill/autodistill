@@ -4,7 +4,7 @@ from typing import Any
 
 import supervision as sv
 
-from autodistill.core.ontology import Ontology
+from .ontology import Ontology
 
 
 @dataclass

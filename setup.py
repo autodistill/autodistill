@@ -1,6 +1,7 @@
+import re
+
 import setuptools
 from setuptools import find_packages
-import re
 
 with open("./autodistill/__init__.py", "r") as f:
     content = f.read()
@@ -9,9 +10,6 @@ with open("./autodistill/__init__.py", "r") as f:
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
-with open("requirements.txt", "r") as fh:
-    install_requires = fh.read().split("\n")
 
 setuptools.setup(
     name="autodistill",
@@ -22,8 +20,23 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/autodistill/autodistill",
-    install_requires=install_requires,
+    install_requires=[
+        "opencv-python>=4.6.0",
+        "supervision",
+        "tqdm",
+        "Pillow>=7.1.2",
+        "PyYAML>=5.3.1",
+        "click"
+    ],
+    # allow models.csv in package
+    include_package_data=True,
+    package_data={"": ["models.csv"]},
     packages=find_packages(exclude=("tests",)),
+    entry_points={
+        "console_scripts": [
+            "autodistill=autodistill.cli:main",
+        ],
+    },
     extras_require={
         "dev": [
             "flake8",
@@ -38,7 +51,7 @@ setuptools.setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License :: 2.0",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.7",

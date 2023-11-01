@@ -8,6 +8,8 @@
     </a>
   </p>
 </div>
+  
+[notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect)
 
 [![version](https://badge.fury.io/py/autodistill.svg?)](https://badge.fury.io/py/autodistill)
 [![downloads](https://img.shields.io/pypi/dm/autodistill)](https://pypistats.org/packages/autodistill)
@@ -32,7 +34,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 
 ## 🔗 Quicklinks
 
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#available-models)  | [Contribute](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
 ## 👀 Example Output
@@ -106,7 +108,7 @@ Autodistill's Base Models can already create datasets for many common use-cases 
 
 ## 💿 Installation
 
-Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#-available-models) (which implement specific models).
+Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#available-models) (which implement specific models).
 
 By packaging these separately as plugins, dependency and licensing incompatibilities are minimized and new models can be implemented and maintained by anyone.
 
@@ -127,13 +129,27 @@ pip install -e .
 ```
 </details>
 
-Additional Base and Target models are [enumerated below](#-available-models).
+Additional Base and Target models are [enumerated below](#available-models).
 
 ## 🚀 Quickstart
 
 See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
 
 Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
+
+You can also run Autodistill in one command. First, install `autodistill`:
+
+```bash
+pip install autodistill
+```
+
+Then, run:
+
+```bash
+autodistill images --base="grounding_dino" --target="yolov8" --ontology '{"prompt": "label"}' --output="./dataset"
+```
+
+This command will label all images in a directory called `images` with Grounding DINO and use the labeled images to train a YOLOv8 model. Grounding DINO will label all images with the "prompt" and save the label as the "label". You can specify as many prompts and labels as you want. The resulting dataset will be saved in a folder called `dataset`.
 
 ### Install Packages
 
@@ -224,6 +240,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ |  |  |
 | [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ |  |  |
+| [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ |  |  |
 | Azure DenseCaptions |  |  |  |  |  |  |
 | GLIPv2 |  |  |  |  |  |  |
 
@@ -234,6 +252,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
 | SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
+| SegGPT | ✅ | 🚧 | 🚧 |  |  |
 | FastSAM | 🚧 | 🚧 | 🚧 |  |  |
 
 
@@ -245,6 +264,8 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
 | [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
+| [FastViT](https://github.com/autodistill/autodistill-fastvit) | ✅ | ✅ | 🚧 |
+| Fuyu | 🚧 | 🚧 | 🚧 |
 | Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |
@@ -295,8 +316,24 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 ## 🏆 Contributing
 
-We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
+We love your input! Please see our [contributing guide](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
 ## 👩‍⚖️ License
 
 The `autodistill` package is licensed under an [Apache 2.0](LICENSE). Each Base or Target model plugin may use its own license corresponding with the license of its underlying model. Please refer to the license in each plugin repo for more information.
+
+## Frequently Asked Questions ❓
+
+### What causes the `PytorchStreamReader failed reading zip archive: failed finding central directory` error?
+
+This error is caused when PyTorch cannot load the model weights for a model. Go into the `~/.cache/autodistill` directory and delete the folder associated with the model you are trying to load. Then, run your code again. The model weights will be downloaded from scratch. Leave the installation process uninterrupted.
+
+## 💻 explore more Roboflow open source projects
+
+|Project | Description|
+|:---|:---|
+|[supervision](https://roboflow.com/supervision) | General-purpose utilities for use in computer vision projects, from predictions filtering and display to object tracking to model evaluation.
+|[Autodistill](https://github.com/autodistill/autodistill) (this project) | Automatically label images for use in training computer vision models. |
+|[Inference](https://github.com/roboflow/inference) | An easy-to-use, production-ready inference server for computer vision supporting deployment of many popular model architectures and fine-tuned models.
+|[Notebooks](https://roboflow.com/notebooks) | Tutorials for computer vision tasks, from training state-of-the-art models to tracking objects to counting objects in a zone.
+|[Collect](https://github.com/roboflow/roboflow-collect) | Automated, intelligent data collection powered by CLIP.

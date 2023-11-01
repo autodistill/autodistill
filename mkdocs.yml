@@ -1,5 +1,5 @@
 site_name: Autodistill
-site_url: https://docs.autodistill.com
+site_url: https://docs.autodistill.com/
 site_author: Roboflow
 site_description: Distill large foundational models into smaller, domain-specific models for deployment
 repo_name: autodistill/autodistill
@@ -26,17 +26,22 @@ nav:
   - Detection:
     - Base Models:
       - DETIC: base_models/detic.md
+      - FastSAM: base_models/fastsam.md
       - Grounded SAM: base_models/groundedsam.md
       - Grounding DINO: base_models/grounding-dino.md
       - OWL-ViT: base_models/owlvit.md
-      - FastSAM: base_models/fastsam.md
+      - SegGPT: base_models/seggpt.md
+      - SAM-CLIP: base_models/sam-clip.md
     - Target Models:
+      - DETR: target_models/detr.md
       - YOLOv5: target_models/yolov5.md
       - YOLOv8: target_models/yolov8.md
       - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
       - YOLO-NAS: target_models/yolo-nas.md
   - Classification:
     - Base Models:
+      - ALBEF: base_models/albef.md
+      - BLIP: base_models/blip.md
       - CLIP: base_models/clip.md
     - Target Models:
       - DINOv2: target_models/dinov2.md
@@ -65,9 +70,11 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+  custom_dir: 'custom_theme'
 
 plugins:
   - mkdocstrings
+  - search
 
 markdown_extensions:
   - admonition
@@ -79,3 +86,7 @@ markdown_extensions:
       alternate_style: true
   - toc:
       permalink: true
+
+extra_javascript:
+  - "https://widget.kapa.ai/kapa-widget.bundle.js"
+  - "javascript/init_kapa_widget.js"

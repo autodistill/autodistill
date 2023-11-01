@@ -6,11 +6,12 @@ from dataclasses import dataclass
 import cv2
 import supervision as sv
 from autodistill.core import BaseModel
-from autodistill.detection import DetectionOntology
 from autodistill.helpers import split_data
 import roboflow
 import datetime
 from tqdm import tqdm
+
+from .detection_ontology import DetectionOntology
 
 
 @dataclass
