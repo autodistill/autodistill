@@ -39,7 +39,7 @@ def is_module_installed(module_name):
     return True
 
 
-def import_requisite_module(module_name, noninteractive_install = False):
+def import_requisite_module(module_name, noninteractive_install=False):
     if module_name not in PACKAGE_NAMES:
         print(
             f"Module {module_name} not found. Please choose from the following modules: {PACKAGE_NAMES}"
