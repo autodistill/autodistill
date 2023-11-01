@@ -243,7 +243,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [Roboflow Universe Models (50](https://github.com/000+ pre-trained models)) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
+| [Roboflow Universe Models (50k+ pre-trained models)](https://github.com/autodistill/autodistill-roboflow-universe) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Azure Custom Vision](https://github.com/autodistill/autodistill-azure-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [AWS Rekognition](https://github.com/autodistill/autodistill-rekognition) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Google Vision](https://github.com/autodistill/autodistill-gcp-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
