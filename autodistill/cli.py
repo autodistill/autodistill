@@ -77,7 +77,7 @@ SUPPORTED_DATASET_FORMATS = ["yolov8", "yolov5", "voc"]
     "--test",
     default=False,
     required=False,
-    help="Run a base model on a folder of images (up to 9 images) and show the results."
+    help="Run a base model on a folder of images (up to 9 images) and show the results.",
 )
 def main(
     images,
@@ -93,7 +93,7 @@ def main(
     project_license,
     dataset_format,
     y,
-    test
+    test,
 ):
     if models:
         print("Available models:")
@@ -187,7 +187,7 @@ def main(
     elif test:
         files = os.listdir(images)[:9]
         # order alphabetically
-        
+
         files.sort()
 
         results = []
