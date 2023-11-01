@@ -1,9 +1,11 @@
+import datetime
 import glob
 import os
 from abc import abstractmethod
 from dataclasses import dataclass
 
 import cv2
+import roboflow
 import supervision as sv
 from tqdm import tqdm
 
@@ -22,7 +24,13 @@ class DetectionBaseModel(BaseModel):
         pass
 
     def label(
-        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+        self,
+        input_folder: str,
+        extension: str = ".jpg",
+        output_folder: str = None,
+        human_in_the_loop: bool = False,
+        roboflow_project: str = None,
+        roboflow_tags: str = ["autodistill"],
     ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
@@ -56,6 +64,15 @@ class DetectionBaseModel(BaseModel):
         )
 
         split_data(output_folder)
+
+        if human_in_the_loop:
+            roboflow.login()
+
+            rf = roboflow.Roboflow()
+
+            workspace = rf.workspace()
+
+            workspace.upload_dataset(output_folder, project_name=roboflow_project)
 
         print("Labeled dataset created - ready for distillation.")
         return dataset
