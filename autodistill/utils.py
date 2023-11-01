@@ -1,9 +1,8 @@
-from autodistill.plot import plot
-import cv2
-import supervision as sv
-import numpy as np
-
 from typing import List
+
+import cv2
+import numpy as np
+import supervision as sv
 
 
 def compare(models: list, images: List[str]):
