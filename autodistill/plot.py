@@ -3,7 +3,7 @@ import numpy as np
 
 from typing import List
 
-def plot(image: np.ndarray, detections, classes: List[str]):
+def plot(image: np.ndarray, detections, classes: List[str], raw=False):
     # TODO: When we have a classification annotator
     # in supervision, we can add it here
     if detections.mask:
@@ -23,4 +23,7 @@ def plot(image: np.ndarray, detections, classes: List[str]):
         labels=labels
     )
 
+    if raw:
+        return annotated_frame
+    
     sv.plot_image(annotated_frame, size=(8, 8))
