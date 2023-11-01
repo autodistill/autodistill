@@ -25,6 +25,7 @@ AUTODISTILL_MODULES = [
     ("azure-vision", "AzureVision"),
     ("rekognition", "Rekognition"),
     ("gcp-vision", "GCPVision"),
+    ("roboflow-universe", "RoboflowUniverseModel")
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
