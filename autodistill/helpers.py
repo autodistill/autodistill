@@ -2,8 +2,13 @@ import os
 import random
 import shutil
 
+import cv2
+import supervision as sv
+import tqdm
 import yaml
 from PIL import Image
+
+VALID_ANNOTATION_TYPES = ["box", "mask"]
 
 
 def split_data(base_dir, split_ratio=0.8):
@@ -84,3 +89,19 @@ def split_data(base_dir, split_ratio=0.8):
             "names": names,
         }
         yaml.dump(data, file)
+
+
+def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
+    video_paths = sv.list_files_with_extensions(
+        directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]
+    )
+
+    for name in tqdm(video_paths):
+        image_name_pattern = name + "-{:05d}.jpg"
+        with sv.ImageSink(
+            target_dir_path=output_dir, image_name_pattern=image_name_pattern
+        ) as sink:
+            for image in sv.get_video_frames_generator(
+                source_path=str(video_path), stride=stride
+            ):
+                sink.save_image(image=image)
