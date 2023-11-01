@@ -8,8 +8,7 @@
     </a>
   </p>
 </div>
-  
-</div>
+
 
 [notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect)
 
