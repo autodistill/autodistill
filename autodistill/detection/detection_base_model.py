@@ -1,15 +1,16 @@
+import datetime
 import glob
 import os
 from abc import abstractmethod
 from dataclasses import dataclass
 
 import cv2
+import roboflow
 import supervision as sv
+from tqdm import tqdm
+
 from autodistill.core import BaseModel
 from autodistill.helpers import split_data
-import roboflow
-import datetime
-from tqdm import tqdm
 
 from .detection_ontology import DetectionOntology
 
