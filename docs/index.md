@@ -34,7 +34,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 
 ## 🔗 Quicklinks
 
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#available-models)  | [Contribute](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
 ## 👀 Example Output
@@ -108,7 +108,7 @@ Autodistill's Base Models can already create datasets for many common use-cases 
 
 ## 💿 Installation
 
-Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#-available-models) (which implement specific models).
+Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#available-models) (which implement specific models).
 
 By packaging these separately as plugins, dependency and licensing incompatibilities are minimized and new models can be implemented and maintained by anyone.
 
@@ -129,7 +129,7 @@ pip install -e .
 ```
 </details>
 
-Additional Base and Target models are [enumerated below](#-available-models).
+Additional Base and Target models are [enumerated below](#available-models).
 
 ## 🚀 Quickstart
 
@@ -316,7 +316,7 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 ## 🏆 Contributing
 
-We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
+We love your input! Please see our [contributing guide](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
 ## 👩‍⚖️ License
 
