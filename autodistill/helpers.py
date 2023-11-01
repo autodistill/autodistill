@@ -90,22 +90,6 @@ def split_data(base_dir, split_ratio=0.8):
         }
         yaml.dump(data, file)
 
-
-def visualize_predictions(file_name: str, detections: sv.Detections) -> None:
-    if detections.mask is None:
-        annotator = sv.BoxAnnotator()
-    else:
-        annotator = sv.MaskAnnotator()
-
-    image = cv2.imread(file_name)
-
-    image_bgr = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-
-    annotated_image = annotator.annotate(scene=image_bgr, detections=detections)
-
-    sv.plot_image(annotated_image)
-
-
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
     video_paths = sv.list_files_with_extensions(
         directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]
