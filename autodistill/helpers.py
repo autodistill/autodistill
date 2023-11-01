@@ -90,6 +90,7 @@ def split_data(base_dir, split_ratio=0.8):
         }
         yaml.dump(data, file)
 
+
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
     video_paths = sv.list_files_with_extensions(
         directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]
