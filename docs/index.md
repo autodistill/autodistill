@@ -7,6 +7,7 @@
       >
     </a>
   </p>
+</div>
   
 [notebooks](https://github.com/roboflow/notebooks) | [inference](https://github.com/roboflow/inference) | [autodistill](https://github.com/autodistill/autodistill) | [collect](https://github.com/roboflow/roboflow-collect)
 
@@ -15,7 +16,6 @@
 [![license](https://img.shields.io/pypi/l/autodistill?)](https://github.com/autodistill/autodistill/blob/main/LICENSE)
 [![python-version](https://img.shields.io/pypi/pyversions/autodistill)](https://badge.fury.io/py/autodistill)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb)
-</div>
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
@@ -34,7 +34,7 @@ Currently, `autodistill` supports vision tasks like object detection and instanc
 
 ## 🔗 Quicklinks
 
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#-available-models)  | [Contribute](CONTRIBUTING.md)
+| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#available-models)  | [Contribute](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md)
 |:---:|:---:|:---:|:---:|
 
 ## 👀 Example Output
@@ -108,7 +108,7 @@ Autodistill's Base Models can already create datasets for many common use-cases 
 
 ## 💿 Installation
 
-Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#-available-models) (which implement specific models).
+Autodistill is modular. You'll need to install the `autodistill` package (which defines the interfaces for the above concepts) along with [Base Model and Target Model plugins](#available-models) (which implement specific models).
 
 By packaging these separately as plugins, dependency and licensing incompatibilities are minimized and new models can be implemented and maintained by anyone.
 
@@ -129,7 +129,7 @@ pip install -e .
 ```
 </details>
 
-Additional Base and Target models are [enumerated below](#-available-models).
+Additional Base and Target models are [enumerated below](#available-models).
 
 ## 🚀 Quickstart
 
@@ -316,7 +316,7 @@ Apart from adding new models, there are several areas we plan to explore with `a
 
 ## 🏆 Contributing
 
-We love your input! Please see our [contributing guide](CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
+We love your input! Please see our [contributing guide](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md) to get started. Thank you 🙏 to all our contributors!
 
 ## 👩‍⚖️ License
 
