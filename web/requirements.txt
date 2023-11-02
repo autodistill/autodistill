@@ -1,0 +1,9 @@
+flask
+autodistill_clip
+autodistill_metaclip
+autodistill_altclip
+autodistill_grounding_dino
+autodistill_owlv2
+autodistill_fastvit
+autodistill_fastsam
+python-opencv2
