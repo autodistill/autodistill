@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Autodistill Playground</title>
+        <style>
+            * {
+                font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            }
+            img {
+                max-width: 100%;
+                border: 1px solid #ccc;
+            }
+            html {
+                background-color: #F2E6FE;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .form {
+                display: flex;
+                flex-direction: column;
+            }
+            label {
+                margin-top: 1em;
+            }
+            input, select {
+                margin-top: .5em;
+                padding: .5em;
+                border-radius: .25em;
+                border: 1px solid #ccc;
+            }
+            button {
+                margin-top: 1em;
+                padding: .5em;
+                border-radius: .25em;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                cursor: pointer;
+            }
+            .container {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1200px;
+            }
+            .placeholder {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                margin-left: 1em;
+                max-height: 500px;
+            }
+            a {
+                color: #5905B3;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            pre {
+                background-color: #fff;
+                border: 1px solid #ccc;
+                padding: 1em;
+                border-radius: .25em;
+            }
+            @media screen and (max-width: 1000px) {
+                .container {
+                    flex-direction: column;
+                }
+                .placeholder {
+                    margin-top: 1em;
+                    margin-left: 0;
+                }
+            }
+        </style>
+
+        <link rel="icon" href="/static/logo.jpeg">
+        
+        <meta property="og:title" content="Autodistill Playground">
+        <meta property="og:description" content="Use foundation models to automatically label data for use in training computer vision models.">
+        <meta property="og:image" content="https://blog.roboflow.com/content/images/size/w1000/2023/06/launch-autodistill.jpg">
+
+        <meta name="twitter:card" content="summary_large_image">
+    </head>
+    <body>
+        <div class="container">
+            <div style="flex: 0 50%;background-color: #DFFDF6; padding: 20px;">
+                <header>
+                    <img src="/static/logo.jpeg" alt="logo" width="100">
+                    <h1>
+                        Autodistill
+                    </h1>
+                    <p>Use foundation models to automatically label data for use in training computer vision models.</p>
+                    <p>Below, you can experiment with some models available in the <a href="https://github.com/autodistill/autodistill">Autodistill ecosystem</a> to see which one works best for your use case.</p>
+                    <p>Only zero-shot models (models that don't require any fine-tuning) with < 5GB RAM requirements are listed below.</p>
+                </header>
+                <script>
+                    var models_by_type = {
+                        "CLIP": "Classify images",
+                        "MetaCLIP": "Classify images",
+                        "GroundingDINO": "Detect objects",
+                        "OWLv2": "Detect objects",
+                    }
+                </script>
+                <div class="form">
+                    <label for="task">What do you want to do?</label>
+                    <select id="task" name="task">
+                        <option value="Detect objects" selected>Detect objects</option>
+                        <option value="Classify images">Classify images</option>
+                        <option value="Segment images">Segment images</option>
+                    </select>
+                    <label for="model">Choose a Model</label>
+                    <select id="model" name="model">
+                        {% for model in models %}
+                            <option value="{{ model }}">{{ model }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="file" id="image" name="image" style="display: none;">
+                    <label for="classes">What classes do you want to identify? (i.e. "dog, cat")</label>
+                    <input type="text" id="classes" name="classes" placeholder="dog, cat">
+                    <button onclick="submit()">Submit</button>
+                    <p id="loading"></p>
+                    <div id="confidences"></div>
+                    <div id="code_snippet"></div>
+                    <p>Made with 💜 by the <a href="https://roboflow.com">Roboflow</a> team.</p>
+                </div>
+            </div>
+            <div style="flex: 1;">
+                {% if image_base64 %}
+                <p>Results from {{ chosen_model }} for "{{ chosen_classes }}" class(es):</p>
+                <img src="data:image/png;base64,{{ image_base64 }}" alt="image">
+                {% elif results_classification %}
+                <p>Results from {{ chosen_model }} for "{{ chosen_classes }}" class(es):</p>
+                <ul>
+                    {% for class, result in results_classification %}
+                        <li>{{ class }}: {{ result }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="placeholder">
+                    <p>Drag an image here.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+    <script>
+        const placeholder = document.querySelector('.placeholder');
+        const image = document.createElement('img');
+        var uploaded_image = null;
+        placeholder.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+        placeholder.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const file = event.dataTransfer.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                image.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+            placeholder.innerHTML = '';
+            image.id = 'placeholder-image';
+            placeholder.appendChild(image);
+            uploaded_image = file;
+        });
+        // limit choose model options based on what the user wants to do
+        const task = document.getElementById('task');
+        const model = document.getElementById('model');
+
+        task.addEventListener('change', (event) => {
+            const task = event.target.value;
+            const model_options = model.options;
+            for (let i = 0; i < model_options.length; i++) {
+                const model_option = model_options[i];
+                const model_type = models_by_type[model_option.value];
+                if (model_type === task) {
+                    model_option.disabled = false;
+                } else {
+                    model_option.disabled = true;
+                }
+            }
+        });
+
+        function submit() {
+            // set loading
+            document.querySelector('#loading').innerHTML = 'Loading...';
+
+            const task = document.getElementById('task').value;
+            const model = document.getElementById('model').value;
+            const classes = document.getElementById('classes').value;
+            // const image = document.getElementById('image').files[0];
+            const formData = new FormData();
+            formData.append('task', task);
+            formData.append('model', model);
+            formData.append('classes', classes);
+            formData.append('image', image.src);
+            console.log("img", image.src);
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                var class_confidences = data['class_confidences'];
+                var image = data['image'];
+
+                if (image) {
+                    var selected_image = document.getElementById('placeholder-image');
+                    selected_image.src = 'data:image/png;base64,' + image;
+                } else if (class_confidences) {
+                    var confidence_div = document.getElementById('confidences');
+                    
+                    var html = '<p>Results from ' + model + ' for "' + classes + '" class(es):</p>';
+
+                    for (var item; item = class_confidences.pop();) {
+                        // round item 1 to 2 decimal places
+                        item[1] = Math.round(item[1] * 100) / 100;
+
+                        // if item 1 < 1, * 100
+                        if (item[1] < 1) {
+                            item[1] = item[1] * 100 + '%';
+                        }
+
+                        html += '<p>' + item[0] + ': ' + item[1] + '</p>';
+                    }
+
+                    // set background to purple
+                    document.querySelector('#confidences').style.backgroundColor = '#F2E6FE';
+                    // 10px padding
+                    document.querySelector('#confidences').style.padding = '10px';
+                    // margin top
+                    document.querySelector('#confidences').style.marginTop = '1em';
+
+                    confidence_div.innerHTML = html;
+                }
+
+                // ontology should look like
+        //         {
+        //     "person": "person",
+        //     "a forklift": "forklift"
+        // }
+                var ontology = "";
+
+                var lowercase_model_name = model.toLowerCase();
+
+                var class_items = classes.split(",");
+
+                for (var i = 0; i < class_items.length; i++) {
+                    var class_name = class_items[i].trim();
+                    ontology += '"' + class_name + '": "' + class_name + '"';
+                    if (i < class_items.length - 1) {
+                        ontology += ',\n';
+                    }
+                }
+
+                var code_snippet = `
+from autodistill_${lowercase_model_name} import ${model}
+from autodistill.detection import CaptionOntology
+
+base_model = ${model}(
+    ontology=CaptionOntology(
+        ${ontology}
+    )
+)
+
+base_model.label("./context_images", extension=".jpeg")
+                `;
+
+                var code_snippet_div = document.getElementById('code_snippet');
+                code_snippet_div.innerHTML = `<h2>Use this model to auto-label data.</h2>
+                <p>To use this model to label data, first install the following Python packages:</p>
+                <pre>pip install autodistill autodistill-${lowercase_model_name}</pre>
+                <p>Then, use this code snippet:</p>
+                <pre>${code_snippet}</pre>
+                <p>Replace "context_images" with the folder that contains images you want to label.</p>
+                <p>For more information, see the <a href="https://docs.autodistill.com">Autodistill documentation</a>.</p>`;
+
+                // remove loading
+                document.querySelector('#loading').innerHTML = '';
+            })
+        }
+    </script>
+</html>
