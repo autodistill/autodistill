@@ -26,6 +26,8 @@ AUTODISTILL_MODULES = [
     ("rekognition", "Rekognition"),
     ("gcp-vision", "GCPVision"),
     ("roboflow-universe", "RoboflowUniverseModel"),
+    ("codet", "CoDet"),
+    ("altclip", "AltCLIP"),
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
