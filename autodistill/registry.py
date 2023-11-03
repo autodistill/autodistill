@@ -28,6 +28,7 @@ AUTODISTILL_MODULES = [
     ("roboflow-universe", "RoboflowUniverseModel"),
     ("codet", "CoDet"),
     ("altclip", "AltCLIP"),
+    ("vlpart", "VLPart")
 ]
 
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]

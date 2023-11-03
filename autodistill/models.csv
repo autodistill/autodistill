@@ -11,6 +11,7 @@ object-detection, 1, 0, completed, Kosmos-2, autodistill/autodistill-kosmos-2, a
 object-detection, 1, 0, completed, OWLv2, autodistill/autodistill-owlv2, autodistill-owlv2, base_models/owlv2.md, Apache-2.0
 object-detection, 1, 0, completed, Roboflow Universe Models (50k+ pre-trained models), autodistill/autodistill-roboflow-universe, autodistill-roboflow-universe, base_models/roboflow_universe.md, MIT
 object-detection, 1, 0, completed, CoDet, autodistill/autodistill-codet, autodistill-codet, base_models/codet.md, Apache-2.0
+object-detection, 1, 0, completed, VLPart, autodistill/autodistill-vlpart, autodistill-vlpart, base_models/vlpart.md, Apache-2.0
 object-detection, 1, 0, completed, Azure Custom Vision, autodistill/autodistill-azure-vision, autodistill-azure-vision, base_models/azure_vision.md, MIT
 object-detection, 1, 0, completed, AWS Rekognition, autodistill/autodistill-rekognition, autodistill-rekognition, base_models/rekognition.md, Apache-2.0
 object-detection, 1, 0, completed, Google Vision, autodistill/autodistill-gcp-vision, autodistill-gcp-vision, base_models/gcp_vision.md, Apache-2.0
