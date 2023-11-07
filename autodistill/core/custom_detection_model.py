@@ -1,5 +1,5 @@
-from PIL import Image
 import supervision as sv
+from PIL import Image
 
 
 class CustomDetectionModel:
