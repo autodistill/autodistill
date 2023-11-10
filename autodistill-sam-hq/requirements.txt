@@ -1,0 +1,6 @@
+torch
+autodistill
+numpy>=1.20.0
+opencv-python>=4.6.0
+supervision
+segment-anything-hq
