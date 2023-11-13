@@ -1,6 +1,7 @@
+import numpy as np
 import supervision as sv
 from PIL import Image
-import numpy as np
+
 from autodistill.detection.detection_base_model import DetectionBaseModel
 
 
