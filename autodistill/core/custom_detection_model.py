@@ -1,15 +1,18 @@
 import supervision as sv
 from PIL import Image
-
-
-class CustomDetectionModel:
+import numpy as np
+from autodistill.detection.detection_base_model import DetectionBaseModel
+from sklearn.metrics import jaccard_score
+class CustomDetectionModel(DetectionBaseModel):
     """
     Run inference with a detection model then run inference with a classification model on the detected regions.
     """
 
-    def __init__(self, detection_model, classification_model):
+    def __init__(self, detection_model, classification_model, set_of_mark = None):
         self.detection_model = detection_model
         self.classification_model = classification_model
+        self.set_of_mark = set_of_mark
+        self.ontology = self.classification_model.ontology
 
     def predict(self, image: str) -> sv.Detections:
         """
@@ -25,6 +28,31 @@ class CustomDetectionModel:
         opened_image = Image.open(image)
 
         detections = self.detection_model.predict(image)
+
+        if self.set_of_mark is not None:
+            label_annotator = sv.LabelAnnotator(text_position=sv.Position.CENTER)
+
+            labels = [
+                f"{num}"
+                for num in range(len(detections.xyxy))
+            ]
+
+            opened_image = np.array(opened_image) 
+            
+            annotated_frame = label_annotator.annotate(
+                scene=opened_image, labels=labels, detections=detections
+            )
+
+            opened_image = Image.fromarray(annotated_frame)
+
+            opened_image.save("temp.jpeg")
+
+            result = self.classification_model.predict("temp.jpeg")
+
+            detections.class_id = result.class_id
+            detections.confidence = result.confidence
+
+            return detections
 
         for pred_idx, bbox in enumerate(detections.xyxy):
             # extract region from image
