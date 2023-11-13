@@ -2,13 +2,14 @@ import supervision as sv
 from PIL import Image
 import numpy as np
 from autodistill.detection.detection_base_model import DetectionBaseModel
-from sklearn.metrics import jaccard_score
+
+
 class CustomDetectionModel(DetectionBaseModel):
     """
     Run inference with a detection model then run inference with a classification model on the detected regions.
     """
 
-    def __init__(self, detection_model, classification_model, set_of_mark = None):
+    def __init__(self, detection_model, classification_model, set_of_mark=None):
         self.detection_model = detection_model
         self.classification_model = classification_model
         self.set_of_mark = set_of_mark
@@ -32,13 +33,10 @@ class CustomDetectionModel(DetectionBaseModel):
         if self.set_of_mark is not None:
             label_annotator = sv.LabelAnnotator(text_position=sv.Position.CENTER)
 
-            labels = [
-                f"{num}"
-                for num in range(len(detections.xyxy))
-            ]
+            labels = [f"{num}" for num in range(len(detections.xyxy))]
 
-            opened_image = np.array(opened_image) 
-            
+            opened_image = np.array(opened_image)
+
             annotated_frame = label_annotator.annotate(
                 scene=opened_image, labels=labels, detections=detections
             )
