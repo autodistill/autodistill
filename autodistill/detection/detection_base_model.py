@@ -23,6 +23,11 @@ class DetectionBaseModel(BaseModel):
     def predict(self, input: str) -> sv.Detections:
         pass
 
+    def sahi_predict(self, input: str) -> sv.Detections:
+        slicer = sv.InferenceSlicer(callback = self.predict)
+
+        return slicer(input)
+
     def label(
         self,
         input_folder: str,
@@ -55,7 +60,7 @@ class DetectionBaseModel(BaseModel):
             images_map[f_path_short] = image.copy()
 
             if sahi:
-                slicer.slice(image, f_path_short, output_folder)
+                detections = slicer(f_path)
             else:
                 detections = self.predict(f_path)
                 
