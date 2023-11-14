@@ -31,6 +31,7 @@ class DetectionBaseModel(BaseModel):
         human_in_the_loop: bool = False,
         roboflow_project: str = None,
         roboflow_tags: str = ["autodistill"],
+        sahi: bool = False,
     ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
@@ -39,6 +40,9 @@ class DetectionBaseModel(BaseModel):
 
         images_map = {}
         detections_map = {}
+
+        if sahi:
+            slicer = sv.InferenceSlicer(callback = self.predict)
 
         files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
@@ -49,7 +53,12 @@ class DetectionBaseModel(BaseModel):
 
             f_path_short = os.path.basename(f_path)
             images_map[f_path_short] = image.copy()
-            detections = self.predict(f_path)
+
+            if sahi:
+                slicer.slice(image, f_path_short, output_folder)
+            else:
+                detections = self.predict(f_path)
+                
             detections_map[f_path_short] = detections
 
         dataset = sv.DetectionDataset(
