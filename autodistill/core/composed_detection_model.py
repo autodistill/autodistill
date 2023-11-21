@@ -7,6 +7,7 @@ from autodistill.detection.detection_base_model import DetectionBaseModel
 DEFAULT_LABEL_ANNOTATOR = sv.LabelAnnotator(text_position=sv.Position.CENTER)
 SET_OF_MARKS_SUPPORTED_MODELS = ["GPT4V"]
 
+
 class ComposedDetectionModel(DetectionBaseModel):
     """
     Run inference with a detection model then run inference with a classification model on the detected regions.
