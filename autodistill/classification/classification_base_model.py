@@ -1,8 +1,9 @@
 import glob
+import json
 import os
+import time
 from abc import abstractmethod
 from dataclasses import dataclass
-import datetime
 
 import cv2
 import supervision as sv
@@ -10,7 +11,6 @@ from tqdm import tqdm
 
 from autodistill.core import BaseModel
 from autodistill.detection import CaptionOntology
-from autodistill.helpers import split_data
 
 
 @dataclass
@@ -24,6 +24,9 @@ class ClassificationBaseModel(BaseModel):
     def label(
         self, input_folder: str, extension: str = ".jpg", output_folder: str = None
     ) -> sv.ClassificationDataset:
+        # call super.label to create output_folder
+        output_folder, config = super().label(input_folder, extension, output_folder)
+
         images_map = {}
         detections_map = {}
 
@@ -58,7 +61,11 @@ class ClassificationBaseModel(BaseModel):
             f_path_short = os.path.basename(f_path)
             images_map[f_path_short] = image.copy()
 
-            annotation_path = os.path.join(output_folder, "annotations/", ".".join(f_path_short.split(".")[:-1]) + ".txt")
+            annotation_path = os.path.join(
+                output_folder,
+                "annotations/",
+                ".".join(f_path_short.split(".")[:-1]) + ".txt",
+            )
 
             if not os.path.exists(annotation_path):
                 detections = self.predict(f_path)
@@ -76,6 +83,13 @@ class ClassificationBaseModel(BaseModel):
         test_cs.as_folder_structure(root_directory_path=output_folder + "/test")
 
         valid_cs.as_folder_structure(root_directory_path=output_folder + "/valid")
+
+        config["end_time"] = time.time()
+        config["labeled_image_count"] = len(dataset)
+        config["task"] = "classification"
+
+        with open(os.path.join(output_folder, "config.json"), "w+") as f:
+            json.dump(config, f)
 
         print("Labeled dataset created - ready for distillation.")
         return dataset, output_folder

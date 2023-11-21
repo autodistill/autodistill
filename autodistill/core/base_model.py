@@ -1,11 +1,11 @@
+import json
+import os
+import time
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Any
 
 import supervision as sv
-import os
-import json
-import time
 
 from .ontology import Ontology
 
@@ -27,7 +27,7 @@ class BaseModel(ABC):
     ) -> sv.BaseDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
-        
+
         os.makedirs(output_folder, exist_ok=True)
 
         config = {"start_time": time.time(), "base_model": self.__class__.__name__}
