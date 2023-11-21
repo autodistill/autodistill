@@ -4,19 +4,28 @@ from PIL import Image
 
 from autodistill.detection.detection_base_model import DetectionBaseModel
 
+DEFAULT_LABEL_ANNOTATOR = sv.LabelAnnotator(text_position=sv.Position.CENTER)
 
-class CustomDetectionModel(DetectionBaseModel):
+
+class ComposedDetectionModel(DetectionBaseModel):
     """
     Run inference with a detection model then run inference with a classification model on the detected regions.
     """
 
-    def __init__(self, detection_model, classification_model, set_of_mark=None):
+    def __init__(
+        self,
+        detection_model,
+        classification_model,
+        set_of_marks=None,
+        set_of_marks_annotator=DEFAULT_LABEL_ANNOTATOR,
+    ):
         self.detection_model = detection_model
         self.classification_model = classification_model
-        self.set_of_mark = set_of_mark
+        self.set_of_marks = set_of_marks
+        self.set_of_marks_annotator = set_of_marks_annotator
         self.ontology = self.classification_model.ontology
 
-    def predict(self, image: str) -> sv.Detections:
+    def predict(self, image: str, annotator) -> sv.Detections:
         """
         Run inference with a detection model then run inference with a classification model on the detected regions.
 
@@ -31,14 +40,12 @@ class CustomDetectionModel(DetectionBaseModel):
 
         detections = self.detection_model.predict(image)
 
-        if self.set_of_mark is not None:
-            label_annotator = sv.LabelAnnotator(text_position=sv.Position.CENTER)
-
+        if self.set_of_marks is not None:
             labels = [f"{num}" for num in range(len(detections.xyxy))]
 
             opened_image = np.array(opened_image)
 
-            annotated_frame = label_annotator.annotate(
+            annotated_frame = self.set_of_marks_annotator.annotate(
                 scene=opened_image, labels=labels, detections=detections
             )
 
