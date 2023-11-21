@@ -12,6 +12,9 @@ class EmbeddingOntology(Ontology):
     cluster: int
 
     def process(self, inference_callback):
+        if self.embeddingMap:
+            return
+
         for prompt, cls in self.promptMap:
             result = []
 
