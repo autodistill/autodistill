@@ -35,6 +35,11 @@ class DetectionBaseModel(BaseModel):
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 
+        # check if output folder exists
+        if os.path.exists(output_folder):
+            # if it does, append timestamp to it
+            output_folder += "_" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
         os.makedirs(output_folder, exist_ok=True)
 
         images_map = {}
@@ -75,4 +80,4 @@ class DetectionBaseModel(BaseModel):
             workspace.upload_dataset(output_folder, project_name=roboflow_project)
 
         print("Labeled dataset created - ready for distillation.")
-        return dataset
+        return dataset, output_folder

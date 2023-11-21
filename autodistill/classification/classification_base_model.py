@@ -2,6 +2,7 @@ import glob
 import os
 from abc import abstractmethod
 from dataclasses import dataclass
+import datetime
 
 import cv2
 import supervision as sv
@@ -25,6 +26,11 @@ class ClassificationBaseModel(BaseModel):
     ) -> sv.ClassificationDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
+
+        # check if output folder exists
+        if os.path.exists(output_folder):
+            # if it does, append timestamp to it
+            output_folder += "_" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
         os.makedirs(output_folder, exist_ok=True)
 
@@ -57,4 +63,4 @@ class ClassificationBaseModel(BaseModel):
         valid_cs.as_folder_structure(root_directory_path=output_folder + "/valid")
 
         print("Labeled dataset created - ready for distillation.")
-        return dataset
+        return dataset, output_folder
