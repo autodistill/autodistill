@@ -3,6 +3,9 @@ from dataclasses import dataclass
 from typing import Any
 
 import supervision as sv
+import os
+import json
+import time
 
 from .ontology import Ontology
 
@@ -22,4 +25,14 @@ class BaseModel(ABC):
     def label(
         self, input_folder: str, extension: str = ".jpg", output_folder: str = None
     ) -> sv.BaseDataset:
-        pass
+        if output_folder is None:
+            output_folder = input_folder + "_labeled"
+        
+        os.makedirs(output_folder, exist_ok=True)
+
+        config = {"start_time": time.time(), "base_model": self.__class__.__name__}
+
+        with open(os.path.join(output_folder, "config.json"), "w+") as f:
+            json.dump(config, f)
+
+        return output_folder, config
