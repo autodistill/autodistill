@@ -53,10 +53,9 @@ class ComposedDetectionModel(DetectionBaseModel):
 
             opened_image.save("temp.jpeg")
 
-            result = self.classification_model.predict("temp.jpeg")
-
-            detections.class_id = result.class_id
-            detections.confidence = result.confidence
+            result = self.classification_model.set_of_marks(
+                input=image, masked_input="temp.jpeg", classes=labels, masks=detections
+            )
 
             return detections
 
