@@ -5,7 +5,7 @@ from PIL import Image
 from autodistill.detection.detection_base_model import DetectionBaseModel
 
 DEFAULT_LABEL_ANNOTATOR = sv.LabelAnnotator(text_position=sv.Position.CENTER)
-
+SET_OF_MARKS_SUPPORTED_MODELS = ["GPT4V"]
 
 class ComposedDetectionModel(DetectionBaseModel):
     """
@@ -52,6 +52,11 @@ class ComposedDetectionModel(DetectionBaseModel):
             opened_image = Image.fromarray(annotated_frame)
 
             opened_image.save("temp.jpeg")
+
+            if not hasattr(self.classification_model, "set_of_marks"):
+                raise Exception(
+                    f"The set classification model does not have a set_of_marks method. Supported models: {SET_OF_MARKS_SUPPORTED_MODELS}"
+                )
 
             result = self.classification_model.set_of_marks(
                 input=image, masked_input="temp.jpeg", classes=labels, masks=detections
