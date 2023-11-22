@@ -1,14 +1,40 @@
 import os
 import random
 import shutil
+from typing import Any
 
 import cv2
+import numpy as np
 import supervision as sv
 import tqdm
 import yaml
 from PIL import Image
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
+ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy", "file_name"]
+
+
+def load_image(
+    image_path: str,
+    return_format="cv2",
+    cv2_image: np.ndarray = None,
+    pil_image: Image.Image = None,
+) -> Any:
+    if return_format not in ACCEPTED_RETURN_FORMATS:
+        raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
+
+    if cv2_image and return_format == "cv2":
+        return cv2_image
+    elif pil_image and return_format == "PIL":
+        return pil_image
+    elif pil_image and return_format == "cv2":
+        return np.array(pil_image)
+    elif cv2_image and return_format == "PIL":
+        return Image.fromarray(cv2_image)
+    elif return_format == "file_name":
+        return image_path
+    else:
+        return cv2.imread(image_path)
 
 
 def split_data(base_dir, split_ratio=0.8):
