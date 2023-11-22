@@ -3,8 +3,10 @@ import random
 import shutil
 from typing import Any
 
+import BytesIO
 import cv2
 import numpy as np
+import requests
 import supervision as sv
 import tqdm
 import yaml
@@ -22,6 +24,11 @@ def load_image(
 ) -> Any:
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
+
+    if image_path.startswith("http"):
+        response = requests.get(image_path)
+        pil_image = Image.open(BytesIO(response.content))
+        cv2_image = np.array(pil_image)
 
     if cv2_image and return_format == "cv2":
         return cv2_image
