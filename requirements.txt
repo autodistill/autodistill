@@ -3,5 +3,4 @@ supervision
 tqdm
 Pillow>=7.1.2
 PyYAML>=5.3.1
-click
 roboflow
