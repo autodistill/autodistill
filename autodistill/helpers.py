@@ -13,40 +13,34 @@ import yaml
 from PIL import Image
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
-ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy", "file_name"]
+ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy"]
 
 
 def load_image(
+    image: Any,
     return_format="cv2",
-    image_path: str = None,
-    cv2_image: np.ndarray = None,
-    pil_image: Image.Image = None,
 ) -> Any:
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
 
-    if not image_path and not cv2_image and not pil_image:
-        raise ValueError(
-            "You must provide either an image_path, cv2_image, or pil_image"
-        )
-
-    if image_path.startswith("http"):
-        response = requests.get(image_path)
+    if isinstance(image, str) and image.startswith("http"):
+        response = requests.get(image)
         pil_image = Image.open(BytesIO(response.content))
         cv2_image = np.array(pil_image)
 
-    if cv2_image and return_format == "cv2":
-        return cv2_image
-    elif pil_image and return_format == "PIL":
+    if isinstance(image, str) and os.path.isfile(image):
+        pil_image = Image.open(image)
+        cv2_image = np.array(pil_image)
+
+    if isinstance(image, str) and not os.path.isfile(image):
+        raise ValueError(f"{image} is not a valid file path")
+
+    if return_format == "PIL":
         return pil_image
-    elif pil_image and return_format == "cv2":
-        return np.array(pil_image)
-    elif cv2_image and return_format == "PIL":
-        return Image.fromarray(cv2_image)
-    elif return_format == "file_name":
-        return image_path
-    else:
-        return cv2.imread(image_path)
+    elif return_format == "cv2":
+        return cv2_image
+    elif return_format == "numpy":
+        return np.array(cv2_image)
 
 
 def split_data(base_dir, split_ratio=0.8):
