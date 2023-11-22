@@ -17,13 +17,16 @@ ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy", "file_name"]
 
 
 def load_image(
-    image_path: str,
     return_format="cv2",
+    image_path: str = None,
     cv2_image: np.ndarray = None,
     pil_image: Image.Image = None,
 ) -> Any:
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
+    
+    if not image_path and not cv2_image and not pil_image:
+        raise ValueError("You must provide either an image_path, cv2_image, or pil_image")
 
     if image_path.startswith("http"):
         response = requests.get(image_path)
