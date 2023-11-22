@@ -37,18 +37,23 @@ def compare(models: list, images: List[str]):
 def plot(image: np.ndarray, detections, classes: List[str], raw=False):
     # TODO: When we have a classification annotator
     # in supervision, we can add it here
-    if detections.mask:
-        annotator = sv.MaskAnnotator()
+    if detections.mask is not None:
+        annotator = sv.MaskAnnotator() #opacity=0.9)
     else:
         annotator = sv.BoxAnnotator()
 
+    label_annotator = sv.LabelAnnotator(text_position=sv.Position.CENTER)
+
     labels = [
-        f"{classes[class_id]} {confidence:0.2f}"
+        f"{classes[class_id]}"
         for _, _, confidence, class_id, _ in detections
     ]
 
     annotated_frame = annotator.annotate(
-        scene=image.copy(), detections=detections, labels=labels
+        scene=image.copy(), detections=detections
+    )
+    annotated_frame = label_annotator.annotate(
+        scene=annotated_frame, labels=labels, detections=detections
     )
 
     if raw:
