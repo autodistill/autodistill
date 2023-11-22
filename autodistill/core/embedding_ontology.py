@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from typing import Any, List
+
 import numpy as np
 
 from autodistill.core.ontology import Ontology
+
 
 @dataclass
 class EmbeddingOntology(Ontology):
@@ -10,10 +12,10 @@ class EmbeddingOntology(Ontology):
     embeddingMap: List[str, np.ndarray]
     cluster: int
 
-    def __init__(self, embeddingMap, cluster = 1):
+    def __init__(self, embeddingMap, cluster=1):
         self.embeddingMap = embeddingMap
         self.cluster = cluster
-        
+
         if self.cluster != 1:
             print("The `cluster` parameter is not currently implemented.")
 
