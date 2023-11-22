@@ -24,9 +24,11 @@ def load_image(
 ) -> Any:
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
-    
+
     if not image_path and not cv2_image and not pil_image:
-        raise ValueError("You must provide either an image_path, cv2_image, or pil_image")
+        raise ValueError(
+            "You must provide either an image_path, cv2_image, or pil_image"
+        )
 
     if image_path.startswith("http"):
         response = requests.get(image_path)
