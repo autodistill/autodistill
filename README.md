@@ -19,6 +19,14 @@
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
+Autodistill supports 10+ models for distillation, but as a starting point we recommend:
+
+- [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) for zero-shot object detection and segmentation (i.e. find all containers or food items or shipping containers)
+- [CLIP](https://github.com/autodistill/autodistill-sam-clip) for classification.
+- [SAM-CLIP](https://github.com/capjamesg/sam-clip) for zero-shot detection and segmentation where you need more specific labels (i.e. find all McDonalds logos in an image).
+
+[See a full list of supported models.](#-available-models)
+
 <div align="center">
   <p>
     <a align="center" href="" target="_blank">
