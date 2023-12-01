@@ -3,7 +3,7 @@ import random
 import shutil
 from typing import Any
 
-import BytesIO
+from io import BytesIO
 import cv2
 import numpy as np
 import requests
@@ -23,24 +23,36 @@ def load_image(
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
 
+    if isinstance(image, Image.Image) and return_format == "PIL":
+        return image
+    elif isinstance(image, Image.Image) and return_format == "cv2":
+        return np.array(image)
+    elif isinstance(image, Image.Image) and return_format == "numpy":
+        return np.array(image)
+    
+    if isinstance(image, np.ndarray) and return_format == "PIL":
+        return Image.fromarray(image)
+    elif isinstance(image, np.ndarray) and return_format == "cv2":
+        return image
+    elif isinstance(image, np.ndarray) and return_format == "numpy":
+        return image
+
     if isinstance(image, str) and image.startswith("http"):
-        response = requests.get(image)
-        pil_image = Image.open(BytesIO(response.content))
-        cv2_image = np.array(pil_image)
-
-    if isinstance(image, str) and os.path.isfile(image):
-        pil_image = Image.open(image)
-        cv2_image = np.array(pil_image)
-
-    if isinstance(image, str) and not os.path.isfile(image):
-        raise ValueError(f"{image} is not a valid file path")
-
-    if return_format == "PIL":
-        return pil_image
-    elif return_format == "cv2":
-        return cv2_image
-    elif return_format == "numpy":
-        return np.array(cv2_image)
+        if return_format == "PIL":
+            response = requests.get(image)
+            return Image.open(BytesIO(response.content))
+        elif return_format == "cv2" or return_format == "numpy":
+            response = requests.get(image)
+            pil_image = Image.open(BytesIO(response.content))
+            return np.array(pil_image)
+    elif os.path.isfile(image):
+        if return_format == "PIL":
+            return Image.open(image)
+        elif return_format == "cv2" or return_format == "numpy":
+            pil_image = Image.open(image)
+            return np.array(pil_image)
+    else:
+        raise ValueError(f"{image} is not a valid file path or URI")
 
 
 def split_data(base_dir, split_ratio=0.8):
