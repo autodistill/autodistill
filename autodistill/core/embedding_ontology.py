@@ -56,6 +56,7 @@ class EmbeddingOntology(Ontology):
     def classes(self) -> List[str]:
         return [cls for _, cls in self.embeddingMap]
 
+
 @dataclass
 class EmbeddingOntologyRaw(EmbeddingOntology):
     embeddingMap: Dict[str, np.ndarray]
