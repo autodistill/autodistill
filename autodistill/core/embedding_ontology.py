@@ -1,13 +1,12 @@
 from dataclasses import dataclass
-from typing import Any, List, Dict
+from typing import Any, Dict, List
 
 import numpy as np
-
-from autodistill.core.ontology import Ontology
-from autodistill.core.embedding_model import EmbeddingModel
-
-from sklearn.metrics.pairwise import cosine_similarity
 import supervision as sv
+from sklearn.metrics.pairwise import cosine_similarity
+
+from autodistill.core.embedding_model import EmbeddingModel
+from autodistill.core.ontology import Ontology
 
 ONTOLOGY_WITH_EMBEDDINGS = [
     "EmbeddingOntologyRaw",
