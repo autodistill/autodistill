@@ -10,8 +10,7 @@ import supervision as sv
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
-from autodistill.helpers import split_data
-from autodistill.helpers import load_image
+from autodistill.helpers import load_image, split_data
 
 from .detection_ontology import DetectionOntology
 
