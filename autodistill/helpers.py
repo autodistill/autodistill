@@ -1,14 +1,62 @@
 import os
 import random
 import shutil
+from io import BytesIO
+from typing import Any
 
 import cv2
+import numpy as np
+import requests
 import supervision as sv
 import tqdm
 import yaml
 from PIL import Image
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
+ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy"]
+
+
+def load_image(
+    image: Any,
+    return_format="cv2",
+) -> Any:
+    if return_format not in ACCEPTED_RETURN_FORMATS:
+        raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
+
+    if isinstance(image, Image.Image) and return_format == "PIL":
+        return image
+    elif isinstance(image, Image.Image) and return_format == "cv2":
+        # channels need to be reversed for cv2
+        return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+    elif isinstance(image, Image.Image) and return_format == "numpy":
+        return np.array(image)
+
+    if isinstance(image, np.ndarray) and return_format == "PIL":
+        return Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    elif isinstance(image, np.ndarray) and return_format == "cv2":
+        return image
+    elif isinstance(image, np.ndarray) and return_format == "numpy":
+        return image
+
+    if isinstance(image, str) and image.startswith("http"):
+        if return_format == "PIL":
+            response = requests.get(image)
+            return Image.open(BytesIO(response.content))
+        elif return_format == "cv2" or return_format == "numpy":
+            response = requests.get(image)
+            pil_image = Image.open(BytesIO(response.content))
+            return np.array(pil_image)
+    elif os.path.isfile(image):
+        if return_format == "PIL":
+            return Image.open(image)
+        elif return_format == "cv2":
+            # channels need to be reversed for cv2
+            return cv2.cvtColor(np.array(Image.open(image)), cv2.COLOR_RGB2BGR)
+        elif return_format == "numpy":
+            pil_image = Image.open(image)
+            return np.array(pil_image)
+    else:
+        raise ValueError(f"{image} is not a valid file path or URI")
 
 
 def split_data(base_dir, split_ratio=0.8):
