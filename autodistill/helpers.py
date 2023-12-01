@@ -115,13 +115,16 @@ def split_data(base_dir, split_ratio=0.8):
     os.makedirs(valid_labels_dir, exist_ok=True)
 
     # Move the files
+    # We are using shutil.copy() to prevent an error like
+    # shutil.Error: Destination path 'labeled_images/train/images/image.jpg' already exists
+    # when you label the same image multiple times
     for file in train_files:
-        shutil.move(os.path.join(images_dir, file + ".jpg"), train_images_dir)
-        shutil.move(os.path.join(annotations_dir, file + ".txt"), train_labels_dir)
+        shutil.copy(os.path.join(images_dir, file + ".jpg"), train_images_dir)
+        shutil.copy(os.path.join(annotations_dir, file + ".txt"), train_labels_dir)
 
     for file in valid_files:
-        shutil.move(os.path.join(images_dir, file + ".jpg"), valid_images_dir)
-        shutil.move(os.path.join(annotations_dir, file + ".txt"), valid_labels_dir)
+        shutil.copy(os.path.join(images_dir, file + ".jpg"), valid_images_dir)
+        shutil.copy(os.path.join(annotations_dir, file + ".txt"), valid_labels_dir)
 
     # Load the existing YAML file to get the names
     with open(os.path.join(base_dir, "data.yaml"), "r") as file:
