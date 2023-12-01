@@ -26,12 +26,13 @@ def load_image(
     if isinstance(image, Image.Image) and return_format == "PIL":
         return image
     elif isinstance(image, Image.Image) and return_format == "cv2":
-        return np.array(image)
+        # channels need to be reversed for cv2
+        return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
     elif isinstance(image, Image.Image) and return_format == "numpy":
         return np.array(image)
 
     if isinstance(image, np.ndarray) and return_format == "PIL":
-        return Image.fromarray(image)
+        return Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     elif isinstance(image, np.ndarray) and return_format == "cv2":
         return image
     elif isinstance(image, np.ndarray) and return_format == "numpy":
@@ -48,7 +49,10 @@ def load_image(
     elif os.path.isfile(image):
         if return_format == "PIL":
             return Image.open(image)
-        elif return_format == "cv2" or return_format == "numpy":
+        elif return_format == "cv2":
+            # channels need to be reversed for cv2
+            return cv2.cvtColor(np.array(Image.open(image)), cv2.COLOR_RGB2BGR)
+        elif return_format == "numpy":
             pil_image = Image.open(image)
             return np.array(pil_image)
     else:
