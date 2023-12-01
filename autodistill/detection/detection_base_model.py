@@ -11,6 +11,7 @@ from tqdm import tqdm
 
 from autodistill.core import BaseModel
 from autodistill.helpers import split_data
+from autodistill.helpers import load_image
 
 from .detection_ontology import DetectionOntology
 
@@ -26,7 +27,7 @@ class DetectionBaseModel(BaseModel):
     def sahi_predict(self, input: str) -> sv.Detections:
         slicer = sv.InferenceSlicer(callback=self.predict)
 
-        return slicer(input)
+        return slicer(load_image(input, return_format="cv2"))
 
     def label(
         self,
