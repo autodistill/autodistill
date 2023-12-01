@@ -1,9 +1,9 @@
 import os
 import random
 import shutil
+from io import BytesIO
 from typing import Any
 
-from io import BytesIO
 import cv2
 import numpy as np
 import requests
@@ -29,7 +29,7 @@ def load_image(
         return np.array(image)
     elif isinstance(image, Image.Image) and return_format == "numpy":
         return np.array(image)
-    
+
     if isinstance(image, np.ndarray) and return_format == "PIL":
         return Image.fromarray(image)
     elif isinstance(image, np.ndarray) and return_format == "cv2":
