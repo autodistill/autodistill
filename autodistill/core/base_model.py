@@ -11,6 +11,9 @@ from .ontology import Ontology
 class BaseModel(ABC):
     ontology: Ontology
 
+    def __init__(self, ontology: Ontology):
+        super().__init__()
+
     def set_ontology(self, ontology: Ontology):
         self.ontology = ontology
 

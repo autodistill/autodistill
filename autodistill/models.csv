@@ -9,7 +9,9 @@ object-detection, 1, 0, completed, SAM-CLIP, autodistill/autodistill-sam-clip, a
 object-detection, 1, 0, completed, LLaVA-1.5, autodistill/autodistill-llava, autodistill-llava, base_models/llava.md, Apache-2.0
 object-detection, 1, 0, completed, Kosmos-2, autodistill/autodistill-kosmos-2, autodistill-kosmos-2, base_models/kosmos_2.md, Apache-2.0
 object-detection, 1, 0, completed, OWLv2, autodistill/autodistill-owlv2, autodistill-owlv2, base_models/owlv2.md, Apache-2.0
-object-detection, 1, 0, completed, Roboflow Universe Models (50,000+ pre-trained models), autodistill/autodistill-roboflow-universe, autodistill-roboflow-universe, base_models/roboflow_universe.md, MIT
+object-detection, 1, 0, completed, Roboflow Universe Models (50k+ pre-trained models), autodistill/autodistill-roboflow-universe, autodistill-roboflow-universe, base_models/roboflow_universe.md, MIT
+object-detection, 1, 0, completed, CoDet, autodistill/autodistill-codet, autodistill-codet, base_models/codet.md, Apache-2.0
+object-detection, 1, 0, completed, VLPart, autodistill/autodistill-vlpart, autodistill-vlpart, base_models/vlpart.md, Apache-2.0
 object-detection, 1, 0, completed, Azure Custom Vision, autodistill/autodistill-azure-vision, autodistill-azure-vision, base_models/azure_vision.md, MIT
 object-detection, 1, 0, completed, AWS Rekognition, autodistill/autodistill-rekognition, autodistill-rekognition, base_models/rekognition.md, Apache-2.0
 object-detection, 1, 0, completed, Google Vision, autodistill/autodistill-gcp-vision, autodistill-gcp-vision, base_models/gcp_vision.md, Apache-2.0
@@ -43,6 +45,7 @@ classification, 1, 0 , completed, DINOv2, autodistill/autodistill-dinov2, autodi
 classification, 1, 0 , completed, BLIP, autodistill/autodistill-blip, autodistll-blip, , BSD-3-Clause
 classification, 1, 0 , completed, ALBEF, autodistill/autodistill-albef, autodistill-albef, , BSD-3-Clause
 classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit, autodistill-fastvit, , custom Apple license
+classification, 1, 0, completed, AltCLIP, autodistill/autodistill-altcip, autodistill-altclip, base_models/altclip.md, Apache-2.0
 classification, 1, 0, in-progress, Fuyu
 classification, 1, 0, in-progress, Open Flamingo
 classification, 1, 0, not-started, GPT-4
