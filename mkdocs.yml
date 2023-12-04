@@ -6,6 +6,7 @@ repo_name: autodistill/autodistill
 repo_url: https://github.com/autodistill/autodistill
 edit_uri: https://github.com/autodistill/autodistill/tree/main/docs
 copyright: Roboflow 2023. All rights reserved.
+favicon: logo.jpeg
 
 extra:
   social:
@@ -22,37 +23,64 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: index.md
-  - Detection:
-    - Base Models:
-      - DETIC: base_models/detic.md
-      - FastSAM: base_models/fastsam.md
-      - Grounded SAM: base_models/groundedsam.md
-      - Grounding DINO: base_models/grounding-dino.md
-      - OWL-ViT: base_models/owlvit.md
-      - SegGPT: base_models/seggpt.md
-      - SAM-CLIP: base_models/sam-clip.md
-    - Target Models:
-      - DETR: target_models/detr.md
-      - YOLOv5: target_models/yolov5.md
-      - YOLOv8: target_models/yolov8.md
-      - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
-      - YOLO-NAS: target_models/yolo-nas.md
-  - Classification:
-    - Base Models:
-      - ALBEF: base_models/albef.md
-      - BLIP: base_models/blip.md
-      - CLIP: base_models/clip.md
-    - Target Models:
-      - DINOv2: target_models/dinov2.md
-      - YOLOv5: target_models/yolov5.md
-      - YOLOv8: target_models/yolov8.md
-      - ViT: target_models/vit.md
+  - Home:
+    - Home: index.md
+    - Quickstart: quickstart.md
+    - Supported Models: supported-models.md
+    - What Model Should I Use?: what-model-should-i-use.md
+    - Detection and Segmentation:
+      - Base Models:
+        - DETIC: base_models/detic.md
+        - FastSAM: base_models/fastsam.md
+        - Grounded SAM: base_models/groundedsam.md
+        - Grounding DINO: base_models/grounding-dino.md
+        - OWL-ViT: base_models/owlvit.md
+        - SegGPT: base_models/seggpt.md
+        - SAM-CLIP: base_models/sam-clip.md
+      - Target Models:
+        - DETR: target_models/detr.md
+        - YOLOv5: target_models/yolov5.md
+        - YOLOv8: target_models/yolov8.md
+        - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
+        - YOLO-NAS: target_models/yolo-nas.md
+    - Classification:
+      - Base Models:
+        - ALBEF: base_models/albef.md
+        - AltCLIP: base_models/altclip.md
+        - BLIP: base_models/blip.md
+        - CLIP: base_models/clip.md
+        - RemoteCLIP: base_models/remoteclip.md
+      - Target Models:
+        - DINOv2: target_models/dinov2.md
+        - YOLOv5: target_models/yolov5.md
+        - YOLOv8: target_models/yolov8.md
+        - ViT: target_models/vit.md
+    - Utilities:
+      - Visualize Predictions: utilities/visualize-predictions.md
+      - Combine Models: utilities/combine-models.md
+      - Compare Models: utilities/compare-models.md
+      - Use SAHI to Detect Objects: utilities/sahi.md
+      - Use Embeddings in Classification: utilities/use-embeddings-in-classification.md
+      - Apply Non-Maximum Suppression (NMS): utilities/nms.md
+    - Advanced:
+      - Command Line Interface: advanced/command-line-interface.md
+      - How Images Are Loaded: advanced/how-images-are-loaded.md
+  - Reference:
+    - Model Types:
+      - Detection Base Model: reference/model-types/detection-base-models.md
+      - Classification Base Model: reference/model-types/classification-base-models.md
+      - Detection Target Model: reference/model-types/detection-target-models.md
+      - Classification Target Model: reference/model-types/classification-target-models.md
+      - Embedding Base Model: reference/model-types/embedding-base-models.md
   - Contributing: contributing.md
   - Changelog: changelog.md
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: 'material'
+  logo: 'logo.jpeg'
   palette:
     # Palette for light mode
     - scheme: default
@@ -70,9 +98,24 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  custom_dir: 'custom_theme'
+  custom_dir: 'docs/custom_theme'
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.prune
+    - navigation.footer
+    - navigation.tracking
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.indexes
+    - navigation.sections
 
 plugins:
+  - social:
+      cards_layout_dir: layouts
+      cards_layout: custom
+      debug: true
   - mkdocstrings
   - search
 

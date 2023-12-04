@@ -31,15 +31,6 @@ Autodistill uses big, slower foundation models to train small, faster supervised
   </p>
 </div>
 
-Currently, `autodistill` supports vision tasks like object detection and instance segmentation, but in the future it can be expanded to support language (and other) models.
-
-## 🔗 Quicklinks
-
-| [Tutorial](https://blog.roboflow.com/autodistill)| [Docs](https://docs.autodistill.com)| [Supported Models](#available-models)  | [Contribute](https://github.com/autodistill/autodistill/blob/main/CONTRIBUTING.md)
-|:---:|:---:|:---:|:---:|
-
-## 👀 Example Output
-
 Here are example predictions of a Target Model detecting milk bottles and bottlecaps after being trained on an auto-labeled dataset using Autodistill (see [the Autodistill YouTube video](https://www.youtube.com/watch?v=gKTYMfwPo4M) for a full walkthrough):
 
 <div align="center">
@@ -132,26 +123,6 @@ pip install -e .
 
 Additional Base and Target models are [enumerated below](#available-models).
 
-## 🚀 Quickstart
-
-See the [demo Notebook](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/how-to-auto-train-yolov8-model-with-autodistill.ipynb) for a quick introduction to `autodistill`. This notebook walks through building a milk container detection model with no labeling.
-
-Below, we have condensed key parts of the notebook for a quick introduction to `autodistill`.
-
-You can also run Autodistill in one command. First, install `autodistill`:
-
-```bash
-pip install autodistill
-```
-
-Then, run:
-
-```bash
-autodistill images --base="grounding_dino" --target="yolov8" --ontology '{"prompt": "label"}' --output="./dataset"
-```
-
-This command will label all images in a directory called `images` with Grounding DINO and use the labeled images to train a YOLOv8 model. Grounding DINO will label all images with the "prompt" and save the label as the "label". You can specify as many prompts and labels as you want. The resulting dataset will be saved in a folder called `dataset`.
-
 ### Install Packages
 
 For this example, we'll show how to distill [GroundedSAM](https://github.com/IDEA-Research/Grounded-Segment-Anything) into a small [YOLOv8](https://github.com/ultralytics/ultralytics) model using [autodistill-grounded-sam](https://github.com/autodistill/autodistill-grounded-sam) and [autodistill-yolov8](https://github.com/autodistill/autodistill-yolov8).
@@ -223,75 +194,6 @@ annotated_frame = box_annotator.annotate(
 sv.plot_image(annotated_frame, (16, 16))
 ```
 </details>
-
-## 📍 Available Models
-
-Our goal is for `autodistill` to support using all foundation models as Base Models and most SOTA supervised models as Target Models. We focused on object detection and segmentation
-tasks first but plan to launch classification support soon! In the future, we hope `autodistill` will also be used for models beyond computer vision.
-
-* ✅ - complete (click row/column header to go to repo)
-* 🚧 - work in progress
-
-### object detection
-
-| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | [DETR](https://github.com/autodistill/autodistill-detr) | YOLOv6 | YOLOv7 | MT-YOLOv6 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [OWL-ViT](https://github.com/autodistill/autodistill-owl-vit) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [SAM-CLIP](https://github.com/autodistill/autodistill-sam-clip) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [LLaVA-1.5](https://github.com/autodistill/autodistill-llava) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [Kosmos-2](https://github.com/autodistill/autodistill-kosmos-2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [Roboflow Universe Models (50k+ pre-trained models)](https://github.com/autodistill/autodistill-roboflow-universe) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [CoDet](https://github.com/autodistill/autodistill-codet) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [VLPart](https://github.com/autodistill/autodistill-vlpart) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [Azure Custom Vision](https://github.com/autodistill/autodistill-azure-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [AWS Rekognition](https://github.com/autodistill/autodistill-rekognition) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [Google Vision](https://github.com/autodistill/autodistill-gcp-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-
-
-### instance segmentation
-
-| base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | YOLOv7 | Segformer |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | 🚧 | 🚧 |  |  |
-| SAM-CLIP | ✅ | 🚧 | 🚧 |  |  |
-| SegGPT | ✅ | 🚧 | 🚧 |  |  |
-| FastSAM | 🚧 | 🚧 | 🚧 |  |  |
-
-
-### classification
-
-| base / target | [ViT](https://github.com/autodistill/autodistill-vit) | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) |
-|:---:|:---:|:---:|:---:|
-| [CLIP](https://github.com/autodistill/autodistill-clip) | ✅ | ✅ | 🚧 |
-| [MetaCLIP](https://github.com/autodistill/autodistill-metaclip) | ✅ | ✅ | 🚧 |
-| [DINOv2](https://github.com/autodistill/autodistill-dinov2) | ✅ | ✅ | 🚧 |
-| [BLIP](https://github.com/autodistill/autodistill-blip) | ✅ | ✅ | 🚧 |
-| [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
-| [FastViT](https://github.com/autodistill/autodistill-fastvit) | ✅ | ✅ | 🚧 |
-| [AltCLIP](https://github.com/autodistill/autodistill-altcip) | ✅ | ✅ | 🚧 |
-| Fuyu | 🚧 | 🚧 | 🚧 |
-| Open Flamingo | 🚧 | 🚧 | 🚧 |
-| GPT-4 |  |  |  |
-| PaLM-2 |  |  |  |
-
-
-## Roboflow Model Deployment Support
-
-You can optionally deploy some Target Models trained using Autodistill on Roboflow. Deploying on Roboflow allows you to use a range of concise SDKs for using your model on the edge, from [roboflow.js](https://docs.roboflow.com/inference/web-browser) for web deployment to [NVIDIA Jetson](https://docs.roboflow.com/inference/nvidia-jetson) devices.
-
-The following Autodistill Target Models are supported by Roboflow for deployment:
-
-| model name | Supported? |
-|:---:|:---:|
-| YOLOv8 Object Detection | ✅ |
-| YOLOv8 Instance Segmentation | ✅ |
-| YOLOv5 Object Detection | ✅ |
-| YOLOv5 Instance Segmentation | ✅ |
-| YOLOv8 Classification |  |
 
 ## 🎬 Video Guides
 
