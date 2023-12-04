@@ -10,7 +10,7 @@ import supervision as sv
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
-from autodistill.helpers import split_data
+from autodistill.helpers import load_image, split_data
 
 from .detection_ontology import DetectionOntology
 
@@ -23,6 +23,11 @@ class DetectionBaseModel(BaseModel):
     def predict(self, input: str) -> sv.Detections:
         pass
 
+    def sahi_predict(self, input: str) -> sv.Detections:
+        slicer = sv.InferenceSlicer(callback=self.predict)
+
+        return slicer(load_image(input, return_format="cv2"))
+
     def label(
         self,
         input_folder: str,
@@ -31,6 +36,7 @@ class DetectionBaseModel(BaseModel):
         human_in_the_loop: bool = False,
         roboflow_project: str = None,
         roboflow_tags: str = ["autodistill"],
+        sahi: bool = False,
     ) -> sv.DetectionDataset:
         if output_folder is None:
             output_folder = input_folder + "_labeled"
@@ -39,6 +45,9 @@ class DetectionBaseModel(BaseModel):
 
         images_map = {}
         detections_map = {}
+
+        if sahi:
+            slicer = sv.InferenceSlicer(callback=self.predict)
 
         files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
@@ -49,7 +58,12 @@ class DetectionBaseModel(BaseModel):
 
             f_path_short = os.path.basename(f_path)
             images_map[f_path_short] = image.copy()
-            detections = self.predict(f_path)
+
+            if sahi:
+                detections = slicer(f_path)
+            else:
+                detections = self.predict(f_path)
+
             detections_map[f_path_short] = detections
 
         dataset = sv.DetectionDataset(
