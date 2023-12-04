@@ -26,7 +26,7 @@ class ComposedDetectionModel(DetectionBaseModel):
         self.set_of_marks_annotator = set_of_marks_annotator
         self.ontology = self.classification_model.ontology
 
-    def predict(self, image: str, annotator) -> sv.Detections:
+    def predict(self, image: str) -> sv.Detections:
         """
         Run inference with a detection model then run inference with a classification model on the detected regions.
 
