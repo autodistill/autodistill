@@ -1,0 +1,1 @@
+:::autodistill.core.composed_detection_model.ComposedDetectionModel

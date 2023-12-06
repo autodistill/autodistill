@@ -38,6 +38,9 @@ class DetectionBaseModel(BaseModel):
         roboflow_tags: str = ["autodistill"],
         sahi: bool = False,
     ) -> sv.DetectionDataset:
+        """
+        Label a dataset with the model.
+        """
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 

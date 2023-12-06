@@ -20,6 +20,18 @@ def load_image(
     image: Any,
     return_format="cv2",
 ) -> Any:
+    """
+    Load an image from a file path, URI, PIL image, or numpy array.
+
+    This function is for use by Autodistill modules. You don't need to use it directly.
+
+    Args:
+        image: The image to load
+        return_format: The format to return the image in
+
+    Returns:
+        The image in the specified format
+    """
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
 
@@ -140,6 +152,17 @@ def split_data(base_dir, split_ratio=0.8):
 
 
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
+    """
+    Split a video into frames and save them to a directory.
+
+    Args:
+        video_path: The path to the video
+        output_dir: The directory to save the frames to
+        stride: The stride to use when splitting the video into frames
+
+    Returns:
+        None
+    """
     video_paths = sv.list_files_with_extensions(
         directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]
     )

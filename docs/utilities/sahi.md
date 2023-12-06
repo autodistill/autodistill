@@ -1,4 +1,6 @@
-[Slicing Aided Hyper Inference](https://github.com/obss/sahi) (SAHI) is a technique that improves the detection rate of small objects in an image.
+[Slicing Aided Hyper Inference](https://github.com/obss/sahi) (SAHI) is a technique that improves the detection rate of small objects in an image. SAHI involves splitting up an image into segments, then runs inference on each segment. Then, the results from each segment are combined into a single result.
+
+Because SAHI runs inference on separate segments, it will take longer to run inference on an image with SAHI than without SAHI.
 
 You can use SAHI when running inference on a single image with Autodistill, or when using Autodistill to label a folder of images.
 

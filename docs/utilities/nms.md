@@ -6,20 +6,23 @@ Here is an example of running NMS on predictions from a Grounding DINO model:
 
 === "Without NMS"
 
-    ```
-    import cv2
-    import supervision as sv
-
-    from autodistill_grounding_dino import GroundingDINO
+    ```python
+    from autodistill_owlv2 import OWLv2
     from autodistill.detection import CaptionOntology
+    from autodistill.utils import plot
 
-    base_model = GroundingDINO(ontology=CaptionOntology({"person": "person"}))
+    import cv2
 
-    detections = base_model.predict_sahi("./image.jpg").with_nms()
+    ontology = CaptionOntology({"person": "person"})
+
+    base_model = OWLv2(ontology=ontology)
+
+    detections = base_model.predict("./dog.jpeg")
 
     plot(
-        image=cv2.imread("./image.jpg"),
-        detections=detections.with_nms()
+        image=cv2.imread("./dog.jpeg"),
+        detections=detections,
+        classes=base_model.ontology.classes(),
     )
     ```
 
@@ -27,20 +30,23 @@ Here is an example of running NMS on predictions from a Grounding DINO model:
 
 === "With NMS"
 
-    ```
-    import cv2
-    import supervision as sv
-
-    from autodistill_grounding_dino import GroundingDINO
+    ```python
+    from autodistill_owlv2 import OWLv2
     from autodistill.detection import CaptionOntology
+    from autodistill.utils import plot
 
-    base_model = GroundingDINO(ontology=CaptionOntology({"person": "person"}))
+    import cv2
 
-    detections = base_model.predict_sahi("./image.jpg").with_nms()
+    ontology = CaptionOntology({"person": "person"})
+
+    base_model = OWLv2(ontology=ontology)
+
+    detections = base_model.predict("./dog.jpeg")
 
     plot(
-        image=cv2.imread("./image.jpg"),
-        detections=detections.with_nms()
+        image=cv2.imread("./dog.jpeg"),
+        detections=detections.with_nms(),
+        classes=base_model.ontology.classes(),
     )
     ```
 

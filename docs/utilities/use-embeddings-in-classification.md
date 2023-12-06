@@ -79,7 +79,9 @@ plot(
 
 Here is the result from inference:
 
-![EmbeddingOntologyImage Example](./images/embedding-ontology-image-example.png)
+![EmbeddingOntologyImage Example](https://media.roboflow.com/autodistill/annotation.png)
+
+The album cover is annotated with the label "men amougst mountains".
 
 Grounding DINO successfully identified an album cover, then our EmbeddingOntologyImage classified the album cover.
 
