@@ -30,31 +30,33 @@ nav:
     - What Model Should I Use?: what-model-should-i-use.md
     - Detection and Segmentation:
       - Base Models:
-        - DETIC: base_models/detic.md
-        - FastSAM: base_models/fastsam.md
-        - Grounded SAM: base_models/groundedsam.md
-        - Grounding DINO: base_models/grounding-dino.md
-        - OWL-ViT: base_models/owlvit.md
-        - SegGPT: base_models/seggpt.md
-        - SAM-CLIP: base_models/sam-clip.md
+        - DETIC: https://github.com/autodistill/autodistill-detic
+        - FastSAM: https://github.com/autodistill/autodistill-fastsam
+        - Grounded SAM: https://github.com/autodistill/autodistill-groundedsam
+        - Grounding DINO: https://github.com/autodistill/autodistill-grounding-dino
+        - OWL-ViT: https://github.com/autodistill/autodistill-owlvit
+        - Roboflow Universe: https://github.com/autodistill/autodistill-roboflow-universe
+        - SegGPT: https://github.com/autodistill/autodistill-seggpt
       - Target Models:
-        - DETR: target_models/detr.md
-        - YOLOv5: target_models/yolov5.md
-        - YOLOv8: target_models/yolov8.md
-        - YOLOv8 Instance Segmentation: target_models/yolov8-instance-segmentation.md
-        - YOLO-NAS: target_models/yolo-nas.md
+        - DETR: https://github.com/autodistill/autodistill-detr
+        - YOLOv5: https://github.com/autodistill/autodistill-yolov5
+        - YOLOv8: https://github.com/autodistill/autodistill-yolov8
+        - YOLOv8 Instance Segmentation: https://github.com/autodistill/autodistill-yolov8
+        - YOLO-NAS: https://github.com/autodistill/autodistill-yolonas
     - Classification:
       - Base Models:
-        - ALBEF: base_models/albef.md
-        - AltCLIP: base_models/altclip.md
-        - BLIP: base_models/blip.md
-        - CLIP: base_models/clip.md
-        - RemoteCLIP: base_models/remoteclip.md
+        - ALBEF: https://github.com/autodistill/autodistill-albef
+        - AltCLIP: https://github.com/autodistill/autodistill-altclip
+        - BLIP: https://github.com/autodistill/autodistill-blip
+        - BLIPv2: https://github.com/autodistill/autodistill-blipv2
+        - CLIP: https://github.com/autodistill/autodistill-clip
+        - MetaCLIP: https://github.com/autodistill/autodistill-metaclip
+        - RemoteCLIP: https://github.com/autodistill/autodistill-remoteclip
       - Target Models:
-        - DINOv2: target_models/dinov2.md
-        - YOLOv5: target_models/yolov5.md
-        - YOLOv8: target_models/yolov8.md
-        - ViT: target_models/vit.md
+        - DINOv2: https://github.com/autodistill/autodistill-dinov2
+        - YOLOv5: https://github.com/autodistill/autodistill-yolov5
+        - YOLOv8: https://github.com/autodistill/autodistill-yolov8
+        - ViT: https://github.com/autodistill/autodistill-vit
     - Utilities:
       - Visualize Predictions: utilities/visualize-predictions.md
       - Combine Models: utilities/combine-models.md
@@ -63,17 +65,24 @@ nav:
       - Use Embeddings in Classification: utilities/use-embeddings-in-classification.md
       - Apply Non-Maximum Suppression (NMS): utilities/nms.md
     - Advanced:
-      - Command Line Interface: advanced/command-line-interface.md
-      - How Images Are Loaded: advanced/how-images-are-loaded.md
-  - Reference:
-    - Model Types:
-      - Detection Base Model: reference/model-types/detection-base-models.md
-      - Classification Base Model: reference/model-types/classification-base-models.md
-      - Detection Target Model: reference/model-types/detection-target-models.md
-      - Classification Target Model: reference/model-types/classification-target-models.md
-      - Embedding Base Model: reference/model-types/embedding-base-models.md
+      - Command Line Interface: command-line-interface.md
+      - Image Loading: image-loading.md
+      - Labeling Large Datasets: large-datasets.md
+  - Library Reference:
+    - Index: reference/index.md
+    - Utilities: reference/utilities.md
+    - Base Models:
+      - Detection: reference/base-models/detection.md
+      - Classification: reference/base-models/classification.md
+      - Composed Model: reference/base-models/composed.md
+      - Embedding Model: reference/base-models/embedding.md
+    - Target Models:
+      - Detection: reference/target-models/detection.md
+      - Classification: reference/target-models/classification.md
+    - Ontologies:
+      - Caption Ontology: reference/ontologies/caption-ontology.md
+      - Embedding Ontology: reference/ontologies/embedding-ontology.md
   - Contributing: contributing.md
-  - Changelog: changelog.md
 
 extra_css:
   - stylesheets/extra.css
@@ -81,6 +90,7 @@ extra_css:
 theme:
   name: 'material'
   logo: 'logo.jpeg'
+  favicon: 'logo.jpeg'
   palette:
     # Palette for light mode
     - scheme: default
@@ -110,6 +120,7 @@ theme:
     - navigation.instant.progress
     - navigation.indexes
     - navigation.sections
+    - content.code.copy
 
 plugins:
   - social:
