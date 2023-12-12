@@ -9,12 +9,12 @@ This is handled by the low-level `load_image` function. This function allows you
 
 The following models support the `load_image` function. The `PIL` and `cv2` states to what format `load_image` will convert your image (if necessary) to pass your image into a model.
 
-- AltCLIP
-- CLIP
-- Grounding DINO
-- MetaCLIP
-- RemoteCLIP
-- Transformers
+- AltCLIP: PIL
+- CLIP: PIL
+- Grounding DINO: cv2
+- MetaCLIP: PIL
+- RemoteCLIP: PIL
+- Transformers: PIL
 - SAM HQ: cv2
 - Segment Anything: cv2
 - DETIC: PIL
