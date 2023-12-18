@@ -140,42 +140,6 @@ def split_data(base_dir, split_ratio=0.8):
         yaml.dump(data, file)
 
 
-def split_data_classification(
-    dataset, split_ratio: float
-) -> Tuple[sv.ClassificationDataset, sv.ClassificationDataset]:
-    """
-    Split a classification dataset into splits.
-
-    Parameters:
-    - dataset: sv.ClassificationDataset
-        The dataset to be split.
-    - split_ratio: float
-        The ratio of the dataset to be used for training. The rest will be used for testing.
-
-    Returns:
-    - Tuple[sv.ClassificationDataset, sv.ClassificationDataset]
-        A tuple containing the training and testing datasets.
-    """
-    image_names = list(dataset.images.keys())
-    train_names, test_names = train_test_split(
-        data=image_names,
-        train_ratio=split_ratio,
-        shuffle=True,
-    )
-
-    train_dataset = sv.ClassificationDataset(
-        classes=dataset.classes,
-        images={name: dataset.images[name] for name in train_names},
-        annotations={name: dataset.annotations[name] for name in train_names},
-    )
-    test_dataset = sv.ClassificationDataset(
-        classes=dataset.classes,
-        images={name: dataset.images[name] for name in test_names},
-        annotations={name: dataset.annotations[name] for name in test_names},
-    )
-    return train_dataset, test_dataset
-
-
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
     video_paths = sv.list_files_with_extensions(
         directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]

@@ -9,7 +9,6 @@ from tqdm import tqdm
 
 from autodistill.core import BaseModel
 from autodistill.detection import CaptionOntology
-from autodistill.helpers import split_data_classification
 
 
 @dataclass
@@ -47,8 +46,8 @@ class ClassificationBaseModel(BaseModel):
             self.ontology.classes(), images_map, detections_map
         )
 
-        train_cs, test_cs = split_data_classification(dataset, split_ratio=0.7)
-        test_cs, valid_cs = split_data_classification(test_cs, split_ratio=0.5)
+        train_cs, test_cs = dataset.split(split_ratio=0.7, random_state=None, shuffle=True)
+        test_cs, valid_cs = train_cs.split(split_ratio=0.5, random_state=None, shuffle=True)
 
         train_cs.as_folder_structure(root_directory_path=output_folder + "/train")
 
