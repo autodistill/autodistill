@@ -34,7 +34,17 @@ AUTODISTILL_MODULES = [
 PACKAGE_NAMES = [i[0] for i in AUTODISTILL_MODULES]
 
 
-def is_module_installed(module_name):
+def is_module_installed(module_name: str) -> bool:
+    """
+    Checks whether a model is installed.
+
+    Args:
+        module_name (str): The name of the model to check. Must be one of the models in the `autodistill` registry.
+
+    Returns:
+        True if the model is installed, False otherwise.
+    """
+
     try:
         importlib.import_module("autodistill_" + module_name)
     except:
@@ -43,7 +53,17 @@ def is_module_installed(module_name):
     return True
 
 
-def import_requisite_module(module_name, noninteractive_install=False):
+def import_requisite_module(module_name: str, noninteractive_install: bool = False):
+    """
+    Imports a model for use in inference. Installs the model if it is not already installed.
+
+    Args:
+        module_name (str): The name of the model to import. Must be one of the models in the `autodistill` registry.
+        noninteractive_install (bool): Whether to install the model without asking for user consent. Defaults to False.
+
+    Returns:
+        The model class.
+    """
     if module_name not in PACKAGE_NAMES:
         print(
             f"Module {module_name} not found. Please choose from the following modules: {PACKAGE_NAMES}"
