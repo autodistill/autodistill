@@ -13,15 +13,25 @@ from autodistill.detection import CaptionOntology
 
 @dataclass
 class ClassificationBaseModel(BaseModel):
+    """
+    Use a foundation classification model to auto-label data.
+    """
+
     ontology: CaptionOntology
 
     @abstractmethod
     def predict(self, input: str) -> sv.Classifications:
+        """
+        Run inference on the model.
+        """
         pass
 
     def label(
         self, input_folder: str, extension: str = ".jpg", output_folder: str = None
     ) -> sv.ClassificationDataset:
+        """
+        Label a dataset and save it in a classification folder structure.
+        """
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 

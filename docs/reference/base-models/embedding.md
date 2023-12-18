@@ -1,0 +1,1 @@
+:::autodistill.core.embedding_model.EmbeddingModel

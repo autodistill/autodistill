@@ -16,8 +16,21 @@ ONTOLOGY_WITH_EMBEDDINGS = [
 
 
 def compare_embeddings(
-    image_embedding, comparison_embeddings, distance_metric="cosine"
+    image_embedding: np.array,
+    comparison_embeddings: List[np.array],
+    distance_metric="cosine",
 ):
+    """
+    Calculate the similarity between an image embedding and all embeddings in a list.
+
+    Args:
+        image_embedding: The embedding of the image to compare.
+        comparison_embeddings: A list of embeddings to compare against.
+        distance_metric: The distance metric to use. Currently only supports "cosine".
+
+    Returns:
+        A list of similarity scores.
+    """
     if distance_metric == "cosine":
         comparisons = []
 
