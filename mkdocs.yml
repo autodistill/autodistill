@@ -28,6 +28,7 @@ nav:
     - Quickstart: quickstart.md
     - Supported Models: supported-models.md
     - What Model Should I Use?: what-model-should-i-use.md
+    - Try Autodistill on the Web: roboflow.md
     - Detection and Segmentation:
       - Base Models:
         - DETIC: https://github.com/autodistill/autodistill-detic
