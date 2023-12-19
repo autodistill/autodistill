@@ -6,6 +6,16 @@ import supervision as sv
 
 
 def compare(models: list, images: List[str]):
+    """
+    Compare the predictions of multiple models on multiple images.
+
+    Args:
+        models: The models to compare
+        images: The images to compare
+
+    Returns:
+        A grid of images with the predictions of each model on each image.
+    """
     image_results = []
     model_results = []
 
@@ -35,6 +45,18 @@ def compare(models: list, images: List[str]):
 
 
 def plot(image: np.ndarray, detections, classes: List[str], raw=False):
+    """
+    Plot bounding boxes or segmentation masks on an image.
+
+    Args:
+        image: The image to plot on
+        detections: The detections to plot
+        classes: The classes to plot
+        raw: Whether to return the raw image or plot it interactively
+
+    Returns:
+        The raw image (np.ndarray) if raw=True, otherwise None (image is plotted interactively
+    """
     # TODO: When we have a classification annotator
     # in supervision, we can add it here
     if detections.mask is not None:
@@ -42,7 +64,7 @@ def plot(image: np.ndarray, detections, classes: List[str], raw=False):
     else:
         annotator = sv.BoxAnnotator()
 
-    label_annotator = sv.LabelAnnotator(text_position=sv.Position.CENTER)
+    label_annotator = sv.LabelAnnotator()
 
     labels = [
         f"{classes[class_id]} {confidence:0.2f}"
