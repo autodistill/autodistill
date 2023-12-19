@@ -15,6 +15,19 @@ from PIL import Image
 VALID_ANNOTATION_TYPES = ["box", "mask"]
 ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy"]
 
+def convert_from_pgm(image: Image) -> Image:
+    """
+    Convert a PGM image to a PIL image.
+
+    Args:
+        image: The PGM image
+
+    Returns:
+        The PIL image
+    """
+    image = image.convert("L")
+    return image
+
 
 def load_image(
     image: Any,
@@ -60,6 +73,9 @@ def load_image(
             return np.array(pil_image)
     elif os.path.isfile(image):
         if return_format == "PIL":
+            if image.endswith(".pgm"):
+                return convert_from_pgm(Image.open(image))
+            
             return Image.open(image)
         elif return_format == "cv2":
             # channels need to be reversed for cv2
