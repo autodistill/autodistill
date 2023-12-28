@@ -65,7 +65,7 @@ class DetectionBaseModel(BaseModel):
             if sahi:
                 detections = slicer(image)
             else:
-                detections = self.predict(f_path)
+                detections = self.predict(image)
 
             detections_map[f_path_short] = detections
 
