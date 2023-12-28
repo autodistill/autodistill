@@ -3,17 +3,16 @@ import random
 import shutil
 from io import BytesIO
 from typing import Any
-import roboflow
+from urllib.request import urlretrieve
 
-import yaml
 import cv2
 import numpy as np
 import requests
+import roboflow
 import supervision as sv
 import tqdm
 import yaml
 from PIL import Image
-from urllib.request import urlretrieve
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
 ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy"]
