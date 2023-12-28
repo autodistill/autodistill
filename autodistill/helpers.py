@@ -3,10 +3,12 @@ import random
 import shutil
 from io import BytesIO
 from typing import Any
+from urllib.request import urlretrieve
 
 import cv2
 import numpy as np
 import requests
+import roboflow
 import supervision as sv
 import tqdm
 import yaml
@@ -176,3 +178,50 @@ def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
                 source_path=str(video_path), stride=stride
             ):
                 sink.save_image(image=image)
+
+
+def sync_with_roboflow(workspace_id, workspace_url, project_id, batch_id, model):
+    """
+    Authenticate a user with Roboflow, download images from a Roboflow dataset, and upload annotations to Roboflow.
+    """
+    work_dir = os.path.join(os.getcwd(), workspace_url, project_id, batch_id)
+
+    roboflow.login()
+    rf = roboflow.Roboflow()
+    project = rf.workspace(workspace_url).project(project_id)
+
+    os.makedirs(os.path.join(work_dir, "images"), exist_ok=True)
+
+    records = [
+        image
+        for page in project.search_all(batch=True, batch_id=batch_id, fields=["id"])
+        for image in page
+    ]
+
+    for image in records:
+        image_url = (
+            f'https://source.roboflow.com/{workspace_id}/{image["id"]}/original.jpg'
+        )
+        urlretrieve(image_url, os.path.join(work_dir, "images", image["id"] + ".jpg"))
+
+    model.label(os.path.join(work_dir, "images"), extension=".jpg")
+
+    with open(os.path.join(work_dir, "images_labeled", "data.yaml"), "r") as f:
+        data = yaml.safe_load(f)
+        labelmap = {id: k for id, k in enumerate(data["names"])}
+
+    annotations_dir = os.path.join(work_dir, "images_labeled")
+    for subdir in ["train", "valid"]:
+        label_dir = os.path.join(annotations_dir, subdir, "labels")
+        for image_record in records:
+            annotation_path = os.path.join(label_dir, image_record["id"] + ".txt")
+            if os.path.exists(annotation_path):
+                print(
+                    project.single_upload(
+                        image_id=image_record["id"],
+                        annotation_path=annotation_path,
+                        annotation_labelmap=labelmap,
+                    )
+                )
+
+    print("Your annotations have been uploaded to Roboflow.")
