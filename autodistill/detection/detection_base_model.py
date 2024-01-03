@@ -42,7 +42,7 @@ class DetectionBaseModel(BaseModel):
         detections_map = {}
 
         if sahi:
-            slicer = sv.InferenceSlicer(callback = self.predict)
+            slicer = sv.InferenceSlicer(callback=self.predict)
 
         files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
@@ -58,7 +58,7 @@ class DetectionBaseModel(BaseModel):
                 slicer.slice(image, f_path_short, output_folder)
             else:
                 detections = self.predict(f_path)
-                
+
             detections_map[f_path_short] = detections
 
         dataset = sv.DetectionDataset(
