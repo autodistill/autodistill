@@ -2,7 +2,7 @@ import os
 import random
 import shutil
 from io import BytesIO
-from typing import Any, Tuple
+from typing import Any
 from urllib.request import urlretrieve
 
 import cv2
@@ -13,7 +13,6 @@ import supervision as sv
 import tqdm
 import yaml
 from PIL import Image
-from supervision.dataset.utils import train_test_split
 
 VALID_ANNOTATION_TYPES = ["box", "mask"]
 ACCEPTED_RETURN_FORMATS = ["PIL", "cv2", "numpy"]
