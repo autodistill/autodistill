@@ -127,8 +127,7 @@ plugins:
       cards_layout_dir: layouts
       cards_layout: custom
       debug: true
-  - mkdocstrings:
-      default_handler: python
+  - mkdocstrings
   - search
 
 markdown_extensions:
