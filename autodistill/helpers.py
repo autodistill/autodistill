@@ -132,18 +132,26 @@ def split_data(base_dir, split_ratio=0.8):
     for file in train_files:
         shutil.move(os.path.join(images_dir, file + ".jpg"), train_images_dir)
         shutil.move(os.path.join(annotations_dir, file + ".txt"), train_labels_dir)
-        shutil.move(
-            os.path.join(annotations_dir, "confidence-" + file + ".txt"),
-            train_labels_dir,
-        )
+        confidence_file_path =  os.path.join(annotations_dir, "confidence-" + file + ".txt")
+        if os.path.exists(confidence_file_path):
+            shutil.move(
+                confidence_file_path,
+                train_labels_dir,
+             )
+        else:
+            print(f'Did not find {confidence_file_path}')
 
     for file in valid_files:
         shutil.move(os.path.join(images_dir, file + ".jpg"), valid_images_dir)
         shutil.move(os.path.join(annotations_dir, file + ".txt"), valid_labels_dir)
-        shutil.move(
-            os.path.join(annotations_dir, "confidence-" + file + ".txt"),
-            valid_labels_dir,
-        )
+        confidence_file_path =  os.path.join(annotations_dir, "confidence-" + file + ".txt")
+        if os.path.exists(confidence_file_path):
+            shutil.move(
+                confidence_file_path,
+                train_labels_dir,
+             )
+        else:
+            print(f'Did not find {confidence_file_path}')
 
     # Load the existing YAML file to get the names
     with open(os.path.join(base_dir, "data.yaml"), "r") as file:
