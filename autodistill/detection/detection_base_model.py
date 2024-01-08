@@ -48,6 +48,7 @@ class DetectionBaseModel(BaseModel):
             )
             confidence_list = [str(x) for x in detections.confidence.tolist()]
             save_text_file(lines=confidence_list, file_path=confidence_path)
+            print("Saved confidence file: " + confidence_path)
 
     def label(
         self,
