@@ -3,10 +3,14 @@ import glob
 import os
 from abc import abstractmethod
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict
 
 import cv2
+import numpy as np
 import roboflow
 import supervision as sv
+from supervision.utils.file import save_text_file
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
@@ -28,6 +32,24 @@ class DetectionBaseModel(BaseModel):
 
         return slicer(load_image(input, return_format="cv2"))
 
+    def _record_confidence_in_files(
+        self,
+        annotations_directory_path: str,
+        images: Dict[str, np.ndarray],
+        annotations: Dict[str, sv.Detections],
+    ) -> None:
+        Path(annotations_directory_path).mkdir(parents=True, exist_ok=True)
+        for image_name, _ in images.items():
+            detections = annotations[image_name]
+            yolo_annotations_name, _ = os.path.splitext(image_name)
+            confidence_path = os.path.join(
+                annotations_directory_path,
+                "confidence-" + yolo_annotations_name + ".txt",
+            )
+            confidence_list = [str(x) for x in detections.confidence.tolist()]
+            save_text_file(lines=confidence_list, file_path=confidence_path)
+            print("Saved confidence file: " + confidence_path)
+
     def label(
         self,
         input_folder: str,
@@ -37,6 +59,7 @@ class DetectionBaseModel(BaseModel):
         roboflow_project: str = None,
         roboflow_tags: str = ["autodistill"],
         sahi: bool = False,
+        record_confidence: bool = False,
     ) -> sv.DetectionDataset:
         """
         Label a dataset with the model.
@@ -80,6 +103,10 @@ class DetectionBaseModel(BaseModel):
             data_yaml_path=output_folder + "/data.yaml",
         )
 
+        if record_confidence is True:
+            self._record_confidence_in_files(
+                output_folder + "/annotations", images_map, detections_map
+            )
         split_data(output_folder)
 
         if human_in_the_loop:

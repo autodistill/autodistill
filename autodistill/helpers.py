@@ -129,13 +129,30 @@ def split_data(base_dir, split_ratio=0.8):
     os.makedirs(valid_labels_dir, exist_ok=True)
 
     # Move the files
+    def _check_move_file(source_dir, source_file, dest_dir):
+        if not os.path.exists(os.path.join(source_dir, source_file)):
+            print(
+                f"Did not find {os.path.join(source_dir, source_file)}, not moving anything to {dest_dir}"
+            )
+        if os.path.exists(os.path.join(dest_dir, source_file)):
+            print(
+                f"Found {os.path.join(dest_dir, source_file)} as already present, not moving anything to {dest_dir}"
+            )
+        shutil.move(os.path.join(source_dir, source_file), dest_dir)
+
     for file in train_files:
-        shutil.move(os.path.join(images_dir, file + ".jpg"), train_images_dir)
-        shutil.move(os.path.join(annotations_dir, file + ".txt"), train_labels_dir)
+        _check_move_file(images_dir, file + ".jpg", train_images_dir)
+        _check_move_file(annotations_dir, file + ".txt", train_labels_dir)
+        _check_move_file(
+            annotations_dir, "confidence-" + file + ".txt", train_labels_dir
+        )
 
     for file in valid_files:
-        shutil.move(os.path.join(images_dir, file + ".jpg"), valid_images_dir)
-        shutil.move(os.path.join(annotations_dir, file + ".txt"), valid_labels_dir)
+        _check_move_file(images_dir, file + ".jpg", valid_images_dir)
+        _check_move_file(annotations_dir, file + ".txt", valid_labels_dir)
+        _check_move_file(
+            annotations_dir, "confidence-" + file + ".txt", valid_labels_dir
+        )
 
     # Load the existing YAML file to get the names
     with open(os.path.join(base_dir, "data.yaml"), "r") as file:
