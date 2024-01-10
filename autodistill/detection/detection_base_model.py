@@ -107,7 +107,7 @@ class DetectionBaseModel(BaseModel):
             self._record_confidence_in_files(
                 output_folder + "/annotations", images_map, detections_map
             )
-        split_data(output_folder)
+        split_data(output_folder, record_confidence = record_confidence)
 
         if human_in_the_loop:
             roboflow.login()

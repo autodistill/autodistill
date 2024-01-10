@@ -73,7 +73,7 @@ def load_image(
         raise ValueError(f"{image} is not a valid file path or URI")
 
 
-def split_data(base_dir, split_ratio=0.8):
+def split_data(base_dir, split_ratio=0.8, record_confidence=False):
     images_dir = os.path.join(base_dir, "images")
     annotations_dir = os.path.join(base_dir, "annotations")
 
@@ -134,25 +134,29 @@ def split_data(base_dir, split_ratio=0.8):
             print(
                 f"Did not find {os.path.join(source_dir, source_file)}, not moving anything to {dest_dir}"
             )
+            return
         if os.path.exists(os.path.join(dest_dir, source_file)):
             print(
                 f"Found {os.path.join(dest_dir, source_file)} as already present, not moving anything to {dest_dir}"
             )
+            return
         shutil.move(os.path.join(source_dir, source_file), dest_dir)
 
     for file in train_files:
         _check_move_file(images_dir, file + ".jpg", train_images_dir)
         _check_move_file(annotations_dir, file + ".txt", train_labels_dir)
-        _check_move_file(
-            annotations_dir, "confidence-" + file + ".txt", train_labels_dir
-        )
+        if record_confidence:
+            _check_move_file(
+                annotations_dir, "confidence-" + file + ".txt", train_labels_dir
+            )
 
     for file in valid_files:
         _check_move_file(images_dir, file + ".jpg", valid_images_dir)
         _check_move_file(annotations_dir, file + ".txt", valid_labels_dir)
-        _check_move_file(
-            annotations_dir, "confidence-" + file + ".txt", valid_labels_dir
-        )
+        if record_confidence:
+            _check_move_file(
+                annotations_dir, "confidence-" + file + ".txt", valid_labels_dir
+            )
 
     # Load the existing YAML file to get the names
     with open(os.path.join(base_dir, "data.yaml"), "r") as file:
