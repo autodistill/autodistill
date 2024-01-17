@@ -60,6 +60,7 @@ class DetectionBaseModel(BaseModel):
         roboflow_tags: str = ["autodistill"],
         sahi: bool = False,
         record_confidence: bool = False,
+        with_nms: bool = False,
     ) -> sv.DetectionDataset:
         """
         Label a dataset with the model.
@@ -89,6 +90,9 @@ class DetectionBaseModel(BaseModel):
                 detections = slicer(f_path)
             else:
                 detections = self.predict(f_path)
+
+            if with_nms:
+                detections = detections.with_nms()
 
             detections_map[f_path_short] = detections
 
