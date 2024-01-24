@@ -54,6 +54,8 @@ class DetectionBaseModel(BaseModel):
         self,
         input_folder: str,
         extension: str = ".jpg",
+        extensions: list = None,
+        recursive: bool = False,
         output_folder: str = None,
         human_in_the_loop: bool = False,
         roboflow_project: str = None,
@@ -65,6 +67,22 @@ class DetectionBaseModel(BaseModel):
         """
         Label a dataset with the model.
         """
+        
+      # Use 'extensions', fall back to 'extension'
+        if extensions is not None:
+            if extension != ".jpg":
+                raise ValueError("`extension` and `extensions` are mutually exclusive.")
+        else:
+            extensions = [extension]
+
+        files = []
+        # Build file search pattern
+        pattern = "/**/*{}" if recursive else "/*{}"
+        for ext in extensions:
+            search_pattern = os.path.join(input_folder, pattern.format(ext))
+            found_files = glob.glob(search_pattern, recursive=recursive)
+            files.extend(found_files)
+
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 
@@ -76,7 +94,6 @@ class DetectionBaseModel(BaseModel):
         if sahi:
             slicer = sv.InferenceSlicer(callback=self.predict)
 
-        files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
         # iterate through images in input_folder
         for f_path in progress_bar:
