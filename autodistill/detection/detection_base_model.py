@@ -10,6 +10,7 @@ import cv2
 import numpy as np
 import roboflow
 import supervision as sv
+from PIL import ImageFile
 from supervision.utils.file import save_text_file
 from tqdm import tqdm
 
@@ -56,6 +57,7 @@ class DetectionBaseModel(BaseModel):
         extension: str = ".jpg",
         extensions: list = None,
         recursive: bool = False,
+        load_truncated_images: bool = False,
         output_folder: str = None,
         human_in_the_loop: bool = False,
         roboflow_project: str = None,
@@ -68,7 +70,7 @@ class DetectionBaseModel(BaseModel):
         Label a dataset with the model.
         """
         
-      # Use 'extensions', fall back to 'extension'
+      # Use 'extensions' if set. Fall back to 'extension'
         if extensions is not None:
             if extension != ".jpg":
                 raise ValueError("`extension` and `extensions` are mutually exclusive.")
@@ -77,12 +79,11 @@ class DetectionBaseModel(BaseModel):
 
         files = []
         # Build file search pattern
-        pattern = "/**/*{}" if recursive else "/*{}"
+        pattern = "{}/**/*{}" if recursive else "{}/*{}"
         for ext in extensions:
-            search_pattern = os.path.join(input_folder, pattern.format(ext))
-            found_files = glob.glob(search_pattern, recursive=recursive)
-            files.extend(found_files)
-
+            search_pattern = pattern.format(input_folder, ext)
+            files.extend(glob.glob(search_pattern, recursive=recursive))
+        
         if output_folder is None:
             output_folder = input_folder + "_labeled"
 
@@ -94,25 +95,42 @@ class DetectionBaseModel(BaseModel):
         if sahi:
             slicer = sv.InferenceSlicer(callback=self.predict)
 
+        if load_truncated_images:
+            # Silence PIL.Image.open() in helpers.load_image()
+            ImageFile.LOAD_TRUNCATED_IMAGES = True
+
         progress_bar = tqdm(files, desc="Labeling images")
         # iterate through images in input_folder
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
-            image = cv2.imread(f_path)
+
+            try:
+                image = cv2.imread(f_path)
+                if image is None and load_truncated_images:
+                    continue
+            except Exception as e:
+                raise
 
             f_path_short = os.path.basename(f_path)
             images_map[f_path_short] = image.copy()
 
-            if sahi:
-                detections = slicer(f_path)
-            else:
-                detections = self.predict(f_path)
+            try:
+                if sahi:
+                    detections = slicer(f_path)
+                else:
+                    detections = self.predict(f_path)
 
-            if with_nms:
-                detections = detections.with_nms()
-
+                if with_nms:
+                    detections = detections.with_nms()
+            except OSError as e:
+                progress_bar.write(f"Could not process image '{f_path}': {e}")
+                continue
+            
             detections_map[f_path_short] = detections
 
+        if detections_map == {}:
+            raise RuntimeError("No images could be processed")
+        
         dataset = sv.DetectionDataset(
             self.ontology.classes(), images_map, detections_map
         )
