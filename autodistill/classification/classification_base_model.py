@@ -57,7 +57,7 @@ class ClassificationBaseModel(BaseModel):
         )
 
         train_cs, test_cs = dataset.split(split_ratio=0.7, random_state=None, shuffle=True)
-        test_cs, valid_cs = train_cs.split(split_ratio=0.5, random_state=None, shuffle=True)
+        test_cs, valid_cs = test_cs.split(split_ratio=0.5, random_state=None, shuffle=True)
 
         train_cs.as_folder_structure(root_directory_path=output_folder + "/train")
 
