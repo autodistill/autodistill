@@ -87,9 +87,9 @@ class DetectionBaseModel(BaseModel):
             images_map[f_path_short] = image.copy()
 
             if sahi:
-                detections = slicer(f_path)
+                detections = slicer(image)
             else:
-                detections = self.predict(f_path)
+                detections = self.predict(image)
 
             if with_nms:
                 detections = detections.with_nms()
