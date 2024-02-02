@@ -212,7 +212,7 @@ box_annotator = sv.BoxAnnotator()
 
 labels = [
     f"{base_model.ontology.classes()[class_id]} {confidence:0.2f}"
-    for _, _, confidence, class_id, _ in detections
+    for _, _, confidence, class_id, _, _ in detections
 ]
 
 annotated_frame = box_annotator.annotate(
