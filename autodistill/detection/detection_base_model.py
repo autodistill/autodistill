@@ -1,4 +1,5 @@
 import datetime
+import enum
 import glob
 import os
 from abc import abstractmethod
@@ -18,13 +19,11 @@ from autodistill.helpers import load_image, split_data
 
 from .detection_ontology import DetectionOntology
 
-import enum
-
 
 class NmsSetting(enum.Enum):
-    NONE = 'no_nms'
-    CLASS_SPECIFIC = 'class_specific'
-    CLASS_AGNOSTIC = 'class_agnostic'
+    NONE = "no_nms"
+    CLASS_SPECIFIC = "class_specific"
+    CLASS_AGNOSTIC = "class_agnostic"
 
 
 @dataclass
