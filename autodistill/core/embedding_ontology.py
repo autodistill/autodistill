@@ -3,7 +3,6 @@ from typing import Any, Dict, List
 
 import numpy as np
 import supervision as sv
-from sklearn.metrics.pairwise import cosine_similarity
 
 from autodistill.core.embedding_model import EmbeddingModel
 from autodistill.core.ontology import Ontology
