@@ -1,4 +1,5 @@
 import datetime
+import enum
 import glob
 import os
 from abc import abstractmethod
@@ -17,6 +18,12 @@ from autodistill.core import BaseModel
 from autodistill.helpers import load_image, split_data
 
 from .detection_ontology import DetectionOntology
+
+
+class NmsSetting(str, enum.Enum):
+    NONE = "no_nms"
+    CLASS_SPECIFIC = "class_specific"
+    CLASS_AGNOSTIC = "class_agnostic"
 
 
 @dataclass
@@ -60,7 +67,7 @@ class DetectionBaseModel(BaseModel):
         roboflow_tags: str = ["autodistill"],
         sahi: bool = False,
         record_confidence: bool = False,
-        with_nms: bool = False,
+        nms_settings: NmsSetting = NmsSetting.NONE,
     ) -> sv.DetectionDataset:
         """
         Label a dataset with the model.
@@ -91,8 +98,10 @@ class DetectionBaseModel(BaseModel):
             else:
                 detections = self.predict(image)
 
-            if with_nms:
+            if nms_settings == NmsSetting.CLASS_SPECIFIC:
                 detections = detections.with_nms()
+            if nms_settings == NmsSetting.CLASS_AGNOSTIC:
+                detections = detections.with_nms(class_agnostic=True)
 
             detections_map[f_path_short] = detections
 
