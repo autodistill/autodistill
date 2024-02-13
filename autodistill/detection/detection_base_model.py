@@ -76,7 +76,7 @@ class DetectionBaseModel(BaseModel):
             output_folder = input_folder + "_labeled"
 
         os.makedirs(output_folder, exist_ok=True)
-        print("XXXXX",nms_settings, nms_settings == NmsSetting.CLASS_SPECIFIC, nms_settings == NmsSetting.CLASS_AGNOSTIC)
+        
         images_map = {}
         detections_map = {}
 
