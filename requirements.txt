@@ -1,5 +1,5 @@
 opencv-python>=4.6.0
-supervision
+supervision>=0.19.0rc3
 tqdm
 Pillow>=7.1.2
 PyYAML>=5.3.1
