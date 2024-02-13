@@ -20,7 +20,7 @@ from autodistill.helpers import load_image, split_data
 from .detection_ontology import DetectionOntology
 
 
-class NmsSetting(enum.Enum):
+class NmsSetting(str, enum.Enum):
     NONE = "no_nms"
     CLASS_SPECIFIC = "class_specific"
     CLASS_AGNOSTIC = "class_agnostic"
@@ -76,7 +76,7 @@ class DetectionBaseModel(BaseModel):
             output_folder = input_folder + "_labeled"
 
         os.makedirs(output_folder, exist_ok=True)
-
+        print("XXXXX",nms_settings, nms_settings == NmsSetting.CLASS_SPECIFIC, nms_settings == NmsSetting.CLASS_AGNOSTIC)
         images_map = {}
         detections_map = {}
 
