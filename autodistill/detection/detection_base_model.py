@@ -76,7 +76,7 @@ class DetectionBaseModel(BaseModel):
             output_folder = input_folder + "_labeled"
 
         os.makedirs(output_folder, exist_ok=True)
-        
+
         images_map = {}
         detections_map = {}
 
