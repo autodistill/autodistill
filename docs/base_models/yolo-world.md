@@ -30,7 +30,8 @@ base_model = YoloWorld(
             "person": "person",
             "car": "car",
         }
-    )
+    ),
+    model_type = "yolov8s-world.pt"
 )
 
 # run inference on a single image
