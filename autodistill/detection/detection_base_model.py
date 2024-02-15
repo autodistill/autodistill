@@ -110,8 +110,9 @@ class DetectionBaseModel(BaseModel):
                 detections = detections.with_nms(class_agnostic=True)
 
             detections_map[f_path_short] = detections
-            detections_map.close() # Close the shelve file
-            detections_map = shelve.open(temp_filename, flag='r')
+        
+        detections_map.close() # Close the shelve file
+        detections_map = shelve.open(temp_filename, flag='r')
 
         dataset = sv.DetectionDataset(
             self.ontology.classes(), images_map, detections_map
