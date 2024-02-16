@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 import roboflow
 import supervision as sv
+from PIL import Image
 from supervision.utils.file import save_text_file
 from tqdm import tqdm
 
@@ -31,10 +32,10 @@ class DetectionBaseModel(BaseModel):
     ontology: DetectionOntology
 
     @abstractmethod
-    def predict(self, input: str) -> sv.Detections:
+    def predict(self, input: str | np.ndarray | Image.Image) -> sv.Detections:
         pass
 
-    def sahi_predict(self, input: str) -> sv.Detections:
+    def sahi_predict(self, input: str | np.ndarray | Image.Image) -> sv.Detections:
         slicer = sv.InferenceSlicer(callback=self.predict)
 
         return slicer(load_image(input, return_format="cv2"))
