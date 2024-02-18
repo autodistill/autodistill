@@ -137,4 +137,4 @@ target_model.train("./labeled-images/data.yaml", epochs=200)
 
 ## Next Steps
 
-Above, we used Autodistill to label a dataset. Next, explore the Autodistill ecosystem of models following our guidance in the [Which model should I use?](/which-model-should-i-use/) guide. This site contains documentation for all Autodistill models, as well as utilities that you can use to work with each model.
+Above, we used Autodistill to label a dataset. Next, explore the Autodistill ecosystem of models following our guidance in the [What model should I use?](/what-model-should-i-use/) guide. This site contains documentation for all Autodistill models, as well as utilities that you can use to work with each model.
