@@ -1,11 +1,11 @@
 # YOLO-World
 
-[YOLO-World](https://github.com/AILab-CVC/YOLO-World) is a Yolo based open vocabulary model for open vocabulary detection 
+[YOLO-World](https://github.com/AILab-CVC/YOLO-World) is a YOLO-based open vocabulary model for open vocabulary detection.
 
 
 ## Installation
 
-To use Yolo-World with autodistill, you need to install the following dependency:
+To use YOLO-World with autodistill, you need to install the following dependency:
 
 
 ```bash
@@ -14,7 +14,7 @@ pip3 install autodistill-yolo-world
 ## Quickstart
 
 ```python
-from autodistill_yolo_world import YoloWorld
+from autodistill_yolo_world import YOLOWorldModel
 from autodistill.detection import CaptionOntology
 from autodistill.utils import plot
 import cv2
@@ -24,7 +24,7 @@ import cv2
 # where caption is the prompt sent to the base model, and class is the label that will
 # be saved for that caption in the generated annotations
 # then, load the model
-base_model = YoloWorld(
+base_model = YOLOWorldModel(
     ontology=CaptionOntology(
         {
             "person": "person",
