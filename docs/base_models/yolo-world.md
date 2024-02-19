@@ -2,6 +2,7 @@
 
 [YOLO-World](https://github.com/AILab-CVC/YOLO-World) is a YOLO-based open vocabulary model for open vocabulary detection.
 
+YOLO-World was developed by Tencent's AI Lab.
 
 ## Installation
 
