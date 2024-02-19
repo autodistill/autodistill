@@ -245,7 +245,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Roboflow Universe Models (50k+ pre-trained models)](https://github.com/autodistill/autodistill-roboflow-universe) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [CoDet](https://github.com/autodistill/autodistill-codet) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [YOLO-World](https://github.com/lab176344/autodistill-yolo-world) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
+| [YOLO-World](https://github.com/autodistill/autodistill-yolo-world) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Azure Custom Vision](https://github.com/autodistill/autodistill-azure-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [AWS Rekognition](https://github.com/autodistill/autodistill-rekognition) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Google Vision](https://github.com/autodistill/autodistill-gcp-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
