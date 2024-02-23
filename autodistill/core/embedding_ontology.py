@@ -13,6 +13,19 @@ ONTOLOGY_WITH_EMBEDDINGS = [
     "EmbeddingOntologyText",
 ]
 
+def cosine_similarity(a: np.array, b: np.array) -> np.array:
+    """
+    Calculate the cosine similarity between two vectors.
+
+    Args:
+        a: The first vector.
+        b: The second vector.
+
+    Returns:
+        The cosine similarity between the two vectors.
+    """
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+
 
 def compare_embeddings(
     image_embedding: np.array,
@@ -35,9 +48,7 @@ def compare_embeddings(
 
         for comparison_embedding in comparison_embeddings:
             comparisons.append(
-                cosine_similarity(
-                    image_embedding.reshape(1, -1), comparison_embedding.reshape(1, -1)
-                ).flatten()
+                cosine_similarity(image_embedding.reshape(-1), comparison_embedding.reshape(-1))
             )
 
         return sv.Classifications(
