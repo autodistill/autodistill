@@ -24,7 +24,8 @@ def cosine_similarity(a: np.array, b: np.array) -> np.array:
     Returns:
         The cosine similarity between the two vectors.
     """
-    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+    epsilon = 1e-10
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + epsilon))
 
 
 def compare_embeddings(
