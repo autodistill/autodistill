@@ -1,17 +1,14 @@
 # Autodistill EvaCLIP Module
 
-This repository contains the code supporting the CLIP base model for use with [Autodistill](https://github.com/autodistill/autodistill).
+_Note: This module was contributed by a third-party unaffiliated with Roboflow._ 
 
-[EvaCLIP](https://github.com/baaivision/EVA/tree/master/EVA-CLIP),  is a computer vision model trained using pairs of images and text. It can be used for classification of images.
+This repository contains the code supporting the EvaCLIP base model for use with [Autodistill](https://github.com/autodistill/autodistill).
 
-Read the full [Autodistill documentation](https://autodistill.github.io/autodistill/).
-
-Read the [EvaCLIP Autodistill documentation](https://autodistill.github.io/autodistill/base_models/evaclip/).
+[EvaCLIP](https://github.com/baaivision/EVA/tree/master/EVA-CLIP), is a computer vision model trained using pairs of images and text. It can be used for classification of images.
 
 ## Installation
 
 To use EvaCLIP with autodistill, you need to install the following dependency:
-
 
 ```bash
 pip3 install autodistill-evaclip
