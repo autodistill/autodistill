@@ -245,7 +245,6 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [OWLv2](https://github.com/autodistill/autodistill-owlv2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Roboflow Universe Models (50k+ pre-trained models)](https://github.com/autodistill/autodistill-roboflow-universe) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [CoDet](https://github.com/autodistill/autodistill-codet) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
-| [YOLO-World](https://github.com/autodistill/autodistill-yolo-world) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Azure Custom Vision](https://github.com/autodistill/autodistill-azure-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [AWS Rekognition](https://github.com/autodistill/autodistill-rekognition) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [Google Vision](https://github.com/autodistill/autodistill-gcp-vision) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
@@ -272,6 +271,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
 | [FastViT](https://github.com/autodistill/autodistill-fastvit) | ✅ | ✅ | 🚧 |
 | [AltCLIP](https://github.com/autodistill/autodistill-altcip) | ✅ | ✅ | 🚧 |
+| [EvaCLIP](https://github.com/lab176344/autodistill-evaclip) (contributed by a community member) | ✅ | ✅ | 🚧 |
 | Fuyu | 🚧 | 🚧 | 🚧 |
 | Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |

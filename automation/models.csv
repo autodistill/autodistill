@@ -45,6 +45,8 @@ classification, 1, 0 , completed, BLIP, autodistill/autodistill-blip, autodistll
 classification, 1, 0 , completed, ALBEF, autodistill/autodistill-albef, autodistill-albef, , BSD-3-Clause
 classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit, autodistill-fastvit, , custom Apple license
 classification, 1, 0, completed, AltCLIP, autodistill/autodistill-altcip, autodistill-altclip, base_models/altclip.md, Apache-2.0
+classification, 1, 0, completed, EvaCLIP, lab176344/autodistill-evaclip, autodistill-evaclip, base_models/evaclip.md, Apache-2.0
+
 classification, 1, 0, in-progress, Fuyu
 classification, 1, 0, in-progress, Open Flamingo
 classification, 1, 0, not-started, GPT-4
