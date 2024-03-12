@@ -32,7 +32,7 @@ nav:
       - Base Models:
         - DETIC: https://github.com/autodistill/autodistill-detic
         - FastSAM: https://github.com/autodistill/autodistill-fastsam
-        - Grounded SAM: https://github.com/autodistill/autodistill-groundedsam
+        - Grounded SAM: https://github.com/autodistill/autodistill-grounded-sam
         - Grounding DINO: https://github.com/autodistill/autodistill-grounding-dino
         - OWL-ViT: https://github.com/autodistill/autodistill-owlvit
         - Roboflow Universe: https://github.com/autodistill/autodistill-roboflow-universe
