@@ -2,17 +2,17 @@ With so many base models to use in labeling images, you may wonder "what model s
 
 ## Detection and Segmentation
 
-We recommend using [Grounding DINO]() as a starting point for detection, and [Grounded SAM]() for segmentation.
+We recommend using [Grounding DINO](https://github.com/autodistill/autodistill-grounding-dino) as a starting point for detection, and [Grounded SAM](https://github.com/autodistill/autodistill-grounded-sam) for segmentation.
 
 Grounding DINO is an effective zero-shot object detector that can identify a wide range of objects, from cars to vinyl record covers.
 
 Grounded SAM combines SAM with Grounding DINO to generate segmentation masks from Grounding DINO predictions.
 
-If Grounding DINO does not identify the object you want to label, consider experimenting with [DETIC](), which can identify over 20,000 classes of objects. DETIC supports an open vocabulary, so you can provide arbitrary text labels for objects.
+If Grounding DINO does not identify the object you want to label, consider experimenting with [DETIC](https://github.com/autodistill/autodistill-detic), which can identify over 20,000 classes of objects. DETIC supports an open vocabulary, so you can provide arbitrary text labels for objects.
 
 ## Classification
 
-We recommend using [CLIP]() as a starting point for classification, which is effective at classifying a wide range of objects. Read the [CLIP abstract](https://openai.com/research/clip) from OpenAI to learn more.
+We recommend using [CLIP](https://github.com/autodistill/autodistill-clip) as a starting point for classification, which is effective at classifying a wide range of objects. Read the [CLIP abstract](https://openai.com/research/clip) from OpenAI to learn more.
 
 ## Roboflow Universe Models
 
