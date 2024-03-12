@@ -1,6 +1,6 @@
 # Autodistill EvaCLIP Module
 
-_Note: This module was contributed by a third-party unaffiliated with Roboflow._ 
+_Note: This module was contributed by a third-party community member unaffiliated with Roboflow._ 
 
 This repository contains the code supporting the EvaCLIP base model for use with [Autodistill](https://github.com/autodistill/autodistill).
 
