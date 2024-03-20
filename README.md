@@ -19,7 +19,8 @@
 
 Autodistill uses big, slower foundation models to train small, faster supervised models. Using `autodistill`, you can go from unlabeled images to inference on a custom model running at the edge with no human intervention in between.
 
-You can use Autodistill on your own hardware, or use the [Roboflow hosted version of Autodistill](https://blog.roboflow.com/launch-auto-label/) to label images in the cloud.
+> [!TIP]
+> You can use Autodistill on your own hardware, or use the [Roboflow hosted version of Autodistill](https://blog.roboflow.com/launch-auto-label/) to label images in the cloud.
 
 <div align="center">
   <p>
