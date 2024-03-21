@@ -37,6 +37,9 @@ def load_image(
     if return_format not in ACCEPTED_RETURN_FORMATS:
         raise ValueError(f"return_format must be one of {ACCEPTED_RETURN_FORMATS}")
 
+    if isinstance(image, str) and image.endswith("pgm"):
+        image = cv2.imread('apollonian_gasket.ascii.pgm', -1)
+
     if isinstance(image, Image.Image) and return_format == "PIL":
         return image
     elif isinstance(image, Image.Image) and return_format == "cv2":
