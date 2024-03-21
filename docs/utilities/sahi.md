@@ -25,7 +25,7 @@ box_annotator = sv.BoxAnnotator()
 
 labels = [
 	f"{classes[class_id]} {confidence:0.2f}"
-	for _, _, confidence, class_id, _
+	for _, _, confidence, class_id, _, _
 	in detections
 ]
 

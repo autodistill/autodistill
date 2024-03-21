@@ -68,7 +68,7 @@ def plot(image: np.ndarray, detections, classes: List[str], raw=False):
 
     labels = [
         f"{classes[class_id]} {confidence:0.2f}"
-        for _, _, confidence, class_id, _ in detections
+        for _, _, confidence, class_id, _, _ in detections
     ]
 
     annotated_frame = annotator.annotate(scene=image.copy(), detections=detections)
