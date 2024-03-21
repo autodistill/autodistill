@@ -13,6 +13,7 @@ import roboflow
 import supervision as sv
 from PIL import Image
 from supervision.utils.file import save_text_file
+from supervision.dataset.utils import LazyLoadDict
 from tqdm import tqdm
 
 from autodistill.core import BaseModel
@@ -20,6 +21,8 @@ from autodistill.helpers import load_image, split_data
 
 from .detection_ontology import DetectionOntology
 
+import shelve
+import tempfile
 
 class NmsSetting(str, enum.Enum):
     NONE = "no_nms"
@@ -78,8 +81,11 @@ class DetectionBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        images_map = {}
-        detections_map = {}
+        images_map = LazyLoadDict()
+        # Create a temporary file for the shelve
+        temp_filename = tempfile.mktemp()
+        detections_map = shelve.open(temp_filename)
+        print(f"Storing temporary data in shelve file: {temp_filename}")
 
         if sahi:
             slicer = sv.InferenceSlicer(callback=self.predict)
@@ -92,7 +98,7 @@ class DetectionBaseModel(BaseModel):
             image = cv2.imread(f_path)
 
             f_path_short = os.path.basename(f_path)
-            images_map[f_path_short] = image.copy()
+            images_map[f_path_short] = f_path
 
             if sahi:
                 detections = slicer(image)
@@ -105,6 +111,9 @@ class DetectionBaseModel(BaseModel):
                 detections = detections.with_nms(class_agnostic=True)
 
             detections_map[f_path_short] = detections
+        
+        detections_map.close() # Close the shelve file
+        detections_map = shelve.open(temp_filename, flag='r')
 
         dataset = sv.DetectionDataset(
             self.ontology.classes(), images_map, detections_map
