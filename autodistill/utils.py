@@ -62,7 +62,7 @@ def plot(image: np.ndarray, detections, classes: List[str], raw=False):
     if detections.mask is not None:
         annotator = sv.MaskAnnotator()
     else:
-        annotator = sv.BoxAnnotator()
+        annotator = sv.BoundingBoxAnnotator()
 
     label_annotator = sv.LabelAnnotator()
 
