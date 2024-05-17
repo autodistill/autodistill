@@ -62,13 +62,13 @@ def plot(image: np.ndarray, detections, classes: List[str], raw=False):
     if detections.mask is not None:
         annotator = sv.MaskAnnotator()
     else:
-        annotator = sv.BoxAnnotator()
+        annotator = sv.BoundingBoxAnnotator()
 
     label_annotator = sv.LabelAnnotator()
 
     labels = [
         f"{classes[class_id]} {confidence:0.2f}"
-        for _, _, confidence, class_id, _ in detections
+        for _, _, confidence, class_id, _, _ in detections
     ]
 
     annotated_frame = annotator.annotate(scene=image.copy(), detections=detections)
