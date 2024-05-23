@@ -274,11 +274,21 @@ tasks first but plan to launch classification support soon! In the future, we ho
 | [ALBEF](https://github.com/autodistill/autodistill-albef) | ✅ | ✅ | 🚧 |
 | [FastViT](https://github.com/autodistill/autodistill-fastvit) | ✅ | ✅ | 🚧 |
 | [AltCLIP](https://github.com/autodistill/autodistill-altcip) | ✅ | ✅ | 🚧 |
-| [EvaCLIP](https://github.com/lab176344/autodistill-evaclip) (contributed by a community member) | ✅ | ✅ | 🚧 |
+| [EvaCLIP](https://github.com/lab176344/autodistill-evaclip) | ✅ | ✅ | 🚧 |
 | Fuyu | 🚧 | 🚧 | 🚧 |
 | Open Flamingo | 🚧 | 🚧 | 🚧 |
 | GPT-4 |  |  |  |
 | PaLM-2 |  |  |  |
+
+
+### text classification
+
+| base / target |  |
+|:---:|
+| [GPT-4](https://github.com/autodistill/autodistill-gpt) |  |
+| [Anthropic](https://github.com/autodistill/autodistill-anthropic) |  |
+| [DistilBERT](https://github.com/autodistill/autodistill-distilbert) |  |
+| [SetFit](https://github.com/autodistill/autodistill-setfit) |  |
 
 
 ## Roboflow Model Deployment Support

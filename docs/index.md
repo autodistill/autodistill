@@ -19,6 +19,8 @@ Autodistill uses big, slower foundation models to train small, faster supervised
 
 You can use Autodistill on your own hardware, or use the [Roboflow hosted version of Autodistill](https://blog.roboflow.com/launch-auto-label/) to label images in the cloud.
 
+With Autodistill, you can label data for and train object detection, segmentation, and classification models. You can also label data for and train text classification models.
+
 <div align="center">
   <p>
     <a align="center" href="" target="_blank">

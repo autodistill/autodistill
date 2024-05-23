@@ -43,7 +43,7 @@ nav:
         - YOLOv8: https://github.com/autodistill/autodistill-yolov8
         - YOLOv8 Instance Segmentation: https://github.com/autodistill/autodistill-yolov8
         - YOLO-NAS: https://github.com/autodistill/autodistill-yolonas
-    - Classification:
+    - Image Classification:
       - Base Models:
         - ALBEF: https://github.com/autodistill/autodistill-albef
         - AltCLIP: https://github.com/autodistill/autodistill-altclip
@@ -57,6 +57,13 @@ nav:
         - YOLOv5: https://github.com/autodistill/autodistill-yolov5
         - YOLOv8: https://github.com/autodistill/autodistill-yolov8
         - ViT: https://github.com/autodistill/autodistill-vit
+    - Text Classification:
+      - Base Models:
+        - GPT-4: https://github.com/autodistill/autodistill-gpt-text?tab=readme-ov-file#quickstart-gpt
+        - LLaMAFile: https://github.com/autodistill/autodistill-gpt-text?tab=readme-ov-file#quickstart-llamafile
+      - Target Models:
+        - DistilBERT: https://github.com/autodistill/autodistill-distilbert
+        - SetFit: https://github.com/autodistill/autodistill-setfit
     - Utilities:
       - Visualize Predictions: utilities/visualize-predictions.md
       - Combine Models: utilities/combine-models.md
