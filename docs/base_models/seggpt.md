@@ -1,4 +1,7 @@
-# SegGPT
+<span class="sm-button">Segmentation</span>
+<span class="bm-button">Base Model</span>
+
+# What is SegGPT?
 
 [SegGPT](https://github.com/baaivision/Painter/tree/main/SegGPT) is a transformer-based, few-shot semantic segmentation model developed by [BAAI Vision](https://github.com/baaivision).
 

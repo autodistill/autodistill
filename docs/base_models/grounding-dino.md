@@ -1,6 +1,13 @@
-# Grounding DINO
+<span class="od-button">Object Detection</span>
+<span class="bm-button">Base Model</span>
+
+# What is Grounding DINO?
 
 [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO) is a zero-shot object detection model developed by IDEA Research. You can distill knowledge from Grounding DINO into a smaller model using Autodistill.
+
+!!! tip
+
+    You can use Grounding DINO to auto-label images without any code with the [Roboflow Auto Label](https://docs.roboflow.com/annotate/automated-annotation-with-autodistill) product.
 
 ## Installation
 

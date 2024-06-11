@@ -1,4 +1,7 @@
-# FastSAM
+<span class="od-button">Object Detection</span>
+<span class="bm-button">Base Model</span>
+
+# What is FastSAM?
 
 [FastSAM](https://github.com/CASIA-IVA-Lab/FastSAM) is a segmentation model trained on 2% of the SA-1B dataset used to train the [Segment Anything Model](https://github.com/facebookresearch/segment-anything).
 

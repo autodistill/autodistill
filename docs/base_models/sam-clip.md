@@ -1,4 +1,7 @@
-# SAM-CLIP
+<span class="sm-button">Segmentation</span>
+<span class="bm-button">Base Model</span>
+
+# What is SAM-CLIP?
 
 SAM-CLIP uses the [Segment Anything Model](https://github.com/facebookresearch/segment-anything) to identify objects in an image and assign labels to each image. Then, CLIP is used to find masks that are related to the given prompt.
 

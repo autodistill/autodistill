@@ -1,4 +1,7 @@
-# YOLO-World
+<span class="od-button">Object Detection</span>
+<span class="bm-button">Base Model</span>
+
+# What is YOLO-World?
 
 [YOLO-World](https://github.com/AILab-CVC/YOLO-World) is a YOLO-based open vocabulary model for open vocabulary detection.
 
@@ -7,7 +10,6 @@ YOLO-World was developed by Tencent's AI Lab.
 ## Installation
 
 To use YOLO-World with autodistill, you need to install the following dependency:
-
 
 ```bash
 pip3 install autodistill-yolo-world

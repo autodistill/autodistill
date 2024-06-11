@@ -1,4 +1,11 @@
-[ALBEF](https://github.com/salesforce/LAVIS), developed by Salesforce, is a computer vision model that supports a range of tasks, including image-text pre-training, image-text retrieval, visual question anserting, and zero-shot classification. You can classify images using ALBEF with Autodistill.
+<span class="cls-button">Classification</span>
+<span class="bm-button">Base Model</span>
+
+## What is ALBEF?
+
+[ALBEF](https://github.com/salesforce/LAVIS), developed by Salesforce, is a computer vision model that supports a range of tasks, including image-text pre-training, image-text retrieval, visual question anserting, and zero-shot classification.
+
+You can classify images using ALBEF with Autodistill.
 
 ## Installation
 
