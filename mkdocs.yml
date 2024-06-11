@@ -5,7 +5,7 @@ site_description: Distill large foundational models into smaller, domain-specifi
 repo_name: autodistill/autodistill
 repo_url: https://github.com/autodistill/autodistill
 edit_uri: https://github.com/autodistill/autodistill/tree/main/docs
-copyright: Roboflow 2023. All rights reserved.
+copyright: Roboflow 2024. All rights reserved.
 favicon: logo.jpeg
 
 extra:
@@ -28,35 +28,53 @@ nav:
     - Quickstart: quickstart.md
     - Supported Models: supported-models.md
     - What Model Should I Use?: what-model-should-i-use.md
+    - Popular Models:
+      - Grounded SAM: base_models/groundedsam.md
+      - Grounding DINO: base_models/grounding-dino.md
+      - YOLO-World: base_models/yolo-world.md
+      - YOLOv8: target_models/yolov8.md
     - Detection and Segmentation:
       - Base Models:
-        - DETIC: https://github.com/autodistill/autodistill-detic
-        - FastSAM: https://github.com/autodistill/autodistill-fastsam
-        - Grounded SAM: https://github.com/autodistill/autodistill-grounded-sam
-        - Grounding DINO: https://github.com/autodistill/autodistill-grounding-dino
-        - OWL-ViT: https://github.com/autodistill/autodistill-owlvit
-        - Roboflow Universe: https://github.com/autodistill/autodistill-roboflow-universe
-        - SegGPT: https://github.com/autodistill/autodistill-seggpt
+        - CoDet: base_models/codet.md
+        - DETIC: base_models/detic.md
+        - EfficientSAM: base_models/efficientsam.md
+        - Efficient YOLO-World: base_models/efficient-yolo-world.md
+        - FastSAM: base_models/fastsam.md
+        - GPT-4o: base_models/gpt-4o.md
+        - Grounded SAM: base_models/groundedsam.md
+        - Grounded Edge SAM: base_models/grounded-edgesam.md
+        - Grounding DINO: base_models/grounding-dino.md
+        - HLS Geospatial: base_models/hls-geospatial.md
+        - OWL-ViT: base_models/owlvit.md
+        - Roboflow Universe: base_models/universe.md
+        - SAM HQ: base_models/samhq.md
+        - SegGPT: base_models/seggpt.md
+        - VLPart: base_models/vlpart.md
+        - YOLO-World: base_models/yolo-world.md
       - Target Models:
-        - DETR: https://github.com/autodistill/autodistill-detr
-        - YOLOv5: https://github.com/autodistill/autodistill-yolov5
-        - YOLOv8: https://github.com/autodistill/autodistill-yolov8
-        - YOLOv8 Instance Segmentation: https://github.com/autodistill/autodistill-yolov8
-        - YOLO-NAS: https://github.com/autodistill/autodistill-yolonas
+        - DETR: target_models/detr.md
+        - YOLOv5: target_models/yolov5.md
+        - YOLOv8: target_models/yolov8.md
+        - YOLO-NAS: target_models/yolonas.md
     - Classification:
       - Base Models:
-        - ALBEF: https://github.com/autodistill/autodistill-albef
-        - AltCLIP: https://github.com/autodistill/autodistill-altclip
-        - BLIP: https://github.com/autodistill/autodistill-blip
-        - BLIPv2: https://github.com/autodistill/autodistill-blipv2
-        - CLIP: https://github.com/autodistill/autodistill-clip
-        - MetaCLIP: https://github.com/autodistill/autodistill-metaclip
-        - RemoteCLIP: https://github.com/autodistill/autodistill-remoteclip
+        - ALBEF: base_models/albef.md
+        - AltCLIP: base_models/altclip.md
+        - BioCIP: base_models/bioclip.md
+        - BLIP: base_models/blip.md
+        - BLIPv2: base_models/blipv2.md
+        - CLIP: base_models/clip.md
+        - MetaCLIP: base_models/metaclip.md
+        - RemoteCLIP: base_models/remoteclip.md
+        - SigLIP: base_models/siglip.md
       - Target Models:
-        - DINOv2: https://github.com/autodistill/autodistill-dinov2
-        - YOLOv5: https://github.com/autodistill/autodistill-yolov5
-        - YOLOv8: https://github.com/autodistill/autodistill-yolov8
-        - ViT: https://github.com/autodistill/autodistill-vit
+        - DINOv2: target_models/dinov2.md
+        - YOLOv5: target_models/yolov5.md
+        - YOLOv8: target_models/yolov8.md
+        - ViT: target_models/vit.md
+    - Community Models:
+      - Vision:
+        - EvaCLIP: base_models/evaclip.md
     - Utilities:
       - Visualize Predictions: utilities/visualize-predictions.md
       - Combine Models: utilities/combine-models.md
@@ -82,7 +100,7 @@ nav:
     - Ontologies:
       - Caption Ontology: reference/ontologies/caption-ontology.md
       - Embedding Ontology: reference/ontologies/embedding-ontology.md
-  - Contributing: contributing.md
+  - Contributing: /contributing/
 
 extra_css:
   - stylesheets/extra.css

@@ -1,4 +1,9 @@
-# OWL-ViT
+<span class="od-button">Object Detection</span>
+<span class="bm-button">Base Model</span>
+
+_This model has a newer version: [OWLv2](/base_models/owlv2/). We recommend using OWLv2 for better performance._
+
+# What is OWL-ViT?
 
 [OWL-ViT](https://huggingface.co/google/owlvit-base-patch32) is a transformer-based object detection model developed by Google Research.
 

@@ -1,4 +1,7 @@
-# DETIC
+<span class="od-button">Object Detection</span>
+<span class="bm-button">Base Model</span>
+
+# What is DETIC?
 
 [DETIC](https://github.com/facebookresearch/Detic) is a transformer-based object detection and segmentation model developed by Meta Research.
 

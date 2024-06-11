@@ -1,4 +1,8 @@
-# Autodistill EvaCLIP Module
+<span class="cls-button">Classification</span>
+<span class="bm-button">Base Model</span>
+<span class="cm-button">Community Contribution</span>
+
+## What is EvaCLIP?
 
 _Note: This module was contributed by a third-party community member unaffiliated with Roboflow._ 
 

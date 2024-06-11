@@ -1,0 +1,30 @@
+.cls-button {
+    background-color: #CDC1FF;
+    padding: 10px;
+    border-radius: 10px;
+}
+.od-button {
+    background-color: #FFD1DC;
+    padding: 10px;
+    border-radius: 10px;
+}
+.sm-button {
+    background-color: #F5D5ED;
+    padding: 10px;
+    border-radius: 10px;
+}
+.bm-button {
+    background-color: #b4d3ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+.tm-button {
+    background-color: #f1d1ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+.cm-button {
+    background-color: #d3ffd1;
+    padding: 10px;
+    border-radius: 10px;
+}
