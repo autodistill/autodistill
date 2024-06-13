@@ -55,7 +55,7 @@ nav:
         - YOLOv5: target_models/yolov5.md
         - YOLOv8: target_models/yolov8.md
         - YOLO-NAS: target_models/yolonas.md
-    - Classification:
+    - Image Classification:
       - Base Models:
         - ALBEF: base_models/albef.md
         - AltCLIP: base_models/altclip.md
@@ -71,6 +71,12 @@ nav:
         - YOLOv5: target_models/yolov5.md
         - YOLOv8: target_models/yolov8.md
         - ViT: target_models/vit.md
+    - Text Classification:
+      - Base Models:
+        - GPT and LLaMAfile: base_models/gpttext.md
+      - Target Models:
+        - DistilBERT: target_models/distilbert.md
+        - SetFit: target_models/setfit.md
     - Community Models:
       - Vision:
         - EvaCLIP: base_models/evaclip.md

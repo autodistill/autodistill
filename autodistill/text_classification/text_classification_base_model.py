@@ -5,6 +5,7 @@ from autodistill.core import BaseModel
 
 from .text_classification_ontology import TextClassificationOntology
 
+
 @dataclass
 class TextClassificationBaseModel(BaseModel):
     ontology: TextClassificationOntology
