@@ -1,4 +1,4 @@
-opencv-python>=4.6.0
+opencv-python
 supervision==0.21.0
 tqdm
 Pillow>=7.1.2
