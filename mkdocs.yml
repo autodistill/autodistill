@@ -6,7 +6,6 @@ repo_name: autodistill/autodistill
 repo_url: https://github.com/autodistill/autodistill
 edit_uri: https://github.com/autodistill/autodistill/tree/main/docs
 copyright: Roboflow 2024. All rights reserved.
-favicon: logo.jpeg
 
 extra:
   social:
