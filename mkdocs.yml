@@ -140,10 +140,6 @@ theme:
     - content.code.copy
 
 plugins:
-  - social:
-      cards_layout_dir: layouts
-      cards_layout: custom
-      debug: true
   - mkdocstrings
   - search
 
