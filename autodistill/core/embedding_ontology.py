@@ -6,6 +6,7 @@ import supervision as sv
 
 from autodistill.core.embedding_model import EmbeddingModel
 from autodistill.core.ontology import Ontology
+from sklearn.metrics.pairwise import cosine_similarity
 
 ONTOLOGY_WITH_EMBEDDINGS = [
     "EmbeddingOntologyRaw",
