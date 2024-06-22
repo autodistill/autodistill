@@ -11,7 +11,7 @@ from millions of tokens of context, including multiple long documents and hours 
 
 ## Installation
 
-To use EvaCLIP with autodistill, you need to install the following dependency:
+To use Gemini with autodistill, you need to install the following dependency:
 
 ```bash
 pip3 install autodistill-gemini
