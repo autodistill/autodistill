@@ -30,6 +30,7 @@ nav:
     - Popular Models:
       - Grounded SAM: base_models/groundedsam.md
       - Grounding DINO: base_models/grounding-dino.md
+      - PaliGemma: base_models/paligemma.md
       - YOLO-World: base_models/yolo-world.md
       - YOLOv8: target_models/yolov8.md
     - Detection and Segmentation:
@@ -39,12 +40,14 @@ nav:
         - EfficientSAM: base_models/efficientsam.md
         - Efficient YOLO-World: base_models/efficient-yolo-world.md
         - FastSAM: base_models/fastsam.md
+        - Florence-2: base_models/florence2.md
         - GPT-4o: base_models/gpt-4o.md
         - Grounded SAM: base_models/groundedsam.md
         - Grounded Edge SAM: base_models/grounded-edgesam.md
         - Grounding DINO: base_models/grounding-dino.md
         - HLS Geospatial: base_models/hls-geospatial.md
         - OWL-ViT: base_models/owlvit.md
+        - PaliGemma: base_models/paligemma.md
         - Roboflow Universe: base_models/universe.md
         - SAM HQ: base_models/samhq.md
         - SegGPT: base_models/seggpt.md
@@ -52,6 +55,8 @@ nav:
         - YOLO-World: base_models/yolo-world.md
       - Target Models:
         - DETR: target_models/detr.md
+        - Florence-2: base_models/florence2.md
+        - PaliGemma: base_models/paligemma.md
         - YOLOv5: target_models/yolov5.md
         - YOLOv8: target_models/yolov8.md
         - YOLO-NAS: target_models/yolonas.md
