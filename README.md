@@ -238,6 +238,7 @@ tasks first but plan to launch classification support soon! In the future, we ho
 
 | base / target | [YOLOv8](https://github.com/autodistill/autodistill-yolov8) | [YOLO-NAS](https://github.com/autodistill/autodistill-yolonas) | [YOLOv5](https://github.com/autodistill/autodistill-yolov5) | [DETR](https://github.com/autodistill/autodistill-detr) | YOLOv6 | YOLOv7 | MT-YOLOv6 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| [Grounded SAM 2](https://github.com/autodistill/autodistill-grounded-sam-2) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [DETIC](https://github.com/autodistill/autodistill-detic) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [GroundedSAM](https://github.com/autodistill/autodistill-grounded-sam) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |
 | [GroundingDINO](https://github.com/autodistill/autodistill-grounding-dino) | ✅ | ✅ | ✅ | ✅ | 🚧 |  |  |

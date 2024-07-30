@@ -1,6 +1,7 @@
 task, is_base_model, is_target_model, status, display_name, repo_url, pypi_package, docs_file, license
 
 # object detection base models
+object-detection, 1, 0, completed, Grounded SAM 2, autodistill/autodistill-grounded-sam-2, autodistill-grounded-sam-2, base_models/grounded-sam-2.md, Apache-2.0 
 object-detection, 1, 0, completed, DETIC, autodistill/autodistill-detic, autodistill-detic, , MIT
 object-detection, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
 object-detection, 1, 0, completed, GroundingDINO, autodistill/autodistill-grounding-dino, autodistill-grounding-dino, base_models/groundingdino.md, Apache-2.0

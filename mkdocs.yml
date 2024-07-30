@@ -28,6 +28,7 @@ nav:
     - Supported Models: supported-models.md
     - What Model Should I Use?: what-model-should-i-use.md
     - Popular Models:
+      - Grounded SAM 2: base_models/grounded-sam-2.md
       - Grounded SAM: base_models/groundedsam.md
       - Grounding DINO: base_models/grounding-dino.md
       - YOLO-World: base_models/yolo-world.md
