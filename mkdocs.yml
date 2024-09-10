@@ -41,8 +41,8 @@ nav:
         - EfficientSAM: base_models/efficientsam.md
         - Efficient YOLO-World: base_models/efficient-yolo-world.md
         - FastSAM: base_models/fastsam.md
-        - Florence-2: base_models/florence2.md
-        - GPT-4o: base_models/gpt-4o.md
+        - Florence-2: target_models/florence2.md
+        - GPT-4o: base_models/gpt4o.md
         - Grounded SAM: base_models/groundedsam.md
         - Grounded Edge SAM: base_models/grounded-edgesam.md
         - Grounding DINO: base_models/grounding-dino.md
@@ -66,8 +66,6 @@ nav:
         - ALBEF: base_models/albef.md
         - AltCLIP: base_models/altclip.md
         - BioCIP: base_models/bioclip.md
-        - BLIP: base_models/blip.md
-        - BLIPv2: base_models/blipv2.md
         - CLIP: base_models/clip.md
         - MetaCLIP: base_models/metaclip.md
         - RemoteCLIP: base_models/remoteclip.md
