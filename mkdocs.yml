@@ -56,7 +56,7 @@ nav:
         - YOLO-World: base_models/yolo-world.md
       - Target Models:
         - DETR: target_models/detr.md
-        - Florence-2: base_models/florence2.md
+        - Florence-2: target_models/florence2.md
         - PaliGemma: base_models/paligemma.md
         - YOLOv5: target_models/yolov5.md
         - YOLOv8: target_models/yolov8.md
