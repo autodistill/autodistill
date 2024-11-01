@@ -16,8 +16,8 @@ ONTOLOGY_WITH_EMBEDDINGS = [
 
 
 def compare_embeddings(
-    image_embedding: np.array,
-    comparison_embeddings: List[np.array],
+    image_embedding: np.ndarray,
+    comparison_embeddings: List[np.ndarray],
     distance_metric="cosine",
 ):
     """

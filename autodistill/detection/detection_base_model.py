@@ -4,7 +4,7 @@ import os
 from abc import abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
 import cv2
 import numpy as np
@@ -42,11 +42,11 @@ class DetectionBaseModel(BaseModel):
     def _record_confidence_in_files(
         self,
         annotations_directory_path: str,
-        images: Dict[str, np.ndarray],
+        image_names: List[str],
         annotations: Dict[str, sv.Detections],
     ) -> None:
         Path(annotations_directory_path).mkdir(parents=True, exist_ok=True)
-        for image_name, _ in images.items():
+        for image_name in image_names:
             detections = annotations[image_name]
             yolo_annotations_name, _ = os.path.splitext(image_name)
             confidence_path = os.path.join(
@@ -77,7 +77,7 @@ class DetectionBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        images_map = {}
+        image_names = []
         detections_map = {}
 
         if sahi:
@@ -91,7 +91,7 @@ class DetectionBaseModel(BaseModel):
             image = cv2.imread(f_path)
 
             f_path_short = os.path.basename(f_path)
-            images_map[f_path_short] = image.copy()
+            image_names.append(f_path_short)
 
             if sahi:
                 detections = slicer(image)
@@ -106,7 +106,7 @@ class DetectionBaseModel(BaseModel):
             detections_map[f_path_short] = detections
 
         dataset = sv.DetectionDataset(
-            self.ontology.classes(), images_map, detections_map
+            self.ontology.classes(), image_names, detections_map
         )
 
         dataset.as_yolo(
@@ -118,7 +118,7 @@ class DetectionBaseModel(BaseModel):
 
         if record_confidence is True:
             self._record_confidence_in_files(
-                output_folder + "/annotations", images_map, detections_map
+                output_folder + "/annotations", image_names, detections_map
             )
         split_data(output_folder, record_confidence=record_confidence)
 

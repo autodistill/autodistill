@@ -155,6 +155,7 @@ def main(
         classes = ontology.classes()
 
         box_annotator = sv.BoxAnnotator()
+        label_annotator = sv.LabelAnnotator()
 
         image = cv2.imread(images)
 
@@ -173,6 +174,10 @@ def main(
 
         annotated_frame = box_annotator.annotate(
             scene=image.copy(),
+            detections=detections,
+        )
+        annotated_frame = label_annotator.annotate(
+            scene=annotated_frame,
             detections=detections,
             labels=labels,
         )
@@ -196,6 +201,7 @@ def main(
             classes = ontology.classes()
 
             box_annotator = sv.BoxAnnotator()
+            label_annotator = sv.LabelAnnotator()
 
             image = cv2.imread(os.path.join(images, file))
 
@@ -208,6 +214,10 @@ def main(
 
             annotated_frame = box_annotator.annotate(
                 scene=image.copy(),
+                detections=detections,
+            )
+            annotated_frame = label_annotator.annotate(
+                scene=annotated_frame,
                 detections=detections,
                 labels=labels,
             )
