@@ -26,6 +26,6 @@ class BaseModel(ABC):
         self,
         input_folder: str,
         extension: str = ".jpg",
-        output_folder: str | None = None
+        output_folder: str | None = None,
     ) -> sv.BaseDataset:
         pass

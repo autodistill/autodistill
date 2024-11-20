@@ -88,7 +88,7 @@ class DetectionBaseModel(BaseModel):
         progress_bar = tqdm(image_paths, desc="Labeling images")
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
-            
+
             image = cv2.imread(f_path)
             if sahi:
                 detections = slicer(image)

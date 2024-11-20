@@ -26,9 +26,10 @@ class ClassificationBaseModel(BaseModel):
         pass
 
     def label(
-        self, input_folder: str,
+        self,
+        input_folder: str,
         extension: str = ".jpg",
-        output_folder: str | None = None
+        output_folder: str | None = None,
     ) -> sv.ClassificationDataset:
         """
         Label a dataset and save it in a classification folder structure.
