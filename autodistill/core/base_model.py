@@ -23,6 +23,9 @@ class BaseModel(ABC):
 
     @abstractmethod
     def label(
-        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+        self,
+        input_folder: str,
+        extension: str = ".jpg",
+        output_folder: str | None = None
     ) -> sv.BaseDataset:
         pass

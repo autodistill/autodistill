@@ -53,6 +53,8 @@ class DetectionBaseModel(BaseModel):
                 annotations_directory_path,
                 "confidence-" + yolo_annotations_name + ".txt",
             )
+            if detections.confidence is None:
+                raise ValueError("Expected detections to have confidence values.")
             confidence_list = [str(x) for x in detections.confidence.tolist()]
             save_text_file(lines=confidence_list, file_path=confidence_path)
             print("Saved confidence file: " + confidence_path)
@@ -61,10 +63,10 @@ class DetectionBaseModel(BaseModel):
         self,
         input_folder: str,
         extension: str = ".jpg",
-        output_folder: str = None,
+        output_folder: str | None = None,
         human_in_the_loop: bool = False,
-        roboflow_project: str = None,
-        roboflow_tags: str = ["autodistill"],
+        roboflow_project: str | None = None,
+        roboflow_tags: list[str] = ["autodistill"],
         sahi: bool = False,
         record_confidence: bool = False,
         nms_settings: NmsSetting = NmsSetting.NONE,
@@ -85,7 +87,7 @@ class DetectionBaseModel(BaseModel):
 
         files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
-        # iterate through images in input_folder
+
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
             image = cv2.imread(f_path)

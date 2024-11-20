@@ -37,7 +37,6 @@ class ComposedDetectionModel(DetectionBaseModel):
         Returns:
             detections (sv.Detections)
         """
-        detections = []
         opened_image = Image.open(image)
 
         detections = self.detection_model.predict(image)

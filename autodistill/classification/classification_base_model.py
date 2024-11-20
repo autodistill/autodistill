@@ -26,7 +26,9 @@ class ClassificationBaseModel(BaseModel):
         pass
 
     def label(
-        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+        self, input_folder: str,
+        extension: str = ".jpg",
+        output_folder: str | None = None
     ) -> sv.ClassificationDataset:
         """
         Label a dataset and save it in a classification folder structure.
@@ -41,7 +43,7 @@ class ClassificationBaseModel(BaseModel):
 
         files = glob.glob(input_folder + "/*" + extension)
         progress_bar = tqdm(files, desc="Labeling images")
-        # iterate through images in input_folder
+
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
 
