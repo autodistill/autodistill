@@ -38,22 +38,18 @@ class ClassificationBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        images_names = []
+        image_paths = glob.glob(input_folder + "/*" + extension)
         detections_map = {}
 
-        files = glob.glob(input_folder + "/*" + extension)
-        progress_bar = tqdm(files, desc="Labeling images")
-
+        progress_bar = tqdm(image_paths, desc="Labeling images")
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
 
-            f_path_short = os.path.basename(f_path)
-            images_names.append(f_path_short)
             detections = self.predict(f_path)
-            detections_map[f_path_short] = detections
+            detections_map[f_path] = detections
 
         dataset = sv.ClassificationDataset(
-            self.ontology.classes(), images_names, detections_map
+            self.ontology.classes(), image_paths, detections_map
         )
 
         train_cs, test_cs = dataset.split(

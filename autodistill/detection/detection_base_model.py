@@ -79,22 +79,17 @@ class DetectionBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        image_names = []
+        image_paths = glob.glob(input_folder + "/*" + extension)
         detections_map = {}
 
         if sahi:
             slicer = sv.InferenceSlicer(callback=self.predict)
 
-        files = glob.glob(input_folder + "/*" + extension)
-        progress_bar = tqdm(files, desc="Labeling images")
-
+        progress_bar = tqdm(image_paths, desc="Labeling images")
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
+            
             image = cv2.imread(f_path)
-
-            f_path_short = os.path.basename(f_path)
-            image_names.append(f_path_short)
-
             if sahi:
                 detections = slicer(image)
             else:
@@ -105,10 +100,10 @@ class DetectionBaseModel(BaseModel):
             if nms_settings == NmsSetting.CLASS_AGNOSTIC:
                 detections = detections.with_nms(class_agnostic=True)
 
-            detections_map[f_path_short] = detections
+            detections_map[f_path] = detections
 
         dataset = sv.DetectionDataset(
-            self.ontology.classes(), image_names, detections_map
+            self.ontology.classes(), image_paths, detections_map
         )
 
         dataset.as_yolo(
@@ -118,7 +113,8 @@ class DetectionBaseModel(BaseModel):
             data_yaml_path=output_folder + "/data.yaml",
         )
 
-        if record_confidence is True:
+        if record_confidence:
+            image_names = [os.path.basename(f_path) for f_path in image_paths]
             self._record_confidence_in_files(
                 output_folder + "/annotations", image_names, detections_map
             )
