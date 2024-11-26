@@ -1,5 +1,5 @@
 opencv-python
-supervision==0.21.0
+supervision==0.25.0
 tqdm
 Pillow>=7.1.2
 PyYAML>=5.3.1

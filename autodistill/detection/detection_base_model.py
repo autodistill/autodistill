@@ -4,7 +4,7 @@ import os
 from abc import abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
 import cv2
 import numpy as np
@@ -42,17 +42,19 @@ class DetectionBaseModel(BaseModel):
     def _record_confidence_in_files(
         self,
         annotations_directory_path: str,
-        images: Dict[str, np.ndarray],
+        image_names: List[str],
         annotations: Dict[str, sv.Detections],
     ) -> None:
         Path(annotations_directory_path).mkdir(parents=True, exist_ok=True)
-        for image_name, _ in images.items():
+        for image_name in image_names:
             detections = annotations[image_name]
             yolo_annotations_name, _ = os.path.splitext(image_name)
             confidence_path = os.path.join(
                 annotations_directory_path,
                 "confidence-" + yolo_annotations_name + ".txt",
             )
+            if detections.confidence is None:
+                raise ValueError("Expected detections to have confidence values.")
             confidence_list = [str(x) for x in detections.confidence.tolist()]
             save_text_file(lines=confidence_list, file_path=confidence_path)
             print("Saved confidence file: " + confidence_path)
@@ -61,10 +63,10 @@ class DetectionBaseModel(BaseModel):
         self,
         input_folder: str,
         extension: str = ".jpg",
-        output_folder: str = None,
+        output_folder: str | None = None,
         human_in_the_loop: bool = False,
-        roboflow_project: str = None,
-        roboflow_tags: str = ["autodistill"],
+        roboflow_project: str | None = None,
+        roboflow_tags: list[str] = ["autodistill"],
         sahi: bool = False,
         record_confidence: bool = False,
         nms_settings: NmsSetting = NmsSetting.NONE,
@@ -77,22 +79,17 @@ class DetectionBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        images_map = {}
+        image_paths = glob.glob(input_folder + "/*" + extension)
         detections_map = {}
 
         if sahi:
             slicer = sv.InferenceSlicer(callback=self.predict)
 
-        files = glob.glob(input_folder + "/*" + extension)
-        progress_bar = tqdm(files, desc="Labeling images")
-        # iterate through images in input_folder
+        progress_bar = tqdm(image_paths, desc="Labeling images")
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
+
             image = cv2.imread(f_path)
-
-            f_path_short = os.path.basename(f_path)
-            images_map[f_path_short] = image.copy()
-
             if sahi:
                 detections = slicer(image)
             else:
@@ -103,10 +100,10 @@ class DetectionBaseModel(BaseModel):
             if nms_settings == NmsSetting.CLASS_AGNOSTIC:
                 detections = detections.with_nms(class_agnostic=True)
 
-            detections_map[f_path_short] = detections
+            detections_map[f_path] = detections
 
         dataset = sv.DetectionDataset(
-            self.ontology.classes(), images_map, detections_map
+            self.ontology.classes(), image_paths, detections_map
         )
 
         dataset.as_yolo(
@@ -116,9 +113,10 @@ class DetectionBaseModel(BaseModel):
             data_yaml_path=output_folder + "/data.yaml",
         )
 
-        if record_confidence is True:
+        if record_confidence:
+            image_names = [os.path.basename(f_path) for f_path in image_paths]
             self._record_confidence_in_files(
-                output_folder + "/annotations", images_map, detections_map
+                output_folder + "/annotations", image_names, detections_map
             )
         split_data(output_folder, record_confidence=record_confidence)
 

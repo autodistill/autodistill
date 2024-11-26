@@ -22,6 +22,7 @@ detections = base_model.predict_sahi("./image.jpg")
 classes = ["person"]
 
 box_annotator = sv.BoxAnnotator()
+label_annotator = sv.LabelAnnotator()
 
 labels = [
 	f"{classes[class_id]} {confidence:0.2f}"
@@ -33,6 +34,10 @@ image = cv2.imread("./image.jpg")
 
 annotated_frame = box_annotator.annotate(
 	scene=image.copy(),
+	detections=detections
+)
+annotated_frame = label_annotator.annotate(
+	scene=annotated_frame,
 	detections=detections,
 	labels=labels
 )

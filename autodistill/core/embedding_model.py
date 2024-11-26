@@ -22,14 +22,14 @@ class EmbeddingModel(ABC):
         self.ontology = ontology
 
     @abstractmethod
-    def embed_image(self, input: Any) -> np.array:
+    def embed_image(self, input: Any) -> np.ndarray:
         """
         Calculate an image embedding for an image.
         """
         pass
 
     @abstractmethod
-    def embed_text(self, input: Any) -> np.array:
+    def embed_text(self, input: Any) -> np.ndarray:
         """
         Calculate a text embedding for an image.
         """

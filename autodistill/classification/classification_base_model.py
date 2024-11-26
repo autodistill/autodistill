@@ -3,7 +3,6 @@ import os
 from abc import abstractmethod
 from dataclasses import dataclass
 
-import cv2
 import supervision as sv
 from tqdm import tqdm
 
@@ -27,7 +26,10 @@ class ClassificationBaseModel(BaseModel):
         pass
 
     def label(
-        self, input_folder: str, extension: str = ".jpg", output_folder: str = None
+        self,
+        input_folder: str,
+        extension: str = ".jpg",
+        output_folder: str | None = None,
     ) -> sv.ClassificationDataset:
         """
         Label a dataset and save it in a classification folder structure.
@@ -37,23 +39,18 @@ class ClassificationBaseModel(BaseModel):
 
         os.makedirs(output_folder, exist_ok=True)
 
-        images_map = {}
+        image_paths = glob.glob(input_folder + "/*" + extension)
         detections_map = {}
 
-        files = glob.glob(input_folder + "/*" + extension)
-        progress_bar = tqdm(files, desc="Labeling images")
-        # iterate through images in input_folder
+        progress_bar = tqdm(image_paths, desc="Labeling images")
         for f_path in progress_bar:
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
-            image = cv2.imread(f_path)
 
-            f_path_short = os.path.basename(f_path)
-            images_map[f_path_short] = image.copy()
             detections = self.predict(f_path)
-            detections_map[f_path_short] = detections
+            detections_map[f_path] = detections
 
         dataset = sv.ClassificationDataset(
-            self.ontology.classes(), images_map, detections_map
+            self.ontology.classes(), image_paths, detections_map
         )
 
         train_cs, test_cs = dataset.split(
