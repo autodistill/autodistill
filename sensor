@@ -1,0 +1,205 @@
+#include <FirebaseESP8266.h>
+#include <ESP8266WiFi.h>
+#include <DHT.h>
+
+// Firebase configuration
+#define FIREBASE_HOST "jalmitra-76609-default-rtdb.firebaseio.com"
+#define FIREBASE_AUTH "LP7mwsOiP1J3CbWvWJpOVCHnoGgsIZ0kJVrX52AW"
+
+// WiFi credentials
+#define WIFI_SSID "SHASHANK 1293"
+#define WIFI_PASSWORD "12345678"
+
+// DHT Sensor settings
+#define DHTPIN D4      // DHT sensor connected to GPIO2 (D4 on NodeMCU)
+#define DHTTYPE DHT11  // Change to DHT22 if you're using a DHT22 sensor
+
+// Initialize the DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+const int gasSensorPin = A0;  // MQ-3 connected to A0 (analog pin on NodeMCU)
+const int turbiditySensorPin = A0;  // Turbidity sensor connected to A1 (analog pin on NodeMCU)
+
+// Ultrasonic sensor pins (TRIG and ECHO)
+#define TRIG_PIN1 D5
+#define ECHO_PIN1 D6
+#define TRIG_PIN2 D7
+#define ECHO_PIN2 D8
+#define TRIG_PIN3 D1
+#define ECHO_PIN3 D2
+#define TRIG_PIN4 D3
+#define ECHO_PIN4 D4
+
+// Firebase objects
+FirebaseData firebaseData;
+FirebaseConfig config;
+FirebaseAuth auth;
+
+int lastReadingNumber = 0;
+
+// Function to get distance from ultrasonic sensor
+long getUltrasonicDistance(int trigPin, int echoPin) {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+  long distance = duration * 0.034 / 2;  // Calculate distance in cm
+  return distance;
+}
+
+void setup() {
+  Serial.begin(115200);
+  
+  pinMode(gasSensorPin, INPUT);
+  pinMode(turbiditySensorPin, INPUT);
+  
+  // Setup ultrasonic sensor pins
+  pinMode(TRIG_PIN1, OUTPUT);
+  pinMode(ECHO_PIN1, INPUT);
+  pinMode(TRIG_PIN2, OUTPUT);
+  pinMode(ECHO_PIN2, INPUT);
+  pinMode(TRIG_PIN3, OUTPUT);
+  pinMode(ECHO_PIN3, INPUT);
+  pinMode(TRIG_PIN4, OUTPUT);
+  pinMode(ECHO_PIN4, INPUT);
+
+  // Connect to WiFi
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("Connected to WiFi!");
+
+  // Warm-up time for the gas sensor
+  Serial.println("Gas sensor is warming up...");
+  delay(10000);
+
+  // Initialize DHT sensor
+  dht.begin();
+
+  // Configure Firebase
+  config.host = FIREBASE_HOST;
+  config.signer.tokens.legacy_token = FIREBASE_AUTH;
+
+  // Initialize Firebase
+  Firebase.begin(&config, &auth);
+
+  // Test Firebase connection
+  if (Firebase.ready()) {
+    Serial.println("Connected to Firebase!");
+  } else {
+    Serial.println("Failed to connect to Firebase.");
+  }
+
+  // Fetch the last reading number from Firebase
+  if (Firebase.getInt(firebaseData, "/sensor/lastReadingNumber")) {
+    lastReadingNumber = firebaseData.intData();
+    Serial.print("Last Reading Number: ");
+    Serial.println(lastReadingNumber);
+  } else {
+    Serial.println("Failed to fetch last reading number.");
+    Serial.println(firebaseData.errorReason());
+  }
+}
+
+void loop() {
+  // Read gas sensor value (MQ-3)
+  int gasValue = analogRead(gasSensorPin);
+  
+  // Convert gas value to voltage (for better understanding)
+  float gasVoltage = (gasValue / 1024.0) * 3.3;  // 3.3V is the NodeMCU's operating voltage
+
+  // Simulate CO2 reading (replace with actual CO2 sensor if available)
+  float co2Value = gasVoltage * 1000;  // Simulate CO2 based on gas sensor (placeholder)
+
+  // Read temperature and humidity from DHT sensor
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
+
+  // Read turbidity sensor value
+  int turbidityValue = analogRead(turbiditySensorPin);  // Raw value from turbidity sensor
+
+  // Check if DHT reading is valid
+  if (isnan(temperature) || isnan(humidity)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+  // Display sensor readings
+  Serial.print("Gas Voltage: ");
+  Serial.print(gasVoltage);
+  Serial.println(" V");
+
+  Serial.print("Simulated CO2 Level: ");
+  Serial.print(co2Value);
+  Serial.println(" ppm");
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  // Display turbidity sensor value (can be converted to NTU if needed)
+  Serial.print("Turbidity Sensor Value: ");
+  Serial.println(turbidityValue);  // Display raw turbidity value
+
+  // Read ultrasonic sensor values
+  long distance1 = getUltrasonicDistance(TRIG_PIN1, ECHO_PIN1);
+  long distance2 = getUltrasonicDistance(TRIG_PIN2, ECHO_PIN2);
+  long distance3 = getUltrasonicDistance(TRIG_PIN3, ECHO_PIN3);
+  long distance4 = getUltrasonicDistance(TRIG_PIN4, ECHO_PIN4);
+
+  // Display ultrasonic distances
+  Serial.print("Distance from Ultrasonic Sensor 1: ");
+  Serial.println(distance1);
+  Serial.print("Distance from Ultrasonic Sensor 2: ");
+  Serial.println(distance2);
+  Serial.print("Distance from Ultrasonic Sensor 3: ");
+  Serial.println(distance3);
+  Serial.print("Distance from Ultrasonic Sensor 4: ");
+  Serial.println(distance4);
+
+  // Write to Firebase
+  if (gasVoltage >= 0.3) {
+    lastReadingNumber++;
+    String path = "/sensor_read/reading" + String(lastReadingNumber);
+
+    FirebaseJson json;
+    json.set("airquality_voltage", gasVoltage);
+    json.set("simulated_co2", co2Value);  // Placeholder for CO2 value
+    json.set("temperature", temperature);
+    json.set("humidity", humidity);
+    json.set("turbidity", turbidityValue);  
+    json.set("distance1", distance1);
+    json.set("distance2", distance2);
+    json.set("distance3", distance3);
+    json.set("distance4", distance4);
+
+    if (Firebase.set(firebaseData, path, json)) {
+      Serial.println("Data written to Firebase successfully.");
+    } else {
+      Serial.println("Failed to write sensor data to Firebase.");
+      Serial.println(firebaseData.errorReason());
+    }
+
+    if (Firebase.setInt(firebaseData, "/sensor/lastReadingNumber", lastReadingNumber)) {
+      Serial.print("Updated lastReadingNumber to ");
+      Serial.println(lastReadingNumber);
+    } else {
+      Serial.println("Failed to update last reading number.");
+      Serial.println(firebaseData.errorReason());
+    }
+  } else {
+    Serial.println("Gas level is below threshold. Skipping Firebase update.");
+  }
+
+  delay(2000);
+}
