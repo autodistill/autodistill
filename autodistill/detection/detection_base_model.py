@@ -48,7 +48,7 @@ class DetectionBaseModel(BaseModel):
         Path(annotations_directory_path).mkdir(parents=True, exist_ok=True)
         for image_name in image_names:
             detections = annotations[image_name]
-            yolo_annotations_name, _ = os.path.splitext(image_name)
+            yolo_annotations_name, _ = os.path.splitext(os.path.basename(image_name))
             confidence_path = os.path.join(
                 annotations_directory_path,
                 "confidence-" + yolo_annotations_name + ".txt",
@@ -114,7 +114,8 @@ class DetectionBaseModel(BaseModel):
         )
 
         if record_confidence:
-            image_names = [os.path.basename(f_path) for f_path in image_paths]
+            #image_names = [os.path.basename(f_path) for f_path in image_paths]
+            image_names = image_paths
             self._record_confidence_in_files(
                 output_folder + "/annotations", image_names, detections_map
             )
