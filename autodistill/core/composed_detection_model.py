@@ -1,3 +1,4 @@
+import tempfile
 import numpy as np
 import supervision as sv
 from PIL import Image
@@ -52,16 +53,18 @@ class ComposedDetectionModel(DetectionBaseModel):
 
             opened_image = Image.fromarray(annotated_frame)
 
-            opened_image.save("temp.jpeg")
+            # save as tempfile
+            with tempfile.NamedTemporaryFile(suffix=".jpeg", dir=".", prefix="detection_") as cropped_detection_file:
+                opened_image.save(cropped_detection_file.name)
 
-            if not hasattr(self.classification_model, "set_of_marks"):
-                raise Exception(
-                    f"The set classification model does not have a set_of_marks method. Supported models: {SET_OF_MARKS_SUPPORTED_MODELS}"
+                if not hasattr(self.classification_model, "set_of_marks"):
+                    raise Exception(
+                        f"The set classification model does not have a set_of_marks method. Supported models: {SET_OF_MARKS_SUPPORTED_MODELS}"
+                    )
+
+                result = self.classification_model.set_of_marks(
+                    input=image, masked_input=cropped_detection_file.name, classes=labels, masks=detections
                 )
-
-            result = self.classification_model.set_of_marks(
-                input=image, masked_input="temp.jpeg", classes=labels, masks=detections
-            )
 
             return detections
 
@@ -70,9 +73,10 @@ class ComposedDetectionModel(DetectionBaseModel):
             region = opened_image.crop((bbox[0], bbox[1], bbox[2], bbox[3]))
 
             # save as tempfile
-            region.save("temp.jpeg")
+            with tempfile.NamedTemporaryFile(suffix=".jpeg", dir=".", prefix="detection_") as cropped_detection_file:
+                region.save(cropped_detection_file.name)
 
-            result = self.classification_model.predict("temp.jpeg")
+                result = self.classification_model.predict(cropped_detection_file.name)
 
             if len(result.class_id) == 0:
                 continue
