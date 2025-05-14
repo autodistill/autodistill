@@ -61,14 +61,36 @@ def load_image(
             pil_image = Image.open(BytesIO(response.content))
             return np.array(pil_image)
     elif os.path.isfile(image):
-        if return_format == "PIL":
-            return Image.open(image)
-        elif return_format == "cv2":
-            # channels need to be reversed for cv2
-            return cv2.cvtColor(np.array(Image.open(image)), cv2.COLOR_RGB2BGR)
-        elif return_format == "numpy":
-            pil_image = Image.open(image)
-            return np.array(pil_image)
+        # Special handling for PPM files
+        if image.lower().endswith('.ppm'):
+            if return_format == "PIL":
+                return Image.open(image)
+            elif return_format == "cv2":
+                # For PPM files, we can use cv2.imread directly
+                cv2_image = cv2.imread(image)
+                if cv2_image is None:
+                    # Fallback to PIL if cv2 can't read it
+                    return cv2.cvtColor(np.array(Image.open(image)), cv2.COLOR_RGB2BGR)
+                return cv2_image
+            elif return_format == "numpy":
+                # Try with cv2 first for better performance with PPM
+                cv2_image = cv2.imread(image)
+                if cv2_image is None:
+                    # Fallback to PIL
+                    pil_image = Image.open(image)
+                    return np.array(pil_image)
+                # Convert BGR to RGB for numpy array
+                return cv2.cvtColor(cv2_image, cv2.COLOR_BGR2RGB)
+        else:
+            # Regular handling for other image formats
+            if return_format == "PIL":
+                return Image.open(image)
+            elif return_format == "cv2":
+                # channels need to be reversed for cv2
+                return cv2.cvtColor(np.array(Image.open(image)), cv2.COLOR_RGB2BGR)
+            elif return_format == "numpy":
+                pil_image = Image.open(image)
+                return np.array(pil_image)
     else:
         raise ValueError(f"{image} is not a valid file path or URI")
 
@@ -84,8 +106,8 @@ def split_data(base_dir, split_ratio=0.8, record_confidence=False):
             os.rename(
                 os.path.join(images_dir, file), os.path.join(images_dir, new_file_name)
             )
-
-    # Convert .png and .jpeg images to .jpg
+    
+    # Convert .png, .jpeg, and .ppm images to .jpg
     for file in os.listdir(images_dir):
         if file.endswith(".png"):
             img = Image.open(os.path.join(images_dir, file))
@@ -96,6 +118,11 @@ def split_data(base_dir, split_ratio=0.8, record_confidence=False):
             img = Image.open(os.path.join(images_dir, file))
             rgb_img = img.convert("RGB")
             rgb_img.save(os.path.join(images_dir, file.replace(".jpeg", ".jpg")))
+            os.remove(os.path.join(images_dir, file))
+        if file.endswith(".ppm"):
+            img = Image.open(os.path.join(images_dir, file))
+            rgb_img = img.convert("RGB")
+            rgb_img.save(os.path.join(images_dir, file.replace(".ppm", ".jpg")))
             os.remove(os.path.join(images_dir, file))
 
     # Get list of all files (removing the image file extension)
