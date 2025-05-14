@@ -152,6 +152,8 @@ theme:
 plugins:
   - mkdocstrings
   - search
+  - autorefs:
+      link_titles: true
 
 markdown_extensions:
   - admonition
