@@ -17,26 +17,16 @@ object-detection, 1, 0, completed, AWS Rekognition, autodistill/autodistill-reko
 object-detection, 1, 0, completed, Google Vision, autodistill/autodistill-gcp-vision, autodistill-gcp-vision, base_models/gcp_vision.md, Apache-2.0
 
 # object detection target models
-object-detection, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
-object-detection, 0, 1, completed, YOLO-NAS, autodistill/autodistill-yolonas, autodistill-yolonas, , Other
-object-detection, 0, 1, completed, YOLOv5, autodistill/autodistill-yolov5, autodistill-yolov5, , AGPL-3.0
+object-detection, 0, 1, completed, RF-DETR, autodistill/autodistill-rfdetr, autodistill-rfdetr, , Apache-2.0
 object-detection, 0, 1, completed, DETR, autodistill/autodistill-detr, autodistill-detr, , Apache-2.0
-object-detection, 0, 1, in-progress, YOLOv6
-object-detection, 0, 1, not-started, YOLOv7
-object-detection, 0, 1, not-started, MT-YOLOv6
 
 # instance segmentation base models
 instance-segmentation, 1, 0, completed, GroundedSAM, autodistill/autodistill-grounded-sam, autodistill-grounded-sam, base_models/groundedsam.md, Apache-2.0
 instance-segmentation, 1, 0, completed, SAM-CLIP
 instance-segmentation, 1, 0, completed, SegGPT
-instance-segmentation, 1, 0, in-progress, FastSAM
 
 # instance segmentation target models
-instance-segmentation, 0, 1, completed, YOLOv8, autodistill/autodistill-yolov8, autodistill-yolov8, , AGPL-3.0
-instance-segmentation, 0, 1, in-progress, YOLO-NAS, autodistill/autodistill-yolonas, autodistill-yolonas, , Other
-instance-segmentation, 0, 1, in-progress, YOLOv5, autodistill/autodistill-yolov5, autodistill-yolov5, , AGPL-3.0
-instance-segmentation, 0, 1, not-started, YOLOv7
-instance-segmentation, 0, 1, not-started, Segformer
+instance-segmentation, 0, 1, completed, RF-DETR Seg, autodistill/autodistill-rfdetr, autodistill-rfdetr, , Apache 2.0
 
 # classification base models
 classification, 1, 0, completed, CLIP, autodistill/autodistill-clip, autodistill-clip, , MIT
@@ -48,11 +38,6 @@ classification, 1, 0, completed, FastViT, autodistill/autodistill-fastvit, autod
 classification, 1, 0, completed, AltCLIP, autodistill/autodistill-altcip, autodistill-altclip, base_models/altclip.md, Apache-2.0
 classification, 1, 0, completed, EvaCLIP, lab176344/autodistill-evaclip, autodistill-evaclip, base_models/evaclip.md, Apache-2.0
 classification, 1, 0, completed, Gemini, https://github.com/autodistill/autodistill-gemini, base_models/gemini.md
-
-classification, 1, 0, in-progress, Fuyu
-classification, 1, 0, in-progress, Open Flamingo
-classification, 1, 0, not-started, GPT-4
-classification, 1, 0, not-started, PaLM-2
 
 # classification target models
 classification, 0, 1, completed, ViT, autodistill/autodistill-vit, autodistill-vit, , Apache-2.0

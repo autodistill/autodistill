@@ -33,7 +33,6 @@ nav:
       - Grounding DINO: base_models/grounding-dino.md
       - PaliGemma: base_models/paligemma.md
       - YOLO-World: base_models/yolo-world.md
-      - YOLOv8: target_models/yolov8.md
     - Detection and Segmentation:
       - Base Models:
         - CoDet: base_models/codet.md
@@ -55,12 +54,10 @@ nav:
         - VLPart: base_models/vlpart.md
         - YOLO-World: base_models/yolo-world.md
       - Target Models:
+        - RF-DETR: target_models/rfdetr.md
         - DETR: target_models/detr.md
         - Florence-2: target_models/florence2.md
         - PaliGemma: base_models/paligemma.md
-        - YOLOv5: target_models/yolov5.md
-        - YOLOv8: target_models/yolov8.md
-        - YOLO-NAS: target_models/yolonas.md
     - Image Classification:
       - Base Models:
         - ALBEF: base_models/albef.md

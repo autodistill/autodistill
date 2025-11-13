@@ -14,7 +14,7 @@ from autodistill.registry import import_requisite_module
 with open(os.path.join(os.path.dirname(__file__), "models.csv")) as csvfile:
     models = list(csv.DictReader(csvfile))
 
-SUPPORTED_ROBOFLOW_MODEL_UPLOADS = ["yolov5", "yolov5-seg", "yolov8", "yolov8-seg"]
+SUPPORTED_ROBOFLOW_MODEL_UPLOADS = ["yolov5", "yolov5-seg", "yolov8", "yolov8-seg", "rfdetr", "rfdetr-seg"]
 
 SUPPORTED_MODEL_TYPES = ["detection", "segmentation" "classification"]
 
