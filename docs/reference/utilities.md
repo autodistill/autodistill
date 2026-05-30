@@ -15,3 +15,7 @@ Learn about utility functions available for use with Autodistill.
 ## Split Video Frames
 
 :::autodistill.helpers.split_video_frames
+
+## Mine Hard Negatives
+
+:::autodistill.detection.hard_negative_miner.HardNegativeMiner
