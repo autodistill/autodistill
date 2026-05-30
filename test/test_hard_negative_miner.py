@@ -5,6 +5,9 @@ import numpy as np
 import supervision as sv
 from PIL import Image
 
+from autodistill.core.embedding_model import EmbeddingModel
+from autodistill.detection.caption_ontology import CaptionOntology
+from autodistill.detection.detection_base_model import DetectionBaseModel
 from autodistill.detection.hard_negative_miner import HardNegativeMiner
 
 
@@ -59,6 +62,32 @@ class FakeEmbedder:
             raise embedding
 
         return embedding
+
+
+class ConcreteColorEmbedder(EmbeddingModel):
+    def embed_text(self, input):
+        return np.array([1.0, 0.0, 0.0])
+
+    def embed_image(self, input):
+        with Image.open(input) as image:
+            rgb = image.convert("RGB").resize((1, 1))
+            return np.asarray(rgb, dtype=float).reshape(-1) / 255.0
+
+
+class ConcreteDetectionBaseModel(DetectionBaseModel):
+    def predict(self, input):
+        if Path(input).name == "true_positive.jpg":
+            return sv.Detections(
+                xyxy=np.array([[0.0, 0.0, 1.0, 1.0]]),
+                confidence=np.array([0.95]),
+                class_id=np.array([0]),
+            )
+
+        return sv.Detections(
+            xyxy=np.empty((0, 4)),
+            confidence=np.array([]),
+            class_id=np.array([], dtype=int),
+        )
 
 
 def write_image(path, color=(255, 255, 255)):
@@ -208,6 +237,61 @@ def test_rejects_real_supervision_target_detection(tmp_path):
     assert len(report.rejected) == 1
     assert report.rejected[0].reason == "target_detected"
     assert report.rejected[0].max_target_confidence == 0.95
+
+
+def test_mines_with_concrete_model_subclasses_and_real_detections(tmp_path):
+    dataset_dir = make_dataset(tmp_path)
+    candidate_pool = tmp_path / "candidates"
+    write_image(candidate_pool / "near_negative.jpg", color=(240, 30, 30))
+    write_image(candidate_pool / "far_negative.jpg", color=(0, 0, 255))
+    write_image(candidate_pool / "true_positive.jpg", color=(255, 0, 0))
+    (candidate_pool / "corrupt.jpg").write_text("not an image", encoding="utf-8")
+
+    ontology = CaptionOntology({"red target": "target"})
+    miner = HardNegativeMiner(
+        embedder=ConcreteColorEmbedder(ontology=ontology),
+        base_model=ConcreteDetectionBaseModel(ontology=ontology),
+    )
+
+    report = miner.mine(
+        dataset_dir=str(dataset_dir),
+        candidate_pool=str(candidate_pool),
+        target_prompt="red target",
+        target_class="target",
+        max_ratio=0.2,
+        confirm_threshold=0.05,
+    )
+
+    assert len(report.accepted) == 2
+    assert {Path(decision.source_path).name for decision in report.accepted} == {
+        "near_negative.jpg",
+        "far_negative.jpg",
+    }
+    assert {decision.reason for decision in report.rejected} == {
+        "embedding_failed",
+        "target_detected",
+    }
+
+    for decision in report.accepted:
+        assert Path(decision.destination_image_path).is_file()
+        destination_label = Path(decision.destination_label_path)
+        assert destination_label.is_file()
+        assert destination_label.read_text(encoding="utf-8") == ""
+
+    rejected_by_source = {
+        Path(decision.source_path).name: decision for decision in report.rejected
+    }
+    assert rejected_by_source["true_positive.jpg"].max_target_confidence == 0.95
+    assert "UnidentifiedImageError" in rejected_by_source["corrupt.jpg"].error
+
+    manifest = [
+        json.loads(line)
+        for line in (dataset_dir / "hard_negative_manifest.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert len(manifest) == 4
+    assert sum(decision["accepted"] for decision in manifest) == 2
 
 
 def test_confirm_threshold_zero_accepts_no_detection_candidate(tmp_path):
