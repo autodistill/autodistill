@@ -91,6 +91,7 @@ nav:
       - Use SAHI to Detect Objects: utilities/sahi.md
       - Use Embeddings in Classification: utilities/use-embeddings-in-classification.md
       - Apply Non-Maximum Suppression (NMS): utilities/nms.md
+      - Mine Hard Negatives: utilities/hard-negative-mining.md
     - Advanced:
       - Command Line Interface: command-line-interface.md
       - Image Loading: image-loading.md
