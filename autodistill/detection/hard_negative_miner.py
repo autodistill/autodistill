@@ -5,7 +5,6 @@ import json
 import math
 import os
 import re
-from contextlib import nullcontext
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import List, Tuple
@@ -161,12 +160,9 @@ class HardNegativeMiner:
             self._write_manifest(report, dataset_path, output_manifest)
             return report
 
+        prototype = self._flatten_embedding(self.embedder.embed_text(target_prompt))
         candidates = self._candidate_images(candidate_path, dataset_path, extensions)
-
-        with self._embedding_inference_context():
-            prototype = self._flatten_embedding(self.embedder.embed_text(target_prompt))
-            ranked_candidates, rejected = self._rank_candidates(candidates, prototype)
-
+        ranked_candidates, rejected = self._rank_candidates(candidates, prototype)
         target_class_id = self._resolve_target_class_id(target_class)
 
         accepted: List[HardNegativeDecision] = []
@@ -487,22 +483,6 @@ class HardNegativeMiner:
             return 0.0
 
         return float(np.dot(first, second) / denominator)
-
-    def _embedding_inference_context(self):
-        try:
-            import torch
-        except ImportError:
-            return nullcontext()
-
-        inference_mode = getattr(torch, "inference_mode", None)
-        if inference_mode is not None:
-            return inference_mode()
-
-        no_grad = getattr(torch, "no_grad", None)
-        if no_grad is not None:
-            return no_grad()
-
-        return nullcontext()
 
     def _is_relative_to(self, path: Path, parent: Path) -> bool:
         try:

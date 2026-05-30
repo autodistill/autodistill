@@ -1,5 +1,4 @@
 import json
-import sys
 from pathlib import Path
 
 import numpy as np
@@ -63,20 +62,6 @@ class FakeEmbedder:
             raise embedding
 
         return embedding
-
-
-class InferenceModeCheckingEmbedder(FakeEmbedder):
-    def __init__(self, image_embeddings, text_embedding, torch_module):
-        super().__init__(image_embeddings, text_embedding)
-        self.torch_module = torch_module
-
-    def embed_text(self, input):
-        assert self.torch_module.inference_active is True
-        return super().embed_text(input)
-
-    def embed_image(self, input):
-        assert self.torch_module.inference_active is True
-        return super().embed_image(input)
 
 
 class ConcreteColorEmbedder(EmbeddingModel):
@@ -451,46 +436,6 @@ def test_embedding_failure_is_recorded_and_mining_continues(tmp_path):
         .splitlines()
     ]
     assert any(decision["reason"] == "embedding_failed" for decision in manifest)
-
-
-def test_embedding_calls_use_optional_torch_inference_context(tmp_path, monkeypatch):
-    class FakeInferenceMode:
-        def __enter__(self):
-            FakeTorch.inference_active = True
-
-        def __exit__(self, exc_type, exc_value, traceback):
-            FakeTorch.inference_active = False
-
-    class FakeTorch:
-        inference_active = False
-
-        @staticmethod
-        def inference_mode():
-            return FakeInferenceMode()
-
-    monkeypatch.setitem(sys.modules, "torch", FakeTorch)
-
-    dataset_dir = make_dataset(tmp_path)
-    candidate_pool = tmp_path / "candidates"
-    write_image(candidate_pool / "candidate.jpg")
-
-    embedder = InferenceModeCheckingEmbedder(
-        image_embeddings={"candidate.jpg": np.array([1.0, 0.0])},
-        text_embedding=np.array([1.0, 0.0]),
-        torch_module=FakeTorch,
-    )
-    miner = HardNegativeMiner(embedder=embedder, base_model=FakeBaseModel())
-
-    report = miner.mine(
-        dataset_dir=str(dataset_dir),
-        candidate_pool=str(candidate_pool),
-        target_prompt="target",
-        max_ratio=0.2,
-        top_k=1,
-    )
-
-    assert len(report.accepted) == 1
-    assert FakeTorch.inference_active is False
 
 
 def test_copy_failure_is_recorded_and_mining_continues(tmp_path):
