@@ -90,6 +90,13 @@ class DetectionBaseModel(BaseModel):
             progress_bar.set_description(desc=f"Labeling {f_path}", refresh=True)
 
             image = cv2.imread(f_path)
+            # Skip files that cv2 cannot read (e.g. missing, corrupt, or
+            # zero-byte) instead of crashing with AttributeError downstream.
+            # See issue #101.
+            if image is None:
+                print(f"Skipping unreadable image: {f_path}")
+                continue
+
             if sahi:
                 detections = slicer(image)
             else:
