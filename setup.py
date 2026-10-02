@@ -22,7 +22,9 @@ setuptools.setup(
     url="https://github.com/autodistill/autodistill",
     install_requires=[
         "opencv-python>=4.6.0",
-        "supervision",
+        # supervision>=0.21.0 renamed BaseDataset -> DetectionDataset, breaking
+        # autodistill's public API (see issue #182). Pin below the rename.
+        "supervision>=0.14.0,<0.21.0",
         "tqdm",
         "Pillow>=7.1.2",
         "PyYAML>=5.3.1",
