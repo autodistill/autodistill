@@ -127,7 +127,7 @@ pip install autodistill autodistill-grounded-sam autodistill-yolov8
 You can also clone the project from GitHub for local development:
 
 ```bash
-git clone https://github.com/roboflow/autodistill
+git clone https://github.com/autodistill/autodistill
 cd autodistill
 pip install -e .
 ```
