@@ -176,29 +176,46 @@ def split_data(base_dir, split_ratio=0.8, record_confidence=False):
 
 def split_video_frames(video_path: str, output_dir: str, stride: int) -> None:
     """
-    Split a video into frames and save them to a directory.
+    Split a video (or all videos in a directory) into frames and save them to a directory.
 
     Args:
-        video_path: The path to the video
+        video_path: The path to the video file or directory of videos
         output_dir: The directory to save the frames to
         stride: The stride to use when splitting the video into frames
 
     Returns:
         None
     """
-    video_paths = sv.list_files_with_extensions(
-        directory=video_path, extensions=["mov", "mp4", "MOV", "MP4"]
-    )
+    os.makedirs(output_dir, exist_ok=True)
 
-    for name in tqdm(video_paths):
-        image_name_pattern = name + "-{:05d}.jpg"
-        with sv.ImageSink(
-            target_dir_path=output_dir, image_name_pattern=image_name_pattern
-        ) as sink:
-            for image in sv.get_video_frames_generator(
-                source_path=str(video_path), stride=stride
-            ):
-                sink.save_image(image=image)
+    def save_frames_from_video(video_file: str):
+        cap = cv2.VideoCapture(video_file)
+        frame_idx = 0
+        saved_idx = 0
+        base_name = os.path.splitext(os.path.basename(video_file))[0]
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+            if frame_idx % stride == 0:
+                out_path = os.path.join(output_dir, f"{base_name}-{saved_idx:05d}.jpg")
+                cv2.imwrite(out_path, frame)
+                saved_idx += 1
+            frame_idx += 1
+        cap.release()
+
+    if os.path.isdir(video_path):
+        # Process all video files in the directory
+        video_files = [
+            os.path.join(video_path, f)
+            for f in os.listdir(video_path)
+            if f.lower().endswith((".mp4", ".mov", ".avi", ".mkv"))
+        ]
+        for video_file in video_files:
+            save_frames_from_video(video_file)
+    else:
+        # Process a single video file
+        save_frames_from_video(video_path)
 
 
 def sync_with_roboflow(workspace_id, workspace_url, project_id, batch_id, model):
